@@ -3,14 +3,14 @@ import express from'express';
 import path from'path';
 import cookieParser from'cookie-parser';
 import logger from'morgan';
-import router from './routes/index';
-import db from './mongodb/db';
+import router from './app/routes/index';
+import db from './app/mongodb/db';
 
 
 const app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));

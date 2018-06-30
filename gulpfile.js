@@ -7,25 +7,25 @@ var minifyCss = require('gulp-minify-css');
 
 gulp.task('lessdev', function() {
     gulp
-        .src(['public/dev/less/*.less','!public/dev/less/common.less', '!public/dev/less/mixin.less'])
+        .src(['app/dev/less/*.less','!app/dev/less/common.less', '!app/dev/less/mixin.less'])
         .pipe($.less())
         .pipe(minifyCss())
-        .pipe(gulp.dest('public/dist/css/'));
+        .pipe(gulp.dest('public/css/'));
 });
 
 gulp.task('jsdev', function() {
     gulp
-        .src('public/dev/js/*.js')
+        .src('app/dev/js/*.js')
         .pipe(
             $.babel({
                 presets: ['env']
             })
         )
         .pipe($.uglify())
-        .pipe(gulp.dest('public/dist/js/'));
+        .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('watch', function() {
-    gulp.watch('public/less/*.less', ['lessdev']);
-    gulp.watch('public/**/*.js', ['jsdev']);
+    gulp.watch('app/dev/less/*.less', ['lessdev']);
+    gulp.watch('app/dev/js/*.js', ['jsdev']);
 });
