@@ -1,34 +1,15 @@
 header.header
   .container
-    .left 
-      img(src='https://github.com/liuzuan/index/blob/master/image/avatar.JPG?raw=true' alt='')
-      span 前端小白
+    img(class='sidebar_btn' src="/images/menu.png", alt="分类图标")
+    img(class='left' src='https://github.com/liuzuan/index/blob/master/image/avatar.JPG?raw=true' alt='')
     ul.right
-      li
-        if active_nav==='blog'
-          a(class='active1' href='/') 博客
-        else 
-          a(href='/') 博客
-      li
-        if active_nav==='source'
-          a(class='active2' href='/source') 开源
-        else 
-          a(href='/source') 开源
-      li
-        if active_nav==='gallery'
-          a(class='active3' href='/gallery') 图库
-        else 
-          a(href='/gallery') 图库
-      li
-        if active_nav==='message'
-          a(class='active4' href='/message') 留言
-        else 
-          a(href='/message') 留言
-      li
-        if active_nav==='about'
-          a(class='active5' href='/about') 关于
-        else 
-          a(href='/about') 关于
-      
-      
-
+      each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
+        li
+          if index === 'blog' && active_nav === 'blog'
+            a(class='active1' href=`/`)= val
+          else if index === 'blog' && active_nav !== 'blog'
+            a(href=`/`)= val
+          else if active_nav===index
+            a(class='active1' href=`/${index}`)= val
+          else 
+            a(href=`/${index}`)= val

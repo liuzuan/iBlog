@@ -1,0 +1,1 @@
+"use strict";$(document).ready(function(){$(document).delegate(".sidebar_btn","click",function(){$(".sidebar").addClass("open")}),$(".sidebar").click(function(){event.stopPropagation()}),$("body").click(function(){$(window).innerWidth()<900&&$(".sidebar").removeClass("open")}),$(window).resize(function(){$(window).innerWidth()<900&&$(".sidebar").removeClass("open")})});

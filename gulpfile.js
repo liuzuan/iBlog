@@ -7,22 +7,22 @@ var minifyCss = require('gulp-minify-css');
 
 gulp.task('lessdev', function() {
     gulp
-        .src(['public/less/*.less','!public/less/common.less', '!public/less/mixin.less'])
+        .src(['public/dev/less/*.less','!public/dev/less/common.less', '!public/dev/less/mixin.less'])
         .pipe($.less())
         .pipe(minifyCss())
-        .pipe(gulp.dest('public/stylesheets/'));
+        .pipe(gulp.dest('public/dist/css/'));
 });
 
 gulp.task('jsdev', function() {
     gulp
-        .src('public/**/*.js')
+        .src('public/dev/js/*.js')
         .pipe(
             $.babel({
                 presets: ['env']
             })
         )
         .pipe($.uglify())
-        .pipe(gulp.dest('public/javascripts/'));
+        .pipe(gulp.dest('public/dist/js/'));
 });
 
 gulp.task('watch', function() {

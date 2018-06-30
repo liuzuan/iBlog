@@ -5,10 +5,13 @@ block content
     .sidebar
       .sidebar_inner
         ul.main_menu
+          each val, index in ['博客','开源','图库','留言','关于']
+              li.menu_item= val
         .list
           h3.border_bottom.menu_item 文章分类
           ul.menu_wrap
             each val, index in sidebar
               li.menu_item= val
     main.main
+
       

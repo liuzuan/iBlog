@@ -7,7 +7,7 @@
 }
 
 body {
-    padding-top: 61px;
+    padding-top: 60px;
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -28,20 +28,21 @@ a {
     width: 100%;
     box-sizing: border-box;
     background: #fff;
-    line-height: 40px;
-    padding: 10px 60px;
-    box-shadow: 0 0 1px rgba(0,0,0,0.25);
+    // height: 57px;
+    line-height: 57px;
+    padding: 0px 60px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.25);
     transition: background-color 0.3s ease-in-out;
     .container {
         overflow: hidden;
+        .sidebar_btn {
+            display: none;
+        }
         .left {
-            float: left;
-            img {
-                vertical-align: middle;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-            }
+            vertical-align: middle;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
         }
         .right {
             float: right;
@@ -53,46 +54,60 @@ a {
                 font-size: 16px;
                 font-weight: 600;
                 color: #666;
-                transition: color .3s;
+                transition: color 0.3s;
+            }
+            a {
+                border-bottom: 3px solid transparent;
+                transition: border 0.3s;
             }
             .active1 {
+                border-bottom-color: @nav_color1;
                 color: @nav_color1;
             }
             .active2 {
+                border-bottom-color: @nav_color2;
                 color: @nav_color2;
             }
             .active3 {
+                border-bottom-color: @nav_color3;
                 color: @nav_color3;
             }
             .active4 {
+                border-bottom-color: @nav_color4;
                 color: @nav_color4;
             }
             .active5 {
+                border-bottom-color: @nav_color5;
                 color: @nav_color5;
             }
             // .generate_nav(5);
             li:nth-child(1):hover {
                 a {
                     color: @nav_color1;
+                    border-bottom-color: @nav_color1;
                 }
             }
             li:nth-child(2):hover {
                 a {
                     color: @nav_color2;
+                    border-bottom-color: @nav_color2;
                 }
             }
             li:nth-child(3):hover {
                 a {
                     color: @nav_color3;
+                    border-bottom-color: @nav_color3;
                 }
             }
             li:nth-child(4):hover {
                 a {
                     color: @nav_color4;
+                    border-bottom-color: @nav_color4;
                 }
             }
             li:nth-child(5):hover {
                 a {
+                    border-bottom-color: @nav_color5;
                     color: @nav_color5;
                 }
             }
@@ -107,5 +122,30 @@ a {
 @media screen and (min-width: 1590px) {
     .header {
         background-color: rgba(255, 255, 255, 0.4);
+    }
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        padding-top: 40px;
+    }
+    .header {
+        padding: 0 10px;
+        .container {
+            .sidebar_btn {
+                display: block;
+                float: left;
+                height: 24px;
+                margin-top: 8px;
+            }
+            .left {
+                display: block;
+                float: none;
+                margin: auto;
+            }
+            .right {
+                display: none;
+            }
+        }
     }
 }
