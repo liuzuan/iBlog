@@ -2,8 +2,10 @@ doctype html
 html
   head
     title 刘祖安 | 博客
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
   body
+    include head.pug
     block content
-    block footer
-      
+    include foot.pug
+    
+
