@@ -53,9 +53,25 @@ a {
                 font-size: 16px;
                 font-weight: 600;
                 color: #666;
+                transition: color .3s;
+            }
+            .active1 {
+                color: @nav_color1;
+            }
+            .active2 {
+                color: @nav_color2;
+            }
+            .active3 {
+                color: @nav_color3;
+            }
+            .active4 {
+                color: @nav_color4;
+            }
+            .active5 {
+                color: @nav_color5;
             }
             // .generate_nav(5);
-            li:nth-child(1) {
+            li:nth-child(1):hover {
                 a {
                     color: @nav_color1;
                 }

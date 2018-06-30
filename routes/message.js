@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
     res.render('index/index', {
+        active_nav: 'message',
         sidebar: ['javascript', 'html', 'css', 'php', 'nodejs']
     });
 });
