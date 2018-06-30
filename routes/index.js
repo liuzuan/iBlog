@@ -1,9 +1,13 @@
-var express = require('express');
-var router = express.Router();
+import blog from "./blog";
+import source from "./source";
+import gallery from "./gallery";
+import message from './message';
+import about from './about';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index/index', { title: 'My bolg' });
-});
-
-module.exports = router;
+export default app => {
+  app.use('/', blog);
+  app.use('/source', source);
+  app.use('/gallery', gallery);
+  app.use('/message', message);
+  app.use('/about', about);
+}
