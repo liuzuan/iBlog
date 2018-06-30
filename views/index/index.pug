@@ -1,4 +1,14 @@
 extends ../layout/layout
 
 block content
-  
+  .content
+    .sidebar
+      .sidebar_inner
+        ul.main_menu
+        .list
+          h3.border_bottom.menu_item 文章分类
+          ul.menu_wrap
+            each val, index in ['html', 'css', 'javascript', 'nodejs', 'php']
+              li.menu_item= val
+    main.main
+      

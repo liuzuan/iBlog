@@ -1,3 +1,35 @@
 @import 'common.less';
 
+.content {
+    position: static;
+    padding: 0 60px 30px;
+    .sidebar {
+        position: fixed;
+        z-index: 10;
+        top: 62px;
+        left: 0;
+        bottom: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: #fff;
+        padding: 40px 20px 60px 60px;
+        &_inner {
+            width: 260px;
+            .list {
+                .menu_item {
+                    height: 55px;
+                    line-height: 55px;
+                    padding-left: 20px;
+                    cursor: pointer;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    .main {
+        max-width: 600px;
+        // height: 100vh;
+        margin: 0 auto;
 
+    }
+}
