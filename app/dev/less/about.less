@@ -1,0 +1,25 @@
+@import 'common.less';
+
+#about {
+    .main {
+        min-height: ~'calc(100vh - 100px)';
+        .mark_dowm {
+            float: right;
+            ul,li {
+                list-style-type: disc;
+                list-style-position: inside;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1400px) {
+}
+
+@media screen and (max-width: 900px) {
+    #about {
+        .sidebar {
+            display: block;
+        }
+    }
+}

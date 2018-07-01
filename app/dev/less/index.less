@@ -1,48 +1,20 @@
 @import 'common.less';
 
-.content {
-    position: static;
-    padding: 0 60px 30px;
-    .open {
-        -webkit-transform: translate(0, 0) !important;
-        transform: translate(0, 0) !important;
-    }
+#blog {
     .sidebar {
-        position: fixed;
-        z-index: 10;
-        top: 62px;
-        left: 0;
-        bottom: 0;
-        overflow-x: hidden;
-        overflow-y: auto;
-        background: #fff;
-        &_inner {
-            padding: 40px 20px 60px 60px;
-            width: 260px;
-            .main_menu {
-                display: none;
-            }
-            .list {
-                .menu_item {
-                    height: 55px;
-                    line-height: 55px;
-                    padding-left: 20px;
-                    cursor: pointer;
-                    vertical-align: middle;
-                }
-            }
-        }
+        display: block;
     }
     .main {
         max-width: 800px;
         height: 200vh;
         background: #eee;
         margin: 0 auto;
+
     }
 }
 
-@media screen and (max-width: 1300px) {
-    .content {
+@media screen and (max-width: 1400px) {
+    #blog {
         .main {
             margin-left: 290px;
         }
@@ -50,45 +22,10 @@
 }
 
 @media screen and (max-width: 900px) {
-    .content {
-        .sidebar {
-            z-index: 10;
-            background-color: #f9f9f9;
-            height: 100%;
-            top: 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            -webkit-transform: translate(-280px, 0);
-            transform: translate(-280px, 0);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0, 1);
-            &_inner {
-                padding: 50px 10px 10px 20px;
-                box-sizing: border-box;
-                li:hover {
-                    color: @nav_color1;
-                }
-                .main_menu {
-                    display: block;
-                    li {
-                        height: 40px;
-                        line-height: 40px;
-                        font-size: 16px;
-                        font-weight: 400;
-                        padding-left: 20px;
-                        cursor: pointer;
-                    }
-                }
-                .list {
-                    li.menu_item {
-                        height: 40px;
-                        line-height: 40px;
-                        padding-left: 40px;
-                        font-weight: 300;
-                    }
-                }
-            }
-        }
+    #blog {
         .main {
             margin: auto;
         }
     }
 }
+

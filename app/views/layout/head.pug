@@ -1,15 +1,15 @@
 header.header
   .container
     img(class='sidebar_btn' src="/images/menu.png", alt="分类图标")
-    img(class='left' src='https://github.com/liuzuan/index/blob/master/image/avatar.JPG?raw=true' alt='')
+    img(class='left' src='/images/logo.JPG' alt='')
     ul.right
       each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
         li
           if index === 'blog' && active_nav === 'blog'
-            a(class='active1' href=`/`)= val
+            a(class=`blog` href=`/`)= val
           else if index === 'blog' && active_nav !== 'blog'
             a(href=`/`)= val
           else if active_nav===index
-            a(class='active1' href=`/${index}`)= val
+            a(class=`${active_nav}` href=`/${index}`)= val
           else 
             a(href=`/${index}`)= val

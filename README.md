@@ -6,7 +6,7 @@
 
 __注：此项目纯属个人瞎搞，仅用于个人学习。__
 
-# 说明
+## 说明
 
 > 相关项目地址：[博客git地址](https://github.com/liuzuan/iBlog.git)  、 [后台管理系统地址](https://github.com/liuzuan/blog_m.git)
 
@@ -14,16 +14,15 @@ __注：此项目纯属个人瞎搞，仅用于个人学习。__
 
 nodejs + express + jade + mongodb + mongoose + es6/7 + vue + iview
 
-
 ## 项目运行
 
-```
+```bash
 项目运行之前，请确保系统已经安装以下应用
 1、node (6.0 及以上版本)
 2、mongodb (开启状态)
 ```
 
-```
+```bash
 git clone https://github.com/liuzuan/iBlog.git
 
 cd iBlog
@@ -36,12 +35,13 @@ npm run debug
 
 ```
 
-# 效果演示
+## 效果演示
 
-### 前端网址
-[前端网址戳这里](http://blog.liuzuann.com)（响应式兼容pc、移动端）
+### 博客网址
 
-###### 移动端扫描下方二维码
+[博客网址戳这里](http://blog.liuzuann.com)（响应式兼容pc、移动端）
+
+#### 移动端扫描下方二维码
 
 ### 后台管理系统网址
 

@@ -1,0 +1,19 @@
+.sidebar
+    .sidebar_inner
+        ul.main_menu
+            each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
+                li
+                    if index === 'blog' && active_nav === 'blog'
+                        a(class='active' href=`/`)= val
+                    else if index === 'blog' && active_nav !== 'blog'
+                        a(href=`/`)= val
+                    else if active_nav===index
+                        a(class='active' href=`/${index}`)= val
+                    else 
+                        a(href=`/${index}`)= val
+        if active_nav === 'blog'
+            .list
+                h3.menu_item 文章分类
+                ul.menu_wrap
+                    each val, index in sidebar
+                        li.menu_item= val

@@ -2,9 +2,8 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.render('index/index', {
+    res.render('pages/index', {
         active_nav: 'gallery',
-        sidebar: ['javascript', 'html', 'css', 'php', 'nodejs']
     });
 });
 
