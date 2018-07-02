@@ -15,6 +15,17 @@
 //     .generate_nav(@n, (@i + 1));
 // }
 
+.wh(@w,@h) {
+    width: @w;
+    height: @h;
+}
+
+.img_cir(@w,@h) {
+    .wh(@w,@h);
+    border-radius: 50%;
+}
+
+
 .border_bottom {
     border-bottom: 1px solid @border_botttom;
 }
