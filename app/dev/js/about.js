@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let resumeEditorContent = `
+    let aboutMeContent = `
 # 关于本站
 
 ### 建站初衷
@@ -22,16 +22,15 @@ $(document).ready(function() {
 - Vue
 - iView
 `;
-
     let current = '';
     let count = 0;
     let showResumeContent = () => {
-        let len = resumeEditorContent.length;
+        let len = aboutMeContent.length;
         let showContent = () => {
             let currentLen = current.length;
             let timer;
             if (currentLen < len) {
-                current += resumeEditorContent[count];
+                current += aboutMeContent[count];
                 count++;
                 $('.mark_dowm').html(marked(current));
                 timer = setTimeout(showContent, 40);
