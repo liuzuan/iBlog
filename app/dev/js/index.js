@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $(document).delegate('.sidebar_btn', 'click', () => {
+    $(document).delegate('.menu_icon', 'click', () => {
         $('.sidebar').addClass('open');
     });
     $('.sidebar').click(() => {
