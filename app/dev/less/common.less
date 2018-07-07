@@ -10,7 +10,6 @@
 body {
     min-height: 100vh;
     padding-top: 44px;
-    
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -46,6 +45,13 @@ a {
             float: left;
             width: 44px;
             height: 100%;
+            cursor: pointer;
+            &:hover {
+                .line {
+                    background: #aaa;
+                }
+            }
+
             &_top,
             &_bottom {
                 position: absolute;
@@ -64,7 +70,7 @@ a {
                     background: #fff;
                     height: 1px;
                     width: 18px;
-                    transition: transform 0.3s;
+                    transition: transform 0.3s, background 0.3s;
                 }
             }
             &_top {
@@ -169,8 +175,6 @@ a {
             li {
                 .active {
                     color: @nav_color1;
-                    
-
                 }
             }
         }
@@ -184,6 +188,19 @@ a {
             }
             .search {
                 display: none;
+                &_input {
+                    color: #fff;
+                    outline: none;
+                    font-size: 17px;
+                    text-indent: 10px;
+                    width: 100%;
+                    background: transparent;
+                    &::-webkit-input-placeholder,
+                    &:-ms-input-placeholder,
+                    &:-moz-placeholder {
+                        color: #333;
+                    }
+                }
             }
         }
     }
@@ -193,7 +210,7 @@ a {
     text-align: center;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 767px) {
     body {
         padding-top: 40px;
     }
@@ -233,7 +250,7 @@ a {
                 justify-content: space-between;
                 width: 100%;
                 opacity: 0;
-                transform: scale(1.1) translate3d(0, -100%, 0);
+                transform: scale(1.1) translate3d(0, -40px, 0);
                 transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.05s ease-out;
                 transition-delay: 350ms, 350ms;
                 li {
@@ -268,19 +285,6 @@ a {
                 }
                 .search {
                     display: flex;
-                    &_input {
-                        color: #fff;
-                        outline: none;
-                        font-size: 17px;
-                        text-indent: 10px;
-                        width: 100%;
-                        background: @black_rgba;
-                        &::-webkit-input-placeholder,
-                        &:-ms-input-placeholder,
-                        &:-moz-placeholder {
-                            color: #333;
-                        }
-                    }
                 }
             }
         }
@@ -322,12 +326,6 @@ a {
                         transform: none;
                         &:hover {
                             color: #fff;
-                        }
-                    }
-                    .search {
-                        &_input {
-                            background: #000;
-                            transition: background 0.3s ease-in-out;
                         }
                     }
                 }
