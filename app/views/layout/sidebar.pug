@@ -9,8 +9,8 @@
                 h3.menu_item 文章分类
                 ul.menu_wrap
                     li.menu_item.search
-                        img(src="/images/search.svg" alt="")
+                        img(src="/images/search.svg" class='search_btn' alt="")
                         input(type="text" class='search_input' placeholder='Search this website')
-                        //- img(src="/images/reset_search.svg" alt="" style=`display:${this.previousSbiling.value?'block':'none'}`)
+                        img(src="/images/reset_search.svg" class='reset_search_btn' alt="" style='display:none;')
                     each val, index in sidebar
                         li.menu_item= val
