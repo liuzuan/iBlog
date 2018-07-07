@@ -3,13 +3,10 @@ html
   head
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
-    link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
     meta(name="keywords" content="刘祖安,liuzuan,刘祖安个人主页,web前端个人简历,web前端,刘祖安简历,liuzuan,前端个人博客,前端工程师")
     meta(name="description" content="刘祖安|前端工程师")
-    if active_nav === 'blog'
-      link(rel='stylesheet', href='/css/index.css')
-    else
-      link(rel='stylesheet', href=`/css/${active_nav}.css`)
+    link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
+    link(rel='stylesheet', href=`/css/${active_nav==='blog'?'index':active_nav}.css`)
     title 刘祖安 | 博客
     script.
       (function(psdw) {
@@ -30,6 +27,7 @@ html
   body
     include head.pug
     block content
+    include ../layout/sidebar
     include foot.pug
 
 

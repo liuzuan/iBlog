@@ -3,17 +3,14 @@
         ul.main_menu
             each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
                 li
-                    if index === 'blog' && active_nav === 'blog'
-                        a(class='active' href=`/`)= val
-                    else if index === 'blog' && active_nav !== 'blog'
-                        a(href=`/`)= val
-                    else if active_nav===index
-                        a(class='active' href=`/${index}`)= val
-                    else 
-                        a(href=`/${index}`)= val
+                    a(class=active_nav===index?'active':'' href=`/${index==='blog'?'':index}`)= val
         if active_nav === 'blog'
             .list
                 h3.menu_item 文章分类
                 ul.menu_wrap
+                    li.menu_item.search
+                        img(src="/images/search.svg" alt="")
+                        input(type="text" class='search_input' placeholder='Search this website')
+                        //- img(src="/images/reset_search.svg" alt="" style=`display:${this.previousSbiling.value?'block':'none'}`)
                     each val, index in sidebar
                         li.menu_item= val
