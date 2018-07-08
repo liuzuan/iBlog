@@ -1,10 +1,10 @@
-import {articleModel} from "../../models/blog";
+import { articleModel, categoryModel } from '../../models/blog';
 
 class ArticleController {
-    constructor(){}
-    async getArticle(req, res, next){
+    constructor() {}
+    async getArticle(req, res, next) {
         try {
-            const articles = await articleModel.find({}, '-_id');
+            const articles = await articleModel.find({});
             res.send(articles);
         } catch (err) {
             console.log('获取文章内容失败');
@@ -16,11 +16,18 @@ class ArticleController {
         }
     }
     async addArticle(req, res, next) {
+        console.log(req.body)
         let newArticle = new articleModel({
-            ...res.body
+            ...req.body,
+            createTime: Date.now(),
         });
         await newArticle.save((err, data) => {
             if (err) {
+                res.send({
+                    status: 0,
+                    type: 'ERROR_DATA',
+                    desc: '添加文章失败！'
+                });
                 return console.log(err);
             }
             res.send({
@@ -28,5 +35,32 @@ class ArticleController {
             });
         });
     }
+    async editArticle(req, res, next) {
+        const { _id, ...set } = req.body;
+        await articleModel.findOneAndUpdate({ _id }, { ...set, modifyTime: Date.now() }, (err, data) => {
+            if (err) {
+                return console.log(err);
+            }
+            res.send({
+                desc: '修改文章成功！'
+            });
+        });
+    }
+    async delArticle(req, res, next) {
+        const { _id} = req.body;
+        await articleModel.findByIdAndRemove(_id, (err, data) => {
+            if (err) {
+                res.send({
+                    status: 0,
+                    type: 'ERROR_DATA',
+                    desc: '删除文章失败！'
+                });
+                return console.log(err);
+            }
+            res.send({
+                desc: '删除文章成功！'
+            });
+        });
+    }
 }
-export default new ArticleController()
+export default new ArticleController();

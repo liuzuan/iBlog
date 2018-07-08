@@ -1,7 +1,39 @@
 extends ../layout/layout
 
 block content
-  .content#blog
-    main.main
+  -var formatDate= function(str) {
+      -if (!str) {
+          -return;
+      -}
+      -let date = new Date(str);
+      -let y = date.getFullYear();
+      -let m = date.getMonth() < 9 ? `0${date.getMonth()}` : date.getMonth();
+      -let d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+      -return `${y}-${m}-${d}`;
+  -}
+  
+  main.main#blog
+    if is_list
+      ul.article_list
+        h3.list_title=active_cate
+        each val,index in articleList
+          -const {title, categoryName, createTime,alias} = val
+          a(href='/article?title='+alias)
+            li.list_cell 
+              p=title
+              p
+                span.category=categoryName
+                span.time #{formatDate(createTime)}
+    else
+      -const {title,categoryName,modifyTime,createTime} = article[0]
+      .article_detail
+        h2=title
+        p 
+          span 分类：#{categoryName}
+          if createTime===modifyTime
+            span 发布时间：#{formatDate(createTime)}
+          else 
+            span 最后修改时间：#{formatDate(modifyTime)}
+        
 
 
