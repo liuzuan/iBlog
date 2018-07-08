@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     let aboutMeContent = `
 # 关于本站
 

@@ -5,9 +5,17 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import router from './app/routes/index';
 import db from './app/mongodb/db';
-
+import cors from 'cors';
 
 const app = express();
+
+app.use(
+    cors({
+        origin: '*',
+        optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+        credentials: true
+    })
+);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));

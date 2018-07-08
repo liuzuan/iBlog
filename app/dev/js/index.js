@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(function() {
     const $body = $('body');
     const $search_input = $('.search_input');
     const $reset = $('.reset_search_btn');
