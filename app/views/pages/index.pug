@@ -11,29 +11,26 @@ block content
       -let d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
       -return `${y}-${m}-${d}`;
   -}
-  
+  //- 文章列表
   main.main#blog
     if is_list
       ul.article_list
-        h3.list_title=active_cate
+        h1.list_header=active_cate
         each val,index in articleList
           -const {title, categoryName, createTime,alias} = val
           a(href='/article?title='+alias)
             li.list_cell 
-              p=title
+              h3=title
               p
-                span.category=categoryName
+                //- span.category=categoryName
                 span.time #{formatDate(createTime)}
+    //- 文章详情内容
     else
-      -const {title,categoryName,modifyTime,createTime} = article[0]
+      -const {title,categoryName,modifyTime,createTime,content} = article[0]
       .article_detail
-        h2=title
-        p 
-          span 分类：#{categoryName}
-          if createTime===modifyTime
-            span 发布时间：#{formatDate(createTime)}
-          else 
-            span 最后修改时间：#{formatDate(modifyTime)}
+        h1.article_title=title
+        p.sub_title #{formatDate(createTime)} | #{categoryName}
+        article.article_content!=content
         
 
 

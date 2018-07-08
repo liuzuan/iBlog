@@ -1,4 +1,5 @@
 import { articleModel, categoryModel } from '../../models/blog';
+import marked from 'marked';
 
 class IndexController {
     constructor() {}
@@ -18,12 +19,12 @@ class IndexController {
             } catch (error) {}
         } else if (title) {
             const article = await articleModel.find({ alias: title });
-            console.log(article[0].createTime)
-            // console.log(article)
+            article[0].content = marked(article[0].content);
+            console.log(article)
                 res.render('pages/index', {
                     active_nav: 'blog',
                     is_list: false,
-                    active_cate: article.categoryName,
+                    active_cate: article[0].categoryName,
                     allCategories: allCategories,
                     article: article
                 });

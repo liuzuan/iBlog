@@ -5,12 +5,21 @@
     margin: 0;
     border: 0;
     box-sizing: border-box;
+    .common_font;
+}
+
+.header_font {
+    font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+}
+
+.common_font {
+    font-family: 'Chancery', cursive, LiSu, sans-serif;
 }
 
 body {
     min-height: 100vh;
     padding-top: 44px;
-    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+    font: 16px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 ul,
@@ -97,7 +106,7 @@ a {
                 display: inline-block;
                 width: 90px;
                 text-align: center;
-                font-size: 14px;
+                font-size: 18px;
                 font-weight: 500;
                 color: #fff;
                 transition: color 0.3s;
@@ -184,7 +193,14 @@ a {
                 line-height: 55px;
                 padding-left: 20px;
                 cursor: pointer;
-                vertical-align: middle;
+                a {
+                    display: block;
+                    font-size: 18px;
+                }
+                // vertical-align: middle;
+            }
+            .active {
+                color: @nav_color1;
             }
             .search {
                 display: none;
@@ -263,6 +279,7 @@ a {
                         color: #fff;
                     }
                     a {
+                        font-size: 18px;
                         color: #fff;
                     }
                 }
@@ -271,7 +288,6 @@ a {
                 h3 {
                     display: none;
                 }
-                color: #fff;
                 li.menu_item {
                     height: 40px;
                     padding: 0;
@@ -282,6 +298,16 @@ a {
                     transition: opacity 0.35s ease-out, transform 0.35s ease-out, -webkit-transform 0.35s ease-out;
                     transform: scale(1.1) translate3d(0, -24px, 0);
                     opacity: 0;
+                    color: #fff;
+                    a {
+                        display: block;
+                        width: 100%;
+                        width: 100%;
+                        color: #fff;
+                    }
+                    .active {
+                        color: rgb(196, 195, 195);
+                    }
                 }
                 .search {
                     display: flex;

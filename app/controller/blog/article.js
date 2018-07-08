@@ -37,7 +37,7 @@ class ArticleController {
     }
     async editArticle(req, res, next) {
         const { _id, ...set } = req.body;
-        await articleModel.findOneAndUpdate({ _id }, { ...set, modifyTime: Date.now() }, (err, data) => {
+        await articleModel.findOneAndUpdate({ _id }, set, (err, data) => {
             if (err) {
                 return console.log(err);
             }

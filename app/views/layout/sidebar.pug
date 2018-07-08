@@ -13,5 +13,5 @@
                         input(type="text" class='search_input' placeholder='Search this website')
                         img(src="/images/reset_search.svg" class='reset_search_btn' alt="" style='display:none;')
                     each val, index in allCategories
-                        a(href='/article?category='+val.link)
-                            li.menu_item= val.name
+                        li.menu_item
+                            a(class=`${active_cate===val.name?'active':''}` href='/article?category='+val.link)= val.name
