@@ -9,10 +9,12 @@
 @red: #c05b4d;
 @border_color: #e6e6e6;
 @sub_color: #8a8a8a;
+@color: ~'nav_color';
+
 // .generate_nav(@n, @i: 1) when (@i =< @n) {
 //     a:nth-child(@{i}) {
 //         &:hover {
-//             color: @{color}@{i};
+//             color: @{@{color}@{i}}
 //         }
 //     }
 //     .generate_nav(@n, (@i + 1));

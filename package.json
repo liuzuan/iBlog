@@ -3,13 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "debug": "cross-env NODE_ENV=production nodemon --inspect ./www  --exec babel-node",
+    "debug": "cross-env NODE_ENV=development nodemon --inspect ./www  --exec babel-node",
     "dev": "cross-env NODE_ENV=development pm2 start start.js --watch --name 'iBlog --port 3000' --node-args='--harmony'",
-    "start": "cross-env NODE_ENV=production pm2 start start.js --watch --name 'iBlog --port 3000' --exec --node-args='--harmony'",
-    "local": "cross-env NODE_ENV=local pm2 start start.js --name 'iBlog --port 3000' --exec --node-args='--harmony'",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "stop": "cross-env NODE_ENV=production pm2 stop start.js --name 'iBlog --port 3000' --exec --node-args='--harmony'",
-    "restart": "cross-env NODE_ENV=production pm2 restart start.js --watch --name 'iBlog --port 3000' --exec --node-args='--harmony'"
+    "start": "cross-env NODE_ENV=production pm2 start start.js --watch --name 'iBlog --port 3000' --node-args='--harmony'",
+    "stop": "cross-env NODE_ENV=production pm2 stop start.js --name 'iBlog --port 3000' --node-args='--harmony'",
+    "restart": "cross-env NODE_ENV=production pm2 restart start.js --watch --name 'iBlog --port 3000' --node-args='--harmony'"
   },
   "dependencies": {
     "babel": "^6.23.0",
@@ -22,7 +20,6 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
-    "jstransformer-markdown-it": "^2.1.0",
     "marked": "^0.4.0",
     "mongoose": "^5.1.7",
     "morgan": "~1.9.0",

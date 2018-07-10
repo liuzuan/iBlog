@@ -15,19 +15,18 @@ const articleSchema = new mongoose.Schema({
     modifyTime: { type: Date, default: Date.now }
 });
 
-const articleModel = mongoose.model('articleModel', articleSchema);
-
 const categorySchema = new mongoose.Schema({
     // id: { type: ObjectId, default: new mongoose.Types.ObjectId() },
     status: { type: Number, default: 1 },
     name: String,
     logo: String,
     link: String,
-    // articles: { type: ObjectId, ref: 'articleModel' },
+    articles: { type: ObjectId, ref: 'articleModel' },
     createTime: Date,
     modifyTime: { type: Date, default: Date.now }
 });
 
+const articleModel = mongoose.model('articleModel', articleSchema);
 const categoryModel = mongoose.model('categoryModel', categorySchema);
 
 export { categoryModel, articleModel };

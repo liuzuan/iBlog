@@ -4,9 +4,10 @@ class ArticleController {
     constructor() {}
     async getArticle(req, res, next) {
         try {
-            const articles = await articleModel.find({});
+            const articles = await articleModel.find(req.body);
             res.send(articles);
         } catch (err) {
+            console.log(err)
             console.log('获取文章内容失败');
             res.send({
                 status: 0,

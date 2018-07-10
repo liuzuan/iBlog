@@ -15,5 +15,5 @@ router.get('/getAllCategories', category.getAllCategories);
 router.post('/addArticle', article.addArticle)
 router.post('/editArticle', article.editArticle)
 router.post('/delArticle', article.delArticle)
-router.get('/getArticle', article.getArticle)
+router.post('/getArticle', article.getArticle)
 export default router;
