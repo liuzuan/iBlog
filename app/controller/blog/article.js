@@ -17,7 +17,6 @@ class ArticleController {
         }
     }
     async addArticle(req, res, next) {
-        console.log(req.body)
         let newArticle = new articleModel({
             ...req.body,
             createTime: Date.now(),

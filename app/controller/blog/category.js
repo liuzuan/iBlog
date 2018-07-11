@@ -42,7 +42,7 @@ class CategoryController {
         const { _id, ...set } = req.body;
         await categoryModel.findOneAndUpdate(
             { _id },
-            { ...set, link: req.body.link ? req.body.link : req.body.name },
+            { ...set, link: req.body.link || req.body.name },
             (err, data) => {
                 if (err) {
                     res.send({
