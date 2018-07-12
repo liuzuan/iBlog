@@ -21,16 +21,14 @@ app.use(
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'pug');
 
+router(app);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/public'), {
-    maxAge: '1d'
-  }));
+app.use(express.static(path.join(__dirname, '/public'), { maxAge: '1d' }));
 
-router(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
