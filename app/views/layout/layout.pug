@@ -8,22 +8,22 @@ html
     link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
     link(rel='stylesheet', href=`/css/${active_nav==='blog'?'index':active_nav}.css`)
     title 刘祖安 | 博客
-    script.
-      (function(psdw) {
-        let dpr = window.devicePixelRatio;
-        let htmlDOM = document.documentElement;
-        let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
-        let recalc = function() {
-          let htmlWidth = htmlDOM.clientWidth || document.body.clientWidth;
-          let scale = htmlWidth / psdw;
-          let rem = 10 * scale;
-          htmlDOM.style.fontSize = rem + 'px';
-          htmlDOM.setAttribute('data-dpr', dpr);
-        }
-        if(!document.addEventListener) return;
-        window.addEventListener(resizeEvt, recalc, false);
-        document.addEventListener('DOMContentLoaded', recalc, false);
-      })(375)
+    //- script.
+    //-   (function(psdw) {
+    //-     let dpr = window.devicePixelRatio;
+    //-     let htmlDOM = document.documentElement;
+    //-     let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+    //-     let recalc = function() {
+    //-       let htmlWidth = htmlDOM.clientWidth || document.body.clientWidth;
+    //-       let scale = htmlWidth / psdw;
+    //-       let rem = 10 * scale;
+    //-       htmlDOM.style.fontSize = rem + 'px';
+    //-       htmlDOM.setAttribute('data-dpr', dpr);
+    //-     }
+    //-     if(!document.addEventListener) return;
+    //-     window.addEventListener(resizeEvt, recalc, false);
+    //-     document.addEventListener('DOMContentLoaded', recalc, false);
+    //-   })(375)
   body
     include head.pug
     block content
