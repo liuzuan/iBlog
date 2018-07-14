@@ -18,9 +18,9 @@ class IndexController {
                 });
             } catch (error) {}
         } else if (title) {
-            const article = await articleModel.find({ alias: title });
-            article[0].content = marked(article[0].content);
-            console.log(article)
+            try {
+                const article = await articleModel.find({ alias: title });
+                article[0].content = marked(article[0].content);
                 res.render('pages/index', {
                     active_nav: 'blog',
                     is_list: false,
@@ -28,6 +28,7 @@ class IndexController {
                     allCategories: allCategories,
                     article: article
                 });
+            } catch (err) {}
         } else {
             try {
                 const articleList = await articleModel.find({ categoryName: 'top' });

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import chalk from 'chalk';
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/iBlog');
+mongoose.connect('mongodb://localhost:27017/iBlog',{ useNewUrlParser: true });
 
 const db = mongoose.connection;
 
