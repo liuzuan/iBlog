@@ -12,6 +12,6 @@
                         img(src="/images/search.svg" class='search_btn' alt="")
                         input(type="text" class='search_input' placeholder='Search this website')
                         img(src="/images/reset_search.svg" class='reset_search_btn' alt="" style='display:none;')
-                    each val, index in allCategories
+                    each val, index in [{name:"TOP",link:"TOP"},...allCategories]
                         li.menu_item
                             a(class=active_cate===val.name?'active':'' href='/article?category='+val.link)= val.name

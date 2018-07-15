@@ -14,7 +14,6 @@ debug('iblog:server')
  */
 
 const port = normalizePort(process.env.PORT || '3000');
-console.log(process.env.PORT)
 app.set('port', port);
 
 /**

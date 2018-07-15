@@ -1,11 +1,37 @@
 @import 'common.less';
 
+.header {
+    // background: #000;
+}
+
+#gallery {
+    background: #000;
+    .gallery_sidebar {
+        position: fixed;
+        top: 44px;
+        right: 0;
+        width: 22em;
+        height: ~'calc(100vh - 44px)';
+        background: #fff;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .viewer {
+        width: ~'calc(100% - 22em)';
+        height: ~'calc(100vh - 44px)';
+        // opacity: 0;
+        background-image: url('http://reso3.yiihuu.com/img_754104.jpg');
+        transition: opacity 0.5s ease-in-out;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+.footer {
+    display: none;
+}
 @media screen and (max-width: 1300px) {
 }
 
 @media screen and (max-width: 767px) {
-    #gallery{
-        
-    }
 }
-

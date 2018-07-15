@@ -7,7 +7,7 @@ block content
       -}
       -let date = new Date(str);
       -let y = date.getFullYear();
-      -let m = date.getMonth() < 9 ? `0${date.getMonth()}` : date.getMonth();
+      -let m = date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1;
       -let d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
       -return `${y}-${m}-${d}`;
   -}
@@ -27,10 +27,7 @@ block content
     //- 文章详情内容
     else
       -const {title,categoryName,modifyTime,createTime,content} = article[0]
-      .article_detail
-        h1.article_title=title
+      .article_detail.post
+        h1.article_title.post-header=title
         p.sub_title #{formatDate(createTime)} | #{categoryName}
-        code.prettyprint.article_content!=content
-        
-
-
+        article.markdown-body.article_content!=content

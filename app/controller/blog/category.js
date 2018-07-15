@@ -4,7 +4,7 @@ class CategoryController {
     constructor() {}
     async getAllCategories(req, res, next) {
         try {
-            const categories = await categoryModel.find({});
+            const categories = await categoryModel.find({}).populate('articles');
             // const articleList = await articleModel.find({categoryName:req.body.categoryName});
             res.send(categories);
         } catch (err) {
@@ -20,8 +20,7 @@ class CategoryController {
     async addCategory(req, res, next) {
         const newCategory = new categoryModel({
             ...req.body,
-            createTime: Date.now(),
-            link: req.body.link ? req.body.link : req.body.name
+            link: req.body.link || req.body.name
         });
         await newCategory.save((err, data) => {
             if (err) {

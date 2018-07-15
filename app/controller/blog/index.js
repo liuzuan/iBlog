@@ -5,10 +5,16 @@ class IndexController {
     constructor() {}
     async blogIndex(req, res, next) {
         const { category, title } = req.query;
-        const allCategories = await categoryModel.find({});
+        const allCategories = await categoryModel.find({status:1});
         if (category) {
             try {
-                const articleList = await articleModel.find({ categoryName: category });
+                let params = {};
+                if (category === 'TOP') {
+                    params = { isTop: true, status: 1 };
+                } else {
+                    params = { categoryName: category, status: 1 };
+                }
+                const articleList = await articleModel.find(params);
                 res.render('pages/index', {
                     active_nav: 'blog',
                     is_list: true,
@@ -16,7 +22,9 @@ class IndexController {
                     allCategories: allCategories,
                     articleList: articleList
                 });
-            } catch (error) {}
+            } catch (err) {
+                console.log(err)
+            }
         } else if (title) {
             try {
                 const article = await articleModel.find({ alias: title });
@@ -28,18 +36,24 @@ class IndexController {
                     allCategories: allCategories,
                     article: article
                 });
-            } catch (err) {}
+            } catch (err) {
+                console.log(err)
+
+            }
         } else {
             try {
-                const articleList = await articleModel.find({ categoryName: 'top' });
+                const articleList = await articleModel.find({ isTop: true, status: 1 });
                 res.render('pages/index', {
                     active_nav: 'blog',
-                    active_cate: '',
+                    active_cate: 'TOP',
                     is_list: true,
                     allCategories: allCategories,
                     articleList: articleList
                 });
-            } catch (err) {}
+            } catch (err) {
+                console.log(err)
+
+            }
         }
     }
 }
