@@ -46,7 +46,14 @@ class UserController {
             const hmac = crypto.createHmac('sha1', userName);
             hmac.update(password);
             const newPassword = hmac.digest('hex');
-            console.log(newPassword);
+            const user = await userModel.find({userName:userName})
+            if (user.length) {
+                res.send({
+                    desc: '用户名已存在！',
+                    success: false
+                });
+                return;
+            }
             const newUser = new userModel({
                 userName: userName,
                 password: newPassword
