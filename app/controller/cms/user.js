@@ -13,8 +13,9 @@ class UserController {
             let user = await userModel.find({ userName: userName, password: newPassword });
             let user1 = await userModel.find({ userName: userName});
             if (user.length) {
-                const { userName, _id, avatar_url } = user[0];
+                const { userName, _id, avatar_url, is_manager } = user[0];
                 res.send({
+                    is_manager,
                     userName,
                     _id,
                     avatar_url,
