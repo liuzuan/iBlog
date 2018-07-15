@@ -35,7 +35,15 @@ const categorySchema = new mongoose.Schema(
     }
 );
 
+const userSchema = new mongoose.Schema({
+    is_manager: {type:Number, default:0},
+    userName: {type: String, required: true},
+    password: {type: String, required: true},
+    avatar_url: {type: String, default: 'https://avatars3.githubusercontent.com/u/33034834?v=4&s=120'}
+})
+
 const articleModel = mongoose.model('articleModel', articleSchema);
 const categoryModel = mongoose.model('categoryModel', categorySchema);
+const userModel = mongoose.model('userModel', userSchema);
 
-export { categoryModel, articleModel };
+export { categoryModel, articleModel, userModel };
