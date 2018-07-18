@@ -13,6 +13,7 @@ router.get('/getAllCategories', category.getAllCategories);
 router.post('/addArticle', article.addArticle)
 router.post('/editArticle', article.editArticle)
 router.post('/delArticle', article.delArticle)
+
 router.post('/getArticle', article.getArticle)
 
 router.post('/login', user.login)

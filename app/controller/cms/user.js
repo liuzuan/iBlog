@@ -5,6 +5,7 @@ class UserController {
     constructor() {}
     async login(req, res, next) {
         try {
+            
             const { userName, password } = req.body;
             // 以用户名作为密钥，对密码二次加密后进行查询
             const hmac = crypto.createHmac('sha1', userName);
