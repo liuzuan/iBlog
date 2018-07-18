@@ -13,12 +13,10 @@ class UserController {
             let user = await userModel.find({ userName: userName, password: newPassword });
             let user1 = await userModel.find({ userName: userName});
             if (user.length) {
-                const { userName, _id, avatar_url, is_manager } = user[0];
+                let data = user[0]
+                delete data._doc.password
                 res.send({
-                    is_manager,
-                    userName,
-                    _id,
-                    avatar_url,
+                    data,
                     desc: '登录成功！',
                     success: true
                 });
@@ -38,6 +36,7 @@ class UserController {
                 desc: '登录失败！',
                 success: false
             });
+            console.log(error)
         }
     }
     async register(req, res, next) {
@@ -50,7 +49,7 @@ class UserController {
             const user = await userModel.find({userName:userName})
             if (user.length) {
                 res.send({
-                    desc: '用户名已存在！',
+                    desc: '用户名已被占用！',
                     success: false
                 });
                 return;
@@ -60,10 +59,10 @@ class UserController {
                 password: newPassword
             });
             await newUser.save((err, data) => {
+                let user = newUser
+                delete user._doc.password
                 res.send({
-                    userName: newUser.userName,
-                    avatar_url: newUser.avatar_url,
-                    _id: newUser._id,
+                    data: user,
                     desc: '注册成功！',
                     success: true
                 });

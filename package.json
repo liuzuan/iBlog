@@ -1,9 +1,9 @@
 {
   "name": "iblog",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "debug": "cross-env NODE_ENV=development nodemon --inspect ./www  --exec babel-node",
+    "debug": "cross-env NODE_ENV=development nodemon --inspect=3000 ./www  --exec babel-node",
     "dev": "cross-env NODE_ENV=development pm2 start start.js --watch --name 'iBlog' --node-args='--harmony'",
     "start": "cross-env NODE_ENV=production pm2 start start.js --watch --name 'iBlog' --node-args='--harmony'",
     "stop": "cross-env NODE_ENV=production pm2 stop start.js --name 'iBlog  --node-args='--harmony'",
