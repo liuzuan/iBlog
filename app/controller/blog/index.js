@@ -15,6 +15,7 @@ class IndexController {
                     params = { categoryName: category, status: 1 };
                 }
                 const articleList = await articleModel.find(params);
+                console.log(articleList)
                 res.render('pages/index', {
                     active_nav: 'blog',
                     is_list: true,

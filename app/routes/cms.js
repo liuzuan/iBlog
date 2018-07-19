@@ -4,7 +4,6 @@ import category from '../controller/cms/category';
 import user from '../controller/cms/user';
 const router = express.Router();
 
-
 router.post('/addCategory', category.addCategory);
 router.post('/editCategory', category.editCategory);
 router.post('/delCategory', category.delCategory);

@@ -3,11 +3,21 @@ script(src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js")
 script(src="/js/index.js")
 
 if active_nav === 'blog'
-    script(src="/js/prettify.js")
+    script(src="/js/hljs.js")
     script.
         $(function(){
-            $('pre').addClass('prettyprint linenums');
-            prettyPrint();
+            hljs.initHighlightingOnLoad();
+            $('pre code').each(function(){
+                var lines = $(this).text().split('\n').length;
+                var $numbering = $('<ul/>').addClass('pre-numbering');
+                $(this)
+                    .addClass('has-numbering')
+                    .parent()
+                    .append($numbering);
+                for(i=1;i<=lines;i++){
+                    $numbering.append($('<li/>').text(i));
+                }
+            });
         })
 if active_nav === 'about'
     script(src="/js/markdown.js")
