@@ -5,7 +5,6 @@ class CategoryController {
     async getAllCategories(req, res, next) {
         try {
             const categories = await categoryModel.find({}).populate('articles');
-            // const articleList = await articleModel.find({categoryName:req.body.categoryName});
             res.send(categories);
         } catch (err) {
             console.log('获取categories失败');

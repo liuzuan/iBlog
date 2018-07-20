@@ -8,6 +8,7 @@ const articleSchema = new mongoose.Schema(
         alias: String,
         status: { type: Number, default: 1 },
         categoryName: String,
+        category: {type: ObjectId, ref: 'categoryModel'},
         isTop: { type: Boolean, default: false },
         content: String,
         createTime: { type: Date, default: Date.now },

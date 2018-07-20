@@ -96,10 +96,12 @@ a {
             }
         }
         .left {
-            vertical-align: middle;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            // vertical-align: middle;
+            // width: 40px;
+            // height: 40px;
+            // border-radius: 50%;
+            color: #fff;
+            font-size: 24px;
         }
         .right {
             float: right;
@@ -227,6 +229,9 @@ a {
 
 .footer {
     text-align: center;
+    a {
+        color: @nav_color1;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -242,8 +247,8 @@ a {
             }
             .left {
                 display: block;
+                text-align: center;
                 float: none;
-                margin: 2px auto;
                 transform: translateX(-20px);
             }
             .right {

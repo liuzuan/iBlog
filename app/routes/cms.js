@@ -1,7 +1,5 @@
 import express from 'express';
-import article from '../controller/cms/article';
-import category from '../controller/cms/category';
-import user from '../controller/cms/user';
+import {article,category,user,upload} from '../controller/cms/index';
 const router = express.Router();
 
 router.post('/addCategory', category.addCategory);
@@ -17,6 +15,8 @@ router.post('/getArticle', article.getArticle)
 
 router.post('/login', user.login)
 router.post('/register', user.register)
+
+router.post('/upload', upload.uploadHandle)
 
 
 export default router;

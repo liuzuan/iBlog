@@ -1,4 +1,4 @@
- import { articleModel, categoryModel } from '../../models/blog';
+import { articleModel, categoryModel } from '../../models/blog';
 // import marked from 'marked';
 
 class ArticleController {
@@ -6,16 +6,17 @@ class ArticleController {
     async getArticle(req, res, next) {
         const { page, pageSize, ...params } = req.body;
         try {
-            const articles = await articleModel.find(params);
+            const count = await articleModel.countDocuments(params);
             const result = await articleModel
                 .find(params)
+                .populate('category')
                 .sort('-updateTime')
                 .skip((page - 1) * pageSize)
                 .limit(pageSize);
-            res.send({ data: result, count: articles.length });
+            console.log(result)
+            res.send({ data: result, count: count });
         } catch (err) {
             console.log(err);
-            console.log('获取文章内容失败');
             res.send({
                 status: 0,
                 type: 'ERROR_DATA',
@@ -52,21 +53,18 @@ class ArticleController {
     async editArticle(req, res, next) {
         const { _id, ...set } = req.body;
         try {
-            articleModel.find({ _id: _id }, (err, data) => {
-                categoryModel.update({ name: data[0].categoryName }, { $pull: { articles: _id } }, (err, data) => {
-                    articleModel.findOneAndUpdate({ _id }, { ...set }, (err, data) => {
-                        categoryModel.update(
-                            { name: req.body.categoryName },
-                            { $push: { articles: req.body._id } },
-                            (err, data) => {
-                                res.send({
-                                    desc: '修改文章成功！'
-                                });
-                            }
-                        );
+            let article = await articleModel.find({ _id: _id });
+            await categoryModel.update({ name: article[0].categoryName }, { $pull: { articles: _id } });
+            await articleModel.findOneAndUpdate({ _id }, { ...set });
+            await categoryModel.update(
+                { name: req.body.categoryName },
+                { $push: { articles: req.body._id } },
+                (err, data) => {
+                    res.send({
+                        desc: '修改文章成功！'
                     });
-                });
-            });
+                }
+            );
         } catch (err) {
             res.send({
                 desc: '修改文章失败！'
