@@ -1,0 +1,24 @@
+@import 'common.less';
+
+.error {
+    position: absolute;
+    top: 44px;
+    bottom: 0;
+    width: 100%;
+    background: #eee url('/images/404.png') no-repeat center;
+    background-size: contain;
+}
+.sidebar {
+    display: none;
+}
+.footer {
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+}
+
+@media screen and (max-width:767px) {
+    .sidebar {
+        display: block;
+    }
+}

@@ -1,27 +1,39 @@
-import {userModel} from '../../models/blog';
+import { userModel } from '../../models/blog';
 import crypto from 'crypto';
+import jwt from 'jsonwebtoken';
+import conf from '../../../config/index';
+
+const setToken = user => {
+    return jwt.sign(user, conf.jwtTokenSecret);
+};
+
+const setNewPassword = (userName, password) => {
+    const hmac = crypto.createHmac('sha1', userName);
+    hmac.update(password);
+    return hmac.digest('hex');
+};
 
 class UserController {
     constructor() {}
     async login(req, res, next) {
         try {
-            
             const { userName, password } = req.body;
-            // 以用户名作为密钥，对密码二次加密后进行查询
-            const hmac = crypto.createHmac('sha1', userName);
-            hmac.update(password);
-            const newPassword = hmac.digest('hex');
+            const newPassword = setNewPassword(userName, password);
+            // console.log(analysisToken(token));  
             let user = await userModel.find({ userName: userName, password: newPassword });
-            let user1 = await userModel.find({ userName: userName});
+            const token = setToken(user[0].userName);
+            console.log(token);
+            let user1 = await userModel.find({ userName: userName });
             if (user.length) {
-                let data = user[0]
-                delete data._doc.password
+                let data = user[0];
+                data._doc.token = token;
+                delete data._doc.password;
                 res.send({
                     data,
                     desc: '登录成功！',
                     success: true
                 });
-            } else if(user1.length) {
+            } else if (user1.length) {
                 res.send({
                     desc: '用户名或密码不正确',
                     success: false
@@ -37,17 +49,15 @@ class UserController {
                 desc: '登录失败！',
                 success: false
             });
-            console.log(error)
+            console.log(error);
         }
     }
     async register(req, res, next) {
         try {
             const { userName, password } = req.body;
-            // 以用户名作为密钥，入库前对密码二次加密
-            const hmac = crypto.createHmac('sha1', userName);
-            hmac.update(password);
-            const newPassword = hmac.digest('hex');
-            const user = await userModel.find({userName:userName})
+            const newPassword = setNewPassword(userName, password);
+            const user = await userModel.find({ userName: userName });
+            const token = setToken(userName);
             if (user.length) {
                 res.send({
                     desc: '用户名已被占用！',
@@ -60,8 +70,9 @@ class UserController {
                 password: newPassword
             });
             await newUser.save((err, data) => {
-                let user = newUser
-                delete user._doc.password
+                let user = newUser;
+                user.token = token;
+                delete user._doc.password;
                 res.send({
                     data: user,
                     desc: '注册成功！',

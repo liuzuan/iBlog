@@ -4,7 +4,7 @@
             each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
                 li
                     a(class=active_nav===index?'active':'' href=index==='blog'?'/':'/'+index)= val
-        if active_nav === 'blog'
+        if active_nav === 'blog' || active_nav === 'error'
             .list
                 h3.menu_item 文章分类
                 ul.menu_wrap

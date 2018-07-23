@@ -26,8 +26,9 @@ block content
                 span.time #{formatDate(createTime)}
     //- 文章详情内容
     else
-      -const {title,categoryName,modifyTime,createTime,content} = article[0]
+      -const {title, categoryName,modifyTime,createTime,content} = article[0]
+      -const {name} = article[0].category || {}
       .article_detail
         h1.article_title=title
-        p.sub_title #{formatDate(createTime)} | #{categoryName}
+        p.sub_title #{formatDate(createTime)} | #{name || categoryName}
         article.article_content!=content

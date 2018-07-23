@@ -5,7 +5,9 @@ class IndexController {
     constructor() {}
     async blogIndex(req, res, next) {
         const { category, title } = req.query;
-        const allCategories = await categoryModel.find({status:1});
+        console.log(req)
+        const allCategories = await categoryModel.find({ status: 1 });
+        // console.log(allCategories)
         if (category) {
             try {
                 let params = {};
@@ -15,7 +17,6 @@ class IndexController {
                     params = { categoryName: category, status: 1 };
                 }
                 const articleList = await articleModel.find(params);
-                console.log(articleList)
                 res.render('pages/index', {
                     active_nav: 'blog',
                     is_list: true,
@@ -24,22 +25,32 @@ class IndexController {
                     articleList: articleList
                 });
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
         } else if (title) {
             try {
-                const article = await articleModel.find({ alias: title });
-                article[0].content = marked(article[0].content);
-                res.render('pages/index', {
-                    active_nav: 'blog',
-                    is_list: false,
-                    active_cate: article[0].categoryName,
-                    allCategories: allCategories,
-                    article: article
-                });
+                const article = await articleModel.find({ alias: title }).populate('category');
+                console.log(article)
+                if (article[0]) {
+                    article[0].content = marked(article[0].content);
+                    res.render('pages/index', {
+                        active_nav: 'blog',
+                        is_list: false,
+                        active_cate: article[0].categoryName,
+                        allCategories: allCategories,
+                        article: article
+                    });
+                } else {
+                    res.render('error', {
+                        active_nav: 'error',
+                        is_list: false,
+                        active_cate: '',
+                        allCategories: allCategories,
+                        article: article
+                    });
+                }
             } catch (err) {
-                console.log(err)
-
+                console.log(err);
             }
         } else {
             try {
@@ -52,8 +63,7 @@ class IndexController {
                     articleList: articleList
                 });
             } catch (err) {
-                console.log(err)
-
+                console.log(err);
             }
         }
     }

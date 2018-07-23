@@ -8,7 +8,7 @@ const articleSchema = new mongoose.Schema(
         alias: String,
         status: { type: Number, default: 1 },
         categoryName: String,
-        category: {type: ObjectId, ref: 'categoryModel'},
+        category: { type: ObjectId, ref: 'categoryModel' },
         isTop: { type: Boolean, default: false },
         content: String,
         createTime: { type: Date, default: Date.now },
@@ -22,7 +22,6 @@ const articleSchema = new mongoose.Schema(
 
 const categorySchema = new mongoose.Schema(
     {
-        
         status: { type: Number, default: 1 },
         name: String,
         logo: String,
@@ -38,11 +37,11 @@ const categorySchema = new mongoose.Schema(
 );
 
 const userSchema = new mongoose.Schema({
-    is_manager: {type:Number, default:0},
-    userName: {type: String, required: true},
-    password: {type: String, required: true},
-    avatar_url: {type: String, default: 'https://avatars3.githubusercontent.com/u/33034834?v=4&s=120'}
-})
+    is_manager: { type: Number, default: 0 },
+    userName: { type: String, unique: true, required: true },
+    password: { type: String, required: true },
+    avatar_url: { type: String, default: 'https://avatars3.githubusercontent.com/u/33034834?v=4&s=120' }
+});
 
 const articleModel = mongoose.model('articleModel', articleSchema);
 const categoryModel = mongoose.model('categoryModel', categorySchema);
