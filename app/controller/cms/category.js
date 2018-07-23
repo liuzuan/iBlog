@@ -13,7 +13,6 @@ class CategoryController {
                 desc: '获取分类失败'
             });
             return console.log(error);
-
         }
     }
 

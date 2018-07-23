@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
+// 需要权限的接口
 const needToken = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle'];
 
 router.use(async (req, res, next) => {
