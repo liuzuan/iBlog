@@ -19,10 +19,8 @@ class UserController {
         try {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(userName, password);
-            // console.log(analysisToken(token));  
             let user = await userModel.find({ userName: userName, password: newPassword });
             const token = setToken(user[0].userName);
-            console.log(token);
             let user1 = await userModel.find({ userName: userName });
             if (user.length) {
                 let data = user[0];

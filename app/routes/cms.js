@@ -17,6 +17,7 @@ router.use(async (req, res, next) => {
     if (token) {
         try {
             let user = await userModel.findOne({userName: jwt.verify(token, conf.jwtTokenSecret)});
+            console.log(user)
             if (user.is_manager) {
                 return next();
             } else {

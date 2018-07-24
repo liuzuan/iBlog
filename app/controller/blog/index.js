@@ -5,7 +5,6 @@ class IndexController {
     constructor() {}
     async blogIndex(req, res, next) {
         const { category, title } = req.query;
-        console.log(req)
         const allCategories = await categoryModel.find({ status: 1 });
         // console.log(allCategories)
         if (category) {
@@ -29,14 +28,13 @@ class IndexController {
             }
         } else if (title) {
             try {
-                const article = await articleModel.find({ alias: title }).populate('category');
-                console.log(article)
-                if (article[0]) {
-                    article[0].content = marked(article[0].content);
+                const article = await articleModel.findOne({ alias: title }).populate('category');
+                if (article) {
+                    article.content = marked(article.content);
                     res.render('pages/index', {
                         active_nav: 'blog',
                         is_list: false,
-                        active_cate: article[0].categoryName,
+                        active_cate: article.categoryName,
                         allCategories: allCategories,
                         article: article
                     });
