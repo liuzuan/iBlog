@@ -8,10 +8,10 @@ import db from './app/mongodb/db';
 import cors from 'cors';
 
 const app = express();
-// app.get('env') === 'development' ? 'http://localhost:8081' : ''
+
 app.use(
     cors({
-        origin: ['*'],
+        origin: [app.get('env') === 'development' ? 'http://localhost:8081' : ''],
         optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
         credentials: true
     })
