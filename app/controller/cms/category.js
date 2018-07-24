@@ -40,7 +40,7 @@ class CategoryController {
     async editCategory(req, res, next) {
         try {
             const { _id, ...set } = req.body;
-            await categoryModel.findOneAndUpdate({ _id }, { ...set });
+            await categoryModel.findOneAndUpdate({ _id }, set);
             res.send({
                 desc: '修改成功！'
             });
