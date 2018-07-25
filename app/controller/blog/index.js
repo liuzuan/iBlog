@@ -6,7 +6,6 @@ class IndexController {
     async blogIndex(req, res, next) {
         const { category, title } = req.query;
         const allCategories = await categoryModel.find({ status: 1 });
-        // console.log(allCategories)
         if (category) {
             try {
                 let params = {};
