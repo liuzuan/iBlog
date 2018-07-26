@@ -7,7 +7,8 @@ html
         meta(name="description" content="刘祖安|前端工程师")
         link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
         link(rel='stylesheet', href=`/css/${!active_nav?'error':active_nav==='blog'?'index':active_nav}.css`)
-        title 刘祖安 | 博客
+        script(src="https://cdn.bootcss.com/jquery/2.1.2/jquery.js")
+    title 刘祖安 | 博客
     body
         include head.pug
         block content
