@@ -3,7 +3,7 @@ $(function() {
     const $search_input = $('.search_input');
     const $reset = $('.reset_search_btn');
     const $menu_icon = $('.menu_icon');
-
+    const $sidebar = $('.sidebar');
     var tap = '';
 
     browserType();
@@ -42,6 +42,7 @@ $(function() {
     }
 
     $menu_icon.on(tap, function() {
+        $sidebar.css('transition', 'background 0.35s linear, height 0.35s ease-in');
         $body.toggleClass('open');
     });
 
@@ -60,6 +61,7 @@ $(function() {
 
     $(window).resize(() => {
         if ($(window).innerWidth() > 767) {
+            $sidebar.css('transition', 'none');
             $body.removeClass('open');
         }
         browserType();
