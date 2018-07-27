@@ -8,11 +8,11 @@ __注：此项目纯属个人瞎搞，仅用于个人学习。__
 
 ## 说明
 
-> 相关项目地址：[博客git地址](https://github.com/liuzuan/iBlog.git)  、 [后台管理系统地址](https://github.com/liuzuan/blog_m.git)
+> 相关项目地址：[博客git地址](https://github.com/liuzuan/iBlog.git)  、 [后台管理系统地址](https://github.com/liuzuan/iBlog-CMS.git)
 
 ## 技术栈
 
-nodejs + express + jade + mongodb + mongoose + es6/7 + vue + iview
+nodejs + express + jade + mongoose + es6/7 + vue + vue-router + Vuex + iview
 
 ## 项目运行
 
@@ -45,11 +45,8 @@ npm run debug
 
 ### 后台管理系统网址
 
-[后台管理网址戳这里]()
+[后台管理网址戳这里](http://blog.liuzuann.com/CMS) (账号:admin，密码：123456）
 
 ## 目标功能
 
-- [x] 注册 -- 未完成
-- [x] 本站登录 -- 未完成
-- [x] 第三方登录 -- 未完成
 - [x] 留言 -- 未完成
