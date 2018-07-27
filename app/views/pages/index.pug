@@ -38,11 +38,10 @@ block content
                         $(function(){
                             var appid = 'cytJARzCI';
                             var conf = 'prod_dda603e812af00fc0c42c368ad3dacf2';
-                            var width = window.innerWidth || document.documentElement.clientWidth;
-                            if (width < 767) {
+                            if ($(window).innerWidth() < 960) {
                                 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
                             } else { var loadJs = function (d, a) { 
-                                var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; 
+                                var c = $('head'); 
                                 var b = document.createElement("script"); 
                                 b.setAttribute("type", "text/javascript"); 
                                 b.setAttribute("charset", "UTF-8"); 
@@ -62,5 +61,6 @@ block content
                                 }
                                 c.appendChild(b) 
                             };
-                            loadJs("http://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf })})}; 
+                            loadJs("http://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf })})
+                            }; 
                         })
