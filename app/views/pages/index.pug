@@ -22,7 +22,6 @@ block content
                         li.list_cell 
                             h3=title
                             p
-                                //- span.category=categoryName
                                 span.time #{formatDate(createTime)}
         //- 文章详情内容
         else
@@ -33,16 +32,3 @@ block content
                 p.sub_title #{formatDate(createTime)} | #{name || categoryName}
                 article.article_content!=content
                 .comment
-                    div(id="SOHUCS" sid=_id)
-                    script.
-                        $(function(){
-                            if ($(window).innerWidth() < 767) {
-                                document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytJARzCI&conf=prod_dda603e812af00fc0c42c368ad3dacf2"></script>');
-                            } else {
-                                document.write('<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>');
-                                changyan.api.config({
-                                    appid: 'cytJARzCI',
-                                    conf: 'prod_dda603e812af00fc0c42c368ad3dacf2'
-                                });
-                            }; 
-                        })

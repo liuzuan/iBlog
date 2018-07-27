@@ -21,7 +21,6 @@ body {
     padding-bottom: 10px;
     font-size: 16px;
     .common_font;
-    // font: 16px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 ul,
@@ -42,13 +41,16 @@ a {
     width: 100%;
     height: 44px;
     line-height: 44px;
-    padding: 0px 60px;
+    padding: 0px 80px;
     background: @black_rgba;
     box-sizing: border-box;
     transition: background 0.3s ease-in-out;
     .container {
         overflow: hidden;
+        max-width: 1140px;
+        margin: 0 auto;
         height: 100%;
+        .common_font;
         .menu_icon {
             display: none;
             position: relative;
@@ -96,10 +98,6 @@ a {
             }
         }
         .left {
-            // vertical-align: middle;
-            // width: 40px;
-            // height: 40px;
-            // border-radius: 50%;
             color: #fff;
             font-size: 24px;
         }
@@ -169,7 +167,7 @@ a {
     position: fixed;
     z-index: 999;
     top: 44px;
-    left: 0;
+    left: ~'calc(50vw - 650px)';
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -232,9 +230,16 @@ a {
     }
 }
 
+@media screen and (max-width: 1300px) {
+    .sidebar {
+        left: 0;
+    }
+}
+
 @media screen and (max-width: 767px) {
     body {
         padding-top: 40px;
+        font-family: none;
     }
     .header {
         padding: 0;
