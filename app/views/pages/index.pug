@@ -34,13 +34,12 @@ block content
                 article.article_content!=content
                 .comment
                     div(id="SOHUCS" sid=_id)
-                    script(charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js") 
                     script.
                         $(function(){
                             if ($(window).innerWidth() < 767) {
                                 window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cytJARzCI&conf=prod_dda603e812af00fc0c42c368ad3dacf2"></script>');
                             } else {
-                                window.document.write('<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"><\/script>');
+                                window.document.write('<script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>');
                                 window.changyan.api.config({
                                     appid: 'cytJARzCI',
                                     conf: 'prod_dda603e812af00fc0c42c368ad3dacf2'
