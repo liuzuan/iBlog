@@ -45,6 +45,7 @@ a {
     background: @black_rgba;
     box-sizing: border-box;
     transition: background 0.3s ease-in-out;
+    user-select: none;
     .container {
         overflow: hidden;
         max-width: 1140px;
@@ -160,6 +161,7 @@ a {
 .main {
     position: static;
     padding: 50px 1.4em;
+    min-height: ~'calc(100vh - 74px)';
 }
 
 .sidebar {
@@ -172,6 +174,7 @@ a {
     overflow-x: hidden;
     overflow-y: auto;
     background: #fff;
+    user-select: none;
     &_inner {
         padding: 40px 0px 40px 60px;
         width: 220px;

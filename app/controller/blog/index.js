@@ -15,13 +15,23 @@ class IndexController {
                     params = { categoryName: category, status: 1 };
                 }
                 const articleList = await articleModel.find(params);
-                res.render('pages/index', {
-                    active_nav: 'blog',
-                    is_list: true,
-                    active_cate: category,
-                    allCategories: allCategories,
-                    articleList: articleList
-                });
+                if (articleList.length) {
+                    res.render('pages/index', {
+                        active_nav: 'blog',
+                        is_list: true,
+                        active_cate: category,
+                        allCategories: allCategories,
+                        articleList: articleList
+                    });
+                } else {
+                    res.render('error', {
+                        active_nav: 'error',
+                        is_list: true,
+                        active_cate: '',
+                        allCategories: allCategories,
+                        articleList: articleList
+                    })
+                }
             } catch (err) {
                 console.log(err);
             }
