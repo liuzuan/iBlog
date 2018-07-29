@@ -2,4 +2,9 @@ export default {
     jwtTokenSecret: 'liuzuan',
     dbURL: 'mongodb://localhost:27017/iBlog',
     port: 3000,
+    redis: {
+        host: '127.0.0.1',
+        port: '',
+        opts: {}
+    }
 }
