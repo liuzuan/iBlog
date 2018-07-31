@@ -5,7 +5,6 @@ class CategoryController {
     async getAllCategories(req, res, next) {
         try {
             const categories = await categoryModel.find({}).populate('articles');
-            console.log(categories)
             res.send(categories);
         } catch (error) {
             res.send({

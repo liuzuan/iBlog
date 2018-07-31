@@ -2,24 +2,6 @@ footer.footer Copyright © 2018 liuzuann. All rights reserved |
     a(href='/CMS' target='_blank') 内容管理
 script(src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js")
 script(src="/js/index.js")
-
-if active_nav === 'blog'
-    script(src="/js/hljs.js")
-    script.
-        $(function(){
-            hljs.initHighlightingOnLoad();
-            $('pre code').each(function(){
-                var lines = $(this).text().split('\n').length;
-                var $numbering = $('<ul/>').addClass('pre-numbering');
-                $(this)
-                    .addClass('has-numbering')
-                    .parent()
-                    .append($numbering);
-                for(i=1;i<=lines;i++){
-                    $numbering.append($('<li/>').text(i));
-                }
-            });
-        })
 if active_nav === 'about'
     script(src="/js/markdown.js")
     script(src="/js/about.js")

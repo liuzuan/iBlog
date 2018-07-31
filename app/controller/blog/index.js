@@ -1,5 +1,12 @@
 import { articleModel, categoryModel } from '../../models/blog';
 import marked from 'marked';
+import hljs from 'highlight.js';
+
+marked.setOptions({
+    highlight: code => {
+        return hljs.highlightAuto(code).value;
+    }
+});
 
 class IndexController {
     constructor() {}
@@ -30,7 +37,7 @@ class IndexController {
                         active_cate: '',
                         allCategories: allCategories,
                         articleList: articleList
-                    })
+                    });
                 }
             } catch (err) {
                 console.log(err);
