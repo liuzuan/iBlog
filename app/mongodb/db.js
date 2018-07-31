@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 import chalk from 'chalk';
+import conf from '../../config/index';
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/iBlog',{ useNewUrlParser: true });
+mongoose.connect(conf.dbURL,{ useNewUrlParser: true });
 
 const db = mongoose.connection;
 
@@ -17,7 +18,7 @@ db.on('error', error => {
 
 db.on('close', () => {
     console.log(chalk.red('数据库断开，重新连接数据库...'));
-    mongoose.connect('mongodb://localhost:27017/iBlog');
+    mongoose.connect(conf.dbURL);
 });
 
 

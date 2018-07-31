@@ -1,4 +1,13 @@
 {
-    "presets": ["stage-2"],
-    "plugins": [ "transform-es2015-modules-commonjs", "transform-export-extensions"]
+    "presets": [
+        [
+            "env",
+            {
+                "targets": {
+                    "node": true
+                }
+            }
+        ]
+    ],
+    "plugins": ["transform-object-rest-spread"]
 }
