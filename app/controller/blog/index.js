@@ -1,11 +1,14 @@
 import { articleModel, categoryModel } from '../../models/blog';
 import marked from 'marked';
 import hljs from 'highlight.js';
+import Prism from 'prismjs';
 
 marked.setOptions({
     highlight: code => {
-        return hljs.highlightAuto(code).value;
-    }
+        // return hljs.highlightAuto(code).value;
+        return Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    },
+    // breaks: true
 });
 
 class IndexController {
