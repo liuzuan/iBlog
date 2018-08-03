@@ -24,27 +24,17 @@ class IndexController {
                 if (category === 'TOP') {
                     params = { isTop: true, status: 1 };
                 } else {
-                    const categoryObj = await categoryModel.findOne({ name: category })
+                    const categoryObj = await categoryModel.findOne({ name: category });
                     params = { category: categoryObj._id, status: 1 };
                 }
                 const articleList = await articleModel.find(params);
-                if (articleList.length) {
-                    res.render('pages/index', {
-                        active_nav: 'blog',
-                        is_list: true,
-                        active_cate: category,
-                        allCategories: allCategories,
-                        articleList: articleList
-                    });
-                } else {
-                    res.render('error', {
-                        active_nav: 'error',
-                        is_list: true,
-                        active_cate: '',
-                        allCategories: allCategories,
-                        articleList: articleList
-                    });
-                }
+                res.render('pages/index', {
+                    active_nav: 'blog',
+                    is_list: true,
+                    active_cate: category,
+                    allCategories: allCategories,
+                    articleList: articleList
+                });
             } catch (err) {
                 console.log(err);
             }
