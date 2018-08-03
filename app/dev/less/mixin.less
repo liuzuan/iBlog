@@ -3,38 +3,28 @@
 @nav_color1: #c05b4d;
 @nav_color2: #d243ff;
 @nav_color3: #c4c021;
-@nav_color4: #269A92;
+@nav_color4: #269a92;
 @nav_color5: #33ce6b;
-@black_rgba: rgba(0,0,0,.8);
+@black_rgba: rgba(0, 0, 0, 0.8);
 @red: #c05b4d;
 @border_color: #e6e6e6;
 @sub_color: #8a8a8a;
-@color: ~'nav_color';
+@color: 'nav_color';
 @npm_path: '../../../node_modules';
 
-// .generate_nav(@n, @i: 1) when (@i =< @n) {
-//     a:nth-child(@{i}) {
-//         &:hover {
-//             color: @{@{color}@{i}}
-//         }
-//     }
-//     .generate_nav(@n, (@i + 1));
-// }
-
-
 .transition {
-    transition: all .3s;
+    transition: all 0.3s;
 }
 
 .transition_delay(@n, @i: 1) when (@i =< @n) {
     &:nth-child(@{i}) {
-        transition-delay: 300ms + 50ms * @i,300ms + 50ms*@i;
+        transition-delay: 300ms + 50ms * @i, 300ms + 50ms * @i;
     }
     .transition_delay(@n, (@i + 1));
 }
 .transition-delay(@n, @i: 1) when (@i =< @n) {
     &:nth-last-child(@{i}) {
-        transition-delay:  50ms * (@i+1), 50ms * (@i+1);
+        transition-delay: 50ms * (@i+1), 50ms * (@i+1);
     }
     .transition-delay(@n, (@i + 1));
 }
@@ -45,10 +35,9 @@
 }
 
 .img_cir(@w,@h) {
-    .wh(@w,@h);
+    .wh(@w, @h);
     border-radius: 50%;
 }
-
 
 .border_bottom {
     border-bottom: 1px solid @border_botttom;

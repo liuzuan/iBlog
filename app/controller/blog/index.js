@@ -4,13 +4,13 @@ import marked from 'marked';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 marked.setOptions({
-    highlight: (code,lang) => {
-    if (!lang) {
-        lang = 'js'
-    }
-    loadLanguages([lang]);
+    highlight: (code, lang) => {
+        if (!lang) {
+            lang = 'js';
+        }
+        loadLanguages([lang]);
         return Prism.highlight(code, Prism.languages[lang]);
-    },
+    }
 });
 
 class IndexController {
