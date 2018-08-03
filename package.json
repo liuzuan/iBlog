@@ -33,6 +33,7 @@
     "hiredis": "^0.5.0",
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.3.0",
+    "less-plugin-npm-import": "^2.1.0",
     "marked": "^0.4.0",
     "mongoose": "^5.1.7",
     "morgan": "~1.9.0",

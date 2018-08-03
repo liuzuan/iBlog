@@ -1,9 +1,7 @@
-// // @import './common.less';
-
 .article_content {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     color: #34495e;
-    line-height: 1.5;
+    line-height: 2;
     h1,
     h2,
     h3,
@@ -55,9 +53,12 @@
     }
 
     pre {
+        max-height: 500px;
+        overflow: auto;
         background-color: #f8f5ec;
-        margin: 1em 0 !important;
-        padding: 0.5em;
+        margin: 15px 0;
+        border-radius: 5px;
+        padding: 1em;
         line-height: 1.5;
         word-wrap: normal;
         word-break: keep-all;
@@ -67,7 +68,7 @@
 
 code[class*='language-'],
 pre[class*='language-'] {
-    color: black;
+    color: #34495e;
     background: none;
     text-shadow: 0 1px white;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
@@ -197,4 +198,45 @@ pre[class*='language-'] {
 
 .token.entity {
     cursor: help;
+}
+
+pre[class*='language-'].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*='language-'].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
 }
