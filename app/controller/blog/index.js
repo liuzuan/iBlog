@@ -24,7 +24,8 @@ class IndexController {
                 if (category === 'TOP') {
                     params = { isTop: true, status: 1 };
                 } else {
-                    params = { categoryName: category, status: 1 };
+                    category = await  categoryModel.findOne({ categoryName: category })
+                    params = { _id: category._id, status: 1 };
                 }
                 const articleList = await articleModel.find(params);
                 if (articleList.length) {
