@@ -18,16 +18,19 @@ class UserController {
     async login(req, res, next) {
         try {
             const { userName, password } = req.body;
+            console.log(req.body);
             const newPassword = setNewPassword(userName, password);
-            let user = await userModel.find({ userName: userName, password: newPassword });
-            const token = setToken(user[0].userName);
+            let user = await userModel.findOneAndUpdate(
+                { userName: userName, password: newPassword },
+                { lastLoginTime: new Date() }
+            );
+            const token = setToken(user.userName);
             let user1 = await userModel.find({ userName: userName });
-            if (user.length) {
-                let data = user[0];
-                data._doc.token = token;
-                delete data._doc.password;
+            if (user) {
+                user._doc.token = token;
+                delete user._doc.password;
                 res.send({
-                    data,
+                    data: user,
                     desc: '登录成功！',
                     success: true
                 });

@@ -1,7 +1,23 @@
 import { articleModel, categoryModel } from '../../models/blog';
+import marked from 'marked';
+// import hljs from 'highlight.js';
+import Prism from 'prismjs';
+import loadLanguages from 'prismjs/components/';
+
+marked.setOptions({
+    highlight: (code, lang) => {
+        if (!lang) {
+            lang = 'js';
+        }
+        loadLanguages([lang]);
+        return Prism.highlight(code, Prism.languages[lang]);
+    }
+});
 
 class ArticleController {
-    constructor() {}
+    constructor() {
+        
+    }
     async getArticle(req, res, next) {
         const { page, pageSize, ...params } = req.body;
         try {
@@ -26,7 +42,8 @@ class ArticleController {
     async addArticle(req, res, next) {
         try {
             let newArticle = new articleModel({
-                ...req.body
+                ...req.body,
+                conHtml: marked(req.body.content)
             });
             await newArticle.save();
             await categoryModel.update({ _id: newArticle.category }, { $push: { articles: newArticle._id } });
@@ -46,10 +63,10 @@ class ArticleController {
     async editArticle(req, res, next) {
         const { _id, category, ...set } = req.body;
         try {
-            let article = await articleModel.find({ _id: _id });
-            await categoryModel.update({ _id: article[0].category }, { $pull: { articles: _id } });
-            await articleModel.findOneAndUpdate({ _id }, { ...set, category });
-            await categoryModel.update({ _id: category }, { $push: { articles: req.body._id } });
+            let article = await articleModel.findById(_id);
+            await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
+            await articleModel.findByIdAndUpdate(_id, { ...set, category, conHtml: marked(req.body.content) });
+            await categoryModel.update({ _id: category }, { $push: { articles: _id } });
             res.send({
                 desc: '修改文章成功！'
             });
@@ -57,6 +74,7 @@ class ArticleController {
             res.send({
                 desc: '修改文章失败！'
             });
+            return console.log(err);
         }
     }
     

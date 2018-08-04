@@ -10,6 +10,7 @@ const articleSchema = new mongoose.Schema(
         category: { type: ObjectId, ref: 'categoryModel' },
         isTop: { type: Boolean, default: false },
         content: String,
+        conHtml: String,
         createTime: { type: Date, default: Date.now },
         updateTime: { type: Date, default: Date.now }
     },
@@ -39,6 +40,7 @@ const userSchema = new mongoose.Schema({
     is_manager: { type: Number, default: 0 },
     userName: { type: String, unique: true, required: true },
     password: { type: String, required: true },
+    lastLoginTime: { type: Date, default: Date.now },
     avatar_url: { type: String, default: 'https://avatars3.githubusercontent.com/u/33034834?v=4&s=120' }
 });
 

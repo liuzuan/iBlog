@@ -1,17 +1,5 @@
 import { articleModel, categoryModel } from '../../models/blog';
-import marked from 'marked';
-// import hljs from 'highlight.js';
-import Prism from 'prismjs';
-import loadLanguages from 'prismjs/components/';
-marked.setOptions({
-    highlight: (code, lang) => {
-        if (!lang) {
-            lang = 'js';
-        }
-        loadLanguages([lang]);
-        return Prism.highlight(code, Prism.languages[lang]);
-    }
-});
+
 
 class IndexController {
     constructor() {}
@@ -42,7 +30,7 @@ class IndexController {
             try {
                 const article = await articleModel.findOne({ alias: title }).populate('category');
                 if (article) {
-                    article.content = marked(article.content);
+                    article.content = article.conHtml;
                     res.render('pages/index', {
                         active_nav: 'blog',
                         is_list: false,
