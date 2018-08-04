@@ -39,6 +39,7 @@ $(function() {
     $menu_icon.on(tap, function() {
         $sidebar.css('transition', 'background 0.35s linear, height 0.35s ease-in');
         $body.toggleClass('open');
+        $search_input.blur()
     });
 
     $search_input.on('input change', function() {
