@@ -18,17 +18,14 @@ class UserController {
     async login(req, res, next) {
         try {
             const { userName, password } = req.body;
-            console.log(req.body);
             const newPassword = setNewPassword(userName, password);
-            let user = await userModel.findOneAndUpdate(
-                { userName: userName, password: newPassword },
-                { lastLoginTime: new Date() }
-            );
-            const token = setToken(user.userName);
+            let user = await userModel
+                .findOneAndUpdate({ userName: userName, password: newPassword })
+                .select({ password: 0 });
+            const token = setToken(userName);
             let user1 = await userModel.find({ userName: userName });
             if (user) {
                 user._doc.token = token;
-                delete user._doc.password;
                 res.send({
                     data: user,
                     desc: '登录成功！',
@@ -36,7 +33,7 @@ class UserController {
                 });
             } else if (user1.length) {
                 res.send({
-                    desc: '用户名或密码不正确',
+                    desc: '密码不正确',
                     success: false
                 });
             } else {

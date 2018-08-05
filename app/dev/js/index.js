@@ -1,15 +1,14 @@
 $(function() {
-    const $body = $('body');
-    const $search_input = $('.search_input');
-    const $reset = $('.reset_search_btn');
-    const $menu_icon = $('.menu_icon');
-    const $sidebar = $('.sidebar');
-    var tap = '';
+    var $body = $('body');
+    var $search_input = $('.search_input');
+    var $reset = $('.reset_search_btn');
+    var $menu_icon = $('.menu_icon');
+    var $sidebar = $('.sidebar');
+    var tap = 'click';
 
     browserType();
 
     function browserType() {
-        var t0 = new Date();
         var os = (function() {
             var ua = navigator.userAgent,
                 isWindowsPhone = /(?:Windows Phone)/.test(ua),
@@ -36,6 +35,7 @@ $(function() {
             tap = 'click';
         }
     }
+
     $menu_icon.on(tap, function() {
         $sidebar.css('transition', 'background 0.35s linear, height 0.35s ease-in');
         $body.toggleClass('open');
@@ -55,11 +55,11 @@ $(function() {
         $reset.fadeOut(300);
     });
 
-    $(window).resize(() => {
+    $(window).resize(function() {
         if ($(window).innerWidth() > 767) {
             $sidebar.css('transition', 'none');
             $body.removeClass('open');
         }
-        browserType();
+        // browserType();
     });
 });
