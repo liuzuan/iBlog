@@ -3,7 +3,7 @@ import multer from 'multer';
 class uploadController {
     uploadHandle(req, res, next) {
         // console.log(req.file);
-        let uploadDir = 'public/images/article/';
+        let uploadDir = 'public/img/article/';
 
         const storage = multer.diskStorage({
             destination: function(req, file, cb) {

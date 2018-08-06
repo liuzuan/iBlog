@@ -1,5 +1,5 @@
 import express from 'express';
-import { article, category, user, upload } from '../controller/cms/index';
+import { article, category, user, upload } from '../controllers/cms/index';
 import conf from '../../config/index';
 import { userModel } from '../models/blog';
 import jwt from 'jsonwebtoken';
