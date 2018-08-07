@@ -1,3 +1,5 @@
+@import './mixin.less';
+
 .article_content {
     font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
     color: #34495e;
@@ -65,6 +67,10 @@
         word-wrap: normal;
         word-break: keep-all;
         white-space: pre;
+    }
+
+    code {
+        color: @nav_color1;
     }
 }
 
@@ -222,7 +228,6 @@ pre[class*='language-'].line-numbers > code {
     width: 3em; /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
     border-right: 1px solid #999;
-
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
