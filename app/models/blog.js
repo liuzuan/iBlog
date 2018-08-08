@@ -23,6 +23,7 @@ const articleSchema = new mongoose.Schema(
 const categorySchema = new mongoose.Schema(
     {
         status: { type: Number, default: 1 },
+        index: Number,
         name: String,
         logo: String,
         link: String,

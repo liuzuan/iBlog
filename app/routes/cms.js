@@ -51,6 +51,6 @@ router.post('/getArticle', article.getArticle);
 router.post('/login', user.login);
 router.post('/register', user.register);
 
-router.post('/upload', upload.uploadHandle);
+router.post('/upload', upload.uploadToCdn);
 
 export default router;
