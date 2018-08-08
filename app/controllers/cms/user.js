@@ -17,13 +17,13 @@ class UserController {
     constructor() {}
     async login(req, res, next) {
         try {
-            const { userName, password } = req.body;
-            const newPassword = setNewPassword(userName, password);
+            let { userName, password } = req.body;
+            let newPassword = setNewPassword(userName, password);
             let user = await userModel
-                .findOneAndUpdate({ userName: userName, password: newPassword })
+                .findOneAndUpdate({ userName: userName, password: newPassword }, {})
                 .select({ password: 0 });
-            const token = setToken(userName);
-            let user1 = await userModel.find({ userName: userName });
+            let token = setToken(userName);
+            let user1 = await userModel.findOne({ userName: userName });
             if (user) {
                 user._doc.token = token;
                 res.send({
@@ -31,7 +31,7 @@ class UserController {
                     desc: '登录成功！',
                     success: true
                 });
-            } else if (user1.length) {
+            } else if (user1) {
                 res.send({
                     desc: '密码不正确',
                     success: false
@@ -54,9 +54,9 @@ class UserController {
         try {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(userName, password);
-            const user = await userModel.find({ userName: userName });
+            const user = await userModel.findOne({ userName: userName });
             const token = setToken(userName);
-            if (user.length) {
+            if (user) {
                 res.send({
                     desc: '用户名已被占用！',
                     success: false
@@ -80,8 +80,33 @@ class UserController {
         } catch (error) {
             res.send({
                 status: 0,
-                type: 'ERROR_DATA',
                 desc: '注册失败！',
+                success: false
+            });
+            return console.log(error);
+        }
+    }
+    async editUserInfo(req, res, next) {
+        try {
+            const { _id, ...rest } = req.body;
+            let user = await userModel.findOneAndUpdate({ _id: _id }, rest, { new: true }).select({ password: 0 });
+            if (!user) {
+                res.send({
+                    desc: '用户不存在',
+                    success: false
+                });
+                return;
+            } else {
+                res.send({
+                    desc: '用户信息修改成功！',
+                    success: true,
+                    data: user
+                });
+            }
+        } catch (error) {
+            res.send({
+                status: 0,
+                desc: '修改用户信息失败！',
                 success: false
             });
             return console.log(error);

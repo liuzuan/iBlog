@@ -17,7 +17,8 @@ class uploadController {
                 qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
                     res.send({
                         success: true,
-                        url: 'http:cdn.liuzuann.com/' + ret.key
+                        name: ret.key,
+                        url: 'http://cdn.liuzuann.com/' + ret.key
                     });
                 });
             }
