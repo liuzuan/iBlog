@@ -11,7 +11,8 @@ const app = express();
 
 app.use(
     cors({
-        origin: [app.get('env') === 'development' ? 'http://localhost:8081' : ''],
+        origin: '*',
+        // origin: [app.get('env') === 'development' ? 'http://localhost:8081' : ''],
         optionsSuccessStatus: 200,
         credentials: true
     })
