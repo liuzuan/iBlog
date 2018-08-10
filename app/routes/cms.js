@@ -1,17 +1,17 @@
 import express from 'express';
-import { article, category, user, upload } from '../controllers/cms/index';
-import conf from '../../config/index';
-import { userModel } from '../models/blog';
+import { article, category, user, upload } from '../controllers/cms/';
+import conf from '../../config/';
+import { userModel } from '../models/';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
 // 需要权限的接口
-const needToken = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle'];
-
+const shouldMaster = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle'];
+const shouldLogin = ['/upload'];
 router.use(async (req, res, next) => {
     let token = req.body.token || req.query.token || req.headers.authorization;
-    if (needToken.indexOf(req.url) == -1) {
+    if (shouldMaster.indexOf(req.url) == -1) {
         return next()
     }
     if (token) {

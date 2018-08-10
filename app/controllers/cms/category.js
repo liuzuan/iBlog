@@ -1,4 +1,4 @@
-import { categoryModel } from '../../models/blog';
+import { categoryModel } from '../../models/';
 
 class CategoryController {
     constructor() {}

@@ -1,4 +1,4 @@
-import { userModel } from '../../models/blog';
+import { userModel } from '../../models/';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import conf from '../../../config/index';
@@ -14,7 +14,6 @@ const setNewPassword = (userName, password) => {
 };
 
 class UserController {
-    constructor() {}
     async login(req, res, next) {
         try {
             let { userName, password } = req.body;

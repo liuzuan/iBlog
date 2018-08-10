@@ -1,5 +1,5 @@
 import express from 'express';
-import index from '../controllers/blog/index';
+import index from '../controllers/blog/';
 const router = express.Router();
 
 router.get('/', index.blogIndex);

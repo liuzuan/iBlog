@@ -1,4 +1,4 @@
-import { articleModel, categoryModel } from '../../models/blog';
+import { articleModel, categoryModel } from '../../models/';
 
 
 class IndexController {

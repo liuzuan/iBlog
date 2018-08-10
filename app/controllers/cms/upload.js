@@ -3,34 +3,50 @@ import qiniu from 'qiniu';
 import formidable from 'formidable';
 import fs from 'fs';
 import path from 'path';
+import { galleryModel } from '../../models/';
 qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';
 qiniu.conf.SECRET_KEY = 'lveC7RDx27R7NzTMtBNM3BxYKbsPao-j8sPnF7KT';
 class uploadController {
-    uploadToCdn(req, res, next) {
+    async uploadToCdn(req, res, next) {
         try {
             const form = formidable.IncomingForm();
             const bucket = 'liuzuanncdn';
             form.uploadDir = 'public/upload/';
             form.keepExtensions = true;
-            function uploadFile(uptoken, key, localFile) {
-                let extra = new qiniu.io.PutExtra();
-                qiniu.io.putFile(uptoken, key, localFile, extra, function(err, ret) {
+            function uploadFile(uptoken, key, localFile, title) {
+                const extra = new qiniu.io.PutExtra();
+                const url = 'http://cdn.liuzuann.com/' + ret.key;
+                qiniu.io.putFile(uptoken, key, localFile, extra, async(err, ret) => {
+                    if (req.query) {
+                        const img = new galleryModel({
+                            title: title.slice(0, title.indexOf('.')),
+                            thumbnail: url + '-thumb',
+                            full: url + '-thin'
+                        });
+                        await img.save((err, data) => {
+                            res.send({
+                                success: true,
+                                name: ret.key,
+                                url: url + '-thin'
+                            });
+                        });
+                    }
                     res.send({
                         success: true,
                         name: ret.key,
-                        url: 'http://cdn.liuzuann.com/' + ret.key
+                        url: url + '-thin'
                     });
                 });
             }
             form.parse(req, (err, fields, files) => {
                 const imgName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16);
                 const basename = path.basename(files.file.name);
-                const repath = 'public/upload/' + imgName + basename;
                 const key = imgName + '_' + basename;
+                const repath = 'public/upload/' + key;
                 fs.rename(files.file.path, repath);
                 let putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
                 const token = putPolicy.token();
-                uploadFile(token.toString(), key, repath);
+                uploadFile(token.toString(), key, repath, basename);
                 fs.unlink(repath);
             });
         } catch (err) {

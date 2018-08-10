@@ -1,10 +1,8 @@
 import express from 'express';
+import gallery from '../controllers/gallery/';
+
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-    res.render('pages/gallery', {
-        active_nav: 'gallery',
-    });
-});
+router.get('/', gallery.page);
 
 export default router;

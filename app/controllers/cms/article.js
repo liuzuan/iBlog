@@ -1,4 +1,4 @@
-import { articleModel, categoryModel } from '../../models/blog';
+import { articleModel, categoryModel } from '../../models/';
 import marked from 'marked';
 // import hljs from 'highlight.js';
 import Prism from 'prismjs';
