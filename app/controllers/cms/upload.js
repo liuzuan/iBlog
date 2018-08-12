@@ -37,7 +37,8 @@ class uploadController {
             form.parse(req, async (err, fields, files) => {
                 const uniqueName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16);
                 const originalname = files.file.name;
-                const key = uniqueName + '__' + originalname;
+                const key =
+                    (req.query && req.query.gallery ? 'images/gallery/' : 'images/article/') + uniqueName + '__' + originalname;
                 const repath = 'public/upload/' + originalname;
                 fs.renameSync(files.file.path, repath);
                 let putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);

@@ -2,5 +2,7 @@ extends ../layout/layout
 
 block content
     main#gallery
-      .gallery_sidebar
-      .viewer
+        .gallery_sidebar
+            each item in imgLists
+                img(src=item.thumbnail, alt="")
+        .viewer

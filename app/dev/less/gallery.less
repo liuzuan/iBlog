@@ -4,26 +4,31 @@
     // background: #000;
 }
 
+body {
+    padding-bottom: 0;
+}
+
 #gallery {
-    background: #000;
+    // background: #000;
+    width: 100%;
     .gallery_sidebar {
         position: fixed;
         top: 44px;
         right: 0;
-        width: 22em;
+        width: 30%;
         height: ~'calc(100vh - 44px)';
         background: #fff;
         overflow-x: hidden;
         overflow-y: auto;
     }
     .viewer {
-        width: ~'calc(100% - 22em)';
+        width: 70%;
         height: ~'calc(100vh - 44px)';
         // opacity: 0;
         background-image: url('http://reso3.yiihuu.com/img_754104.jpg');
         transition: opacity 0.5s ease-in-out;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: cover;
         background-position: center;
     }
 }
