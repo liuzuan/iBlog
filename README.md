@@ -31,18 +31,18 @@ npm install
 
 npm run debug
 
-访问: http://localhost:3000
 ```
+访问: http://localhost:3000
 
 # 效果演示
 
-[点我进入博客](http://blog.liuzuann.com)（响应式布局，兼容 pc、移动端）
+[博客页面](http://blog.liuzuann.com)（响应式布局，兼容 pc、移动端）
 
 
 [![二维码](http://cdn.liuzuann.com/qrcode-blog.png-thin)](http://blog.liuzuann.com)
 
 
-[点我进入内容管理](http://blog.liuzuann.com/CMS) (账号可自行注册）
+[内容管理系统](http://blog.liuzuann.com/CMS) (账号可自行注册）
 
 ## 目标功能
 
