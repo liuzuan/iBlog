@@ -1,7 +1,7 @@
 // import multer from 'multer';
-import qiniu from 'qiniu';
 import formidable from 'formidable';
 import fs from 'fs';
+import qiniu from 'qiniu';
 import { galleryModel } from '../../models/';
 
 qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';
@@ -38,7 +38,10 @@ class uploadController {
                 const uniqueName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16);
                 const originalname = files.file.name;
                 const key =
-                    (req.query && req.query.gallery ? 'images/gallery/' : 'images/article/') + uniqueName + '__' + originalname;
+                    (req.query && req.query.gallery ? 'images/gallery/' : 'images/article/') +
+                    uniqueName +
+                    '__' +
+                    originalname;
                 const repath = 'public/upload/' + originalname;
                 fs.renameSync(files.file.path, repath);
                 let putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);

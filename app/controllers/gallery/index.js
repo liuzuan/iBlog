@@ -1,4 +1,4 @@
-import {galleryModel} from '../../models/';
+import { galleryModel } from '../../models/';
 
 class GalleryController {
     async page(req, res, next) {
