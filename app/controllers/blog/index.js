@@ -55,6 +55,7 @@ class IndexController {
                 res.render('pages/index', {
                     active_nav: 'blog',
                     css: 'index',
+                    active_cate: 'TOP',
                     allCategories: allCategories,
                     articleList: articleList
                 });
