@@ -1,0 +1,27 @@
+extends ../layout/layout
+
+block content
+    -var formatDate= function(str) {
+        -if (!str) {
+            -return;
+        -}
+        -let date = new Date(str);
+        -let y = date.getFullYear();
+        -let m = date.getMonth() < 9 ? `0${date.getMonth()+1}` : date.getMonth()+1;
+        -let d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+        -return `${y}-${m}-${d}`;
+    -}
+    main.main#article
+            //- 文章详情内容
+            -const {_id, title, categoryName,modifyTime,createTime,content,dir} = article
+            -const {name} = article.category || {}
+            ul.dir
+                h3.dir_title 文章目录
+                each item in dir
+                    li(class=`dir_item ${item.level===2?'lev2':''}` data-id=item.id)=item.text
+                        //- a(href=`#${item}`)=item
+            .article_detail
+                h1.article_title=title
+                p.sub_title #{formatDate(createTime)} | #{name || categoryName}
+                article.article_content!=content
+                .comment

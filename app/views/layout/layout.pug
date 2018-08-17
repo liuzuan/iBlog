@@ -6,12 +6,12 @@ html
         meta(name="keywords" content="刘祖安,刘祖安个人主页,web前端个人简历,web前端,刘祖安简历,前端个人博客,前端工程师")
         meta(name="description" content="刘祖安|前端工程师")
         link(rel="shortcut icon", href="http://cdn.liuzuann.com/favicon.ico-thin", type="image/x-icon")
-        link(rel='stylesheet', href=`/css/${!active_nav?'error':active_nav==='blog'?'index':active_nav}.css`)
+        link(rel='stylesheet', href=`/css/${css}.css`)
     title 刘祖安 | 博客
     body
         include head.pug
+        include sidebar.pug
         block content
-        include ../layout/sidebar
         include foot.pug
         script.
             console.log('%c欢迎来到liuzuann.com','color:#fff;background: linear-gradient(to bottom right, red , blue,yellow);font-size:50px;padding:10px;')

@@ -88,6 +88,7 @@ class UserController {
     async editUserInfo(req, res, next) {
         try {
             const { _id, ...rest } = req.body;
+            let token = setToken(req.body.userName);
             let user = await userModel.findOneAndUpdate({ _id: _id }, rest, { new: true }).select({ password: 0 });
             if (!user) {
                 res.send({
@@ -96,6 +97,7 @@ class UserController {
                 });
                 return;
             } else {
+                user._doc.token = token
                 res.send({
                     desc: '用户信息修改成功！',
                     success: true,

@@ -1,6 +1,5 @@
 import { articleModel, categoryModel } from '../../models/';
 
-
 class IndexController {
     constructor() {}
     async blogIndex(req, res, next) {
@@ -18,7 +17,7 @@ class IndexController {
                 const articleList = await articleModel.find(params);
                 res.render('pages/index', {
                     active_nav: 'blog',
-                    is_list: true,
+                    css: 'index',
                     active_cate: category,
                     allCategories: allCategories,
                     articleList: articleList
@@ -31,17 +30,17 @@ class IndexController {
                 const article = await articleModel.findOne({ alias: title }).populate('category');
                 if (article) {
                     article.content = article.conHtml;
-                    res.render('pages/index', {
+                    res.render('pages/article', {
                         active_nav: 'blog',
-                        is_list: false,
+                        css: 'article',
                         active_cate: article.category.name,
                         allCategories: allCategories,
                         article: article
                     });
                 } else {
                     res.render('error', {
-                        active_nav: 'error',
-                        is_list: false,
+                        active_nav: 'blog',
+                        css: 'error',
                         active_cate: '',
                         allCategories: allCategories,
                         article: article
@@ -55,8 +54,7 @@ class IndexController {
                 const articleList = await articleModel.find({ isTop: true, status: 1 });
                 res.render('pages/index', {
                     active_nav: 'blog',
-                    active_cate: 'TOP',
-                    is_list: true,
+                    css: 'index',
                     allCategories: allCategories,
                     articleList: articleList
                 });

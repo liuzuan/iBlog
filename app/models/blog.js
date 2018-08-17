@@ -6,6 +6,7 @@ const articleSchema = new mongoose.Schema(
     {
         title: { type: String },
         alias: String,
+        dir: Array,
         status: { type: Number, default: 1 },
         category: { type: ObjectId, ref: 'categoryModel' },
         isTop: { type: Boolean, default: false },

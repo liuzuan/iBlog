@@ -1,5 +1,4 @@
 extends ../layout/layout
-
 block content
     -var formatDate= function(str) {
         -if (!str) {
@@ -11,24 +10,17 @@ block content
         -let d = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
         -return `${y}-${m}-${d}`;
     -}
-    //- 文章列表
     main.main#blog
-        if is_list
+        .container
             ul.article_list
                 h1.list_header=active_cate
-                each val,index in articleList
-                    -const {title, categoryName, createTime,alias} = val
-                    a(href='/article?title='+alias)
-                        li.list_cell 
-                            h3=title
-                            p
-                                span.time #{formatDate(createTime)}
-        //- 文章详情内容
-        else
-            -const {_id, title, categoryName,modifyTime,createTime,content} = article
-            -const {name} = article.category || {}
-            .article_detail
-                h1.article_title=title
-                p.sub_title #{formatDate(createTime)} | #{name || categoryName}
-                article.article_content!=content
-                .comment
+                if articleList.length
+                    each val,index in articleList
+                        -const {title, categoryName, createTime,alias} = val
+                        a(href='/article?title='+alias)
+                            li.list_cell 
+                                h3=title
+                                p
+                                    span.time #{formatDate(createTime)}
+                else 
+                    p.no_article 暂无该类文章

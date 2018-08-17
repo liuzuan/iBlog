@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 // 需要权限的接口
-const shouldMaster = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle'];
+const shouldMaster = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle', '/updateAllArticle'];
 const shouldLogin = ['/upload'];
 router.use(async (req, res, next) => {
     let token = req.body.token || req.query.token || req.headers.authorization;
@@ -47,6 +47,7 @@ router.post('/editArticle', article.editArticle);
 router.post('/delArticle', article.delArticle);
 
 router.post('/getArticle', article.getArticle);
+router.post('/updateAllArticle', article.updateAllArticle);
 
 router.post('/login', user.login);
 router.post('/register', user.register);

@@ -1,0 +1,64 @@
+@import 'common.less';
+@import './markdown.less';
+.sidebar {
+    display: none;
+}
+#article {
+    max-width: 1100px;
+    margin: 0 auto;
+    .article_detail {
+        max-width: 760px;
+        .article_title {
+            font-size: 27px;
+            color: @red;
+            text-align: center;
+        }
+        .sub_title {
+            text-align: center;
+            color: @sub_color;
+        }
+    }
+    .dir {
+        position: fixed;
+        right: ~'calc(50vw - 550px)';
+        top: 44px;
+        width: 260px;
+        padding-top: 100px;
+        &_item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        &_title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 20px 0;
+        }
+        .lev2 {
+            padding-left: 10px;
+        }
+        &_active {
+            color: @red;
+        }
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    #article {
+        .article_detail {
+            max-width: 100%;
+            // width: 100%;
+        }
+        .dir {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sidebar {
+        display: block;
+    }
+}
