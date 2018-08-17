@@ -1,9 +1,17 @@
 import marked from 'marked';
+// import cheerior from ''
 // import hljs from 'highlight.js';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { articleModel, categoryModel } from '../../models/';
-// marked.defaults.heading = (text, level) => `<h${level} id=${text}>${text}</h${level}>`;
+
+let renderer = new marked.Renderer();
+// let 
+renderer.heading = (text, level, raw) =>{
+
+  return `<h${level} id='${raw}'>${text}</h${level}>`;
+} 
+  
 marked.setOptions({
   highlight: (code, lang) => {
     if (!lang || lang === 'js') {
@@ -11,7 +19,8 @@ marked.setOptions({
     }
     loadLanguages([lang]);
     return Prism.highlight(code, Prism.languages[lang]);
-  }
+  },
+  renderer
 });
 class ArticleController {
   async getArticle(req, res, next) {
