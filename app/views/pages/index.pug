@@ -19,7 +19,7 @@ block content
                         -const {title, categoryName, createTime,alias} = val
                         a(href='/article?title='+alias)
                             li.list_cell 
-                                h3=title
+                                p.title=title
                                 p
                                     span.time #{formatDate(createTime)}
                 else 

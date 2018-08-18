@@ -6,6 +6,7 @@ class GalleryController {
             let result = await galleryModel.find();
             res.render('pages/gallery', {
                 active_nav: 'gallery',
+                css: 'gallery',
                 imgLists: result
             });
             
