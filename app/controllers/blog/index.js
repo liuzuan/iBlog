@@ -14,7 +14,7 @@ class IndexController {
                     const categoryObj = await categoryModel.findOne({ name: category });
                     params = { category: categoryObj._id, status: 1 };
                 }
-                const articleList = await articleModel.find(params);
+                const articleList = await articleModel.find(params).sort('-updateTime');
                 res.render('pages/index', {
                     active_nav: 'blog',
                     css: 'index',

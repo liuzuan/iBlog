@@ -41,7 +41,7 @@ class ArticleController {
             const result = await articleModel
                 .find(params)
                 .populate('category')
-                .sort('updateTime')
+                .sort('-updateTime')
                 .skip((page - 1) * pageSize)
                 .limit(pageSize);
             res.send({ data: result, count });
