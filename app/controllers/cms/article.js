@@ -4,12 +4,14 @@ import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { articleModel, categoryModel } from '../../models/';
 
-const regObj = { '\+': '_1', '\.': '_2', '\~': '_3', '\>': '_4', '\s':'_5' };
-const reg = new RegExp(Object.keys(regObj).join('|'), 'g');
 const newStr = str => {
-    return str.replace(reg, k => {
-        return regObj[k];
-    });
+    return str
+        .replace(/\s+/g, '')
+        .replace(/\+/g, '_1')
+        .replace(/\>/g, '_2')
+        .replace(/\~/g, '_3')
+        .replace(/\[|\]/g, '_4')
+        .replace(/\:+/g, '_5');
 };
 
 let renderer = new marked.Renderer();
