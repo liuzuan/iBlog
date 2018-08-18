@@ -8,7 +8,7 @@ let renderer = new marked.Renderer();
 let dir = [];
 renderer.heading = (text, level, raw) => {
   dir.push({ level, text: raw, id: raw.replace(/\s+/g, '') });
-  return `<h${level} class='h_title' id='${raw.replace(/\s+/g, '')}'>${text}</h${level}>`;
+  return `<h${level} class='h_title' id='${raw.replace(/(\s+)|(\.)|([+~])/g, '_')}'>${text}</h${level}>`;
 };
 
 marked.setOptions({
