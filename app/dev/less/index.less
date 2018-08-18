@@ -1,49 +1,45 @@
 @import 'common.less';
 
 .sidebar {
-  display: block;
+    display: block;
 }
 
 #blog {
-  max-width: 760px;
-  margin: 0 auto;
-  .article_list {
-    .list_header {
-      color: @red;
-      padding: 0 0 15px;
-      font-family: 'Chancery', cursive, LiSu, sans-serif;
-      border-bottom: 1px solid @border_color;
+    max-width: 760px;
+    margin: 0 auto;
+    .article_list {
+        .list_header {
+            color: @red;
+            padding: 0 0 15px;
+            font-family: 'Chancery', cursive, LiSu, sans-serif;
+            border-bottom: 1px solid @border_color;
+        }
+        .list_cell {
+            padding: 10px 0;
+            border-bottom: 1px dotted @border_color;
+            .title {
+                font-size: 22px;
+            }
+            .time {
+                color: @sub_color;
+            }
+        }
+        .no_article {
+            color: #aaa;
+            font-size: 20px;
+            padding-top: 10px;
+        }
     }
-    .list_cell {
-      padding: 10px 0;
-      border-bottom: 1px dotted @border_color;
-      .title {
-        font-size: 22px;
-      }
-      .time {
-        color: @sub_color;
-      }
-    }
-    .no_article {
-        color: #aaa;
-        font-size: 20px;
-        padding-top: 10px;
-    }
-  }
-  
-  
 }
 
-
-
 @media screen and (max-width: 1240px) {
-  #blog {
-    margin-left: 230px;
-  }
+    #blog {
+        margin-left: 230px;
+    }
 }
 
 @media screen and (max-width: 767px) {
-  #blog {
-    margin: auto;
-  }
+    #blog {
+        margin: auto;
+    }
 }
