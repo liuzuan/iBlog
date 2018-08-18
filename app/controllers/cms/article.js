@@ -8,7 +8,8 @@ const newStr = str => {
     return str
         .replace(/\s+/g, '')
         .replace(/\+/g, '_1')
-        .replace(/\>/g, '_2')
+        .replace(/&gt;/g, '_2')
+        .replace(/&lt;/g, '_6')
         .replace(/\~/g, '_3')
         .replace(/\[|\]/g, '_4')
         .replace(/\:+/g, '_5');
@@ -19,8 +20,9 @@ let renderer = new marked.Renderer();
 let dir = [];
 
 renderer.heading = (text, level, raw) => {
-    dir.push({ level, text: raw, id: newStr(raw) });
-    return `<h${level} class='h_title' id='${newStr(raw)}'>${text}</h${level}>`;
+    console.log(text);
+    dir.push({ level, text: text.replace(/&gt;/g, '>').replace(/&lt;/g, '<'), id: newStr(text) });
+    return `<h${level} class='h_title' id='${newStr(text)}'>${text}</h${level}>`;
 };
 
 marked.setOptions({
