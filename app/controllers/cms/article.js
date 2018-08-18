@@ -4,7 +4,7 @@ import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { articleModel, categoryModel } from '../../models/';
 
-const regObj = { '+': '_1', '.': '_2', '~': '_3', '>': '_4' };
+const regObj = { '\+': '_1', '\.': '_2', '\~': '_3', '\>': '_4', '\s':'_5' };
 const reg = new RegExp(Object.keys(regObj).join('|'), 'g');
 const newStr = str => {
     return str.replace(reg, k => {
