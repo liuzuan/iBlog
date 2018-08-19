@@ -8,8 +8,6 @@ const newStr = str => {
     return str
         .replace(/\s+/g, '')
         .replace(/\+/g, '_1')
-        .replace(/&gt;/g, '_2')
-        .replace(/&lt;/g, '_6')
         .replace(/\~/g, '_3')
         .replace(/\[|\]/g, '_4')
         .replace(/\:+/g, '_5');
@@ -21,7 +19,7 @@ let dir = [];
 
 renderer.heading = (text, level, raw) => {
     console.log(text);
-    dir.push({ level, text: text.replace(/&gt;/g, '>').replace(/&lt;/g, '<'), id: newStr(text) });
+    dir.push({ level, text, id: newStr(text) });
     return `<h${level} class='h_title' id='${newStr(text)}'>${text}</h${level}>`;
 };
 
