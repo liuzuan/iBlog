@@ -9,7 +9,6 @@ let renderer = new marked.Renderer();
 let dir = [];
 
 renderer.heading = (text, level, raw) => {
-    console.log(text);
     dir.push({ level, text, id: `dir_${dir.length}` });
     return `<h${level} class='h_title' id='dir_${dir.length}'>${text}</h${level}>`;
 };
@@ -19,6 +18,7 @@ marked.setOptions({
         if (!lang || lang === 'js') {
             lang = 'javascript';
         }
+        lang === 'html' && (lang = 'markup');
         loadLanguages([lang]);
         return Prism.highlight(code, Prism.languages[lang]);
     },
