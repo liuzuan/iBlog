@@ -9,16 +9,14 @@ let renderer = new marked.Renderer();
 let dir = [];
 
 renderer.heading = (text, level, raw) => {
-    dir.push({ level, text, id: `dir_${dir.length}` });
-    return `<h${level} class='h_title' id='dir_${dir.length}'>${text}</h${level}>`;
+    let index = dir.length;
+    dir.push({ level, text, id: `dir_${index}` });
+    return `<h${level} class='h_title' id='dir_${index}'>${text}</h${level}>`;
 };
 
 marked.setOptions({
     highlight: (code, lang) => {
-        if (!lang || lang === 'js') {
-            lang = 'javascript';
-        }
-        lang === 'html' && (lang = 'markup');
+        !lang && (lang = 'javascript');
         loadLanguages([lang]);
         return Prism.highlight(code, Prism.languages[lang]);
     },
