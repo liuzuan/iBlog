@@ -29,6 +29,7 @@
             text-overflow: ellipsis;
             margin: 20px 0;
             cursor: pointer;
+            
         }
         &_title {
             font-size: 18px;
@@ -36,7 +37,10 @@
             margin: 20px 0;
         }
         .lev2 {
-            padding-left: 10px;
+            &:before {
+                content: '• ';
+            }
+            padding-left: 15px;
         }
         &_active {
             color: @red;

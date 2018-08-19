@@ -18,7 +18,7 @@ block content
             ul.dir
                 h3.dir_title 文章目录
                 each item in dir
-                    li(class=`dir_item ${item.level===2?'lev2':''}` data-id=item.id)!=item.text
+                    li(class=`dir_item ${item.level===1?'':'lev2'}` data-id=item.id)!=item.text
                         //- a(href=`#${item}`)=item
             .article_detail
                 h1.article_title=title
