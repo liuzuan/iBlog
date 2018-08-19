@@ -2,6 +2,8 @@ footer.footer Copyright © 2018 liuzuann. All rights reserved |
     a(href='/CMS' target='_blank') 内容管理
 script(src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js")
 script(src="/js/index.js")
+if script 
+    script(src=`/js/${script}.js`)
 if active_nav === 'about'
     script(src="/js/markdown.js")
     script(src="/js/about.js")

@@ -22,16 +22,24 @@
         right: ~'calc(50vw - 550px)';
         top: 44px;
         width: 260px;
-        padding-top: 100px;
+        max-height: ~'calc(100vh - 200px)';
+        overflow: auto;
+        border: 1px solid #eee;
+        padding: 0 10px 0 20px;
+        margin-top: 100px;
         &_item {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             margin: 20px 0;
+            // &:before {
+            //     content: '• ';
+            // }
             cursor: pointer;
             
         }
         &_title {
+            text-align: center;
             font-size: 18px;
             font-weight: 600;
             margin: 20px 0;

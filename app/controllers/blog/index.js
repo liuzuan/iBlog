@@ -33,6 +33,7 @@ class IndexController {
                     res.render('pages/article', {
                         active_nav: 'blog',
                         css: 'article',
+                        script: 'article',
                         active_cate: article.category.name,
                         allCategories: allCategories,
                         article: article
