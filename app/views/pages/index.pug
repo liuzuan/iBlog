@@ -16,11 +16,11 @@ block content
                 h1.list_header=active_cate
                 if articleList.length
                     each val,index in articleList
-                        -const {title, categoryName, createTime,alias} = val
+                        -const {title, category, createTime,alias} = val
                         a(href='/article?title='+alias)
                             li.list_cell 
                                 p.title=title
                                 p
-                                    span.time #{formatDate(createTime)}
+                                    span.time #{formatDate(createTime)} | #{category.name}
                 else 
                     p.no_article 暂无该类文章

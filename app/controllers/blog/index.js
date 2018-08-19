@@ -9,12 +9,15 @@ class IndexController {
             try {
                 let params = {};
                 if (category === 'TOP') {
-                    params = { isTop: true, status: 1 };
+                    params = { status: 1 };
                 } else {
                     const categoryObj = await categoryModel.findOne({ name: category });
                     params = { category: categoryObj._id, status: 1 };
                 }
-                const articleList = await articleModel.find(params).sort('-createTime');
+                const articleList = await articleModel
+                    .find(params)
+                    .populate('category')
+                    .sort('-createTime');
                 res.render('pages/index', {
                     active_nav: 'blog',
                     css: 'index',
@@ -52,7 +55,7 @@ class IndexController {
             }
         } else {
             try {
-                const articleList = await articleModel.find({ isTop: true, status: 1 });
+                const articleList = await articleModel.find({ status: 1 }).populate('category');
                 res.render('pages/index', {
                     active_nav: 'blog',
                     css: 'index',
