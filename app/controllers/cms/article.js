@@ -4,23 +4,14 @@ import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { articleModel, categoryModel } from '../../models/';
 
-const newStr = str => {
-    return str
-        .replace(/\s+/g, '')
-        .replace(/\+/g, '_1')
-        .replace(/\~/g, '_3')
-        .replace(/\[|\]/g, '_4')
-        .replace(/\:+/g, '_5');
-};
-
 let renderer = new marked.Renderer();
 
 let dir = [];
 
 renderer.heading = (text, level, raw) => {
     console.log(text);
-    dir.push({ level, text, id: newStr(text) });
-    return `<h${level} class='h_title' id='${newStr(text)}'>${text}</h${level}>`;
+    dir.push({ level, text, id: `dir_${dir.length}` });
+    return `<h${level} class='h_title' id='dir_${dir.length}'>${text}</h${level}>`;
 };
 
 marked.setOptions({
