@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "debug": "cross-env NODE_ENV=development nodemon --inspect=3000 ./start.js",
-    "dev": "cross-env NODE_ENV=development pm2 start start.js --name 'iBlog' --node-args='--harmony'",
-    "start": "cross-env NODE_ENV=production pm2 start start.js --name 'iBlog' --node-args='--harmony'",
+    "dev": "cross-env NODE_ENV=development pm2 start start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
+    "start": "cross-env NODE_ENV=production pm2 start start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
     "stop": "pm2 stop start.js",
-    "restart": "cross-env NODE_ENV=production pm2 restart start.js --name 'iBlog' --node-args='--harmony'"
+    "restart": "cross-env NODE_ENV=production pm2 restart start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'"
   },
   "dependencies": {
     "babel": "^6.23.0",
