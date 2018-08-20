@@ -1,6 +1,5 @@
 node_modules
 -c
-public/img/
 .vscode/
 .idea
 *.log
