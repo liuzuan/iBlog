@@ -11,16 +11,16 @@ block content
         -return `${y}-${m}-${d}`;
     -}
     main.main#blog
-        .container
-            ul.article_list
-                h1.list_header=active_cate
-                if articleList.length
-                    each val,index in articleList
-                        -const {title, category, createTime,alias} = val
-                        a(href='/article?title='+alias)
-                            li.list_cell 
-                                p.title=title
-                                p
-                                    span.time #{formatDate(createTime)} | #{category.name}
-                else 
-                    p.no_article 暂无该类文章
+        ul.article_list
+            li
+                h1.list_header=active_cate  
+            if articleList.length
+                each val,index in articleList
+                    -const {title, category, createTime,alias} = val
+                    li 
+                        a.list_cell(href='/article?title='+alias)
+                            p.title=title
+                            p
+                                span.time #{formatDate(createTime)} | #{category.name}
+            else 
+                p.no_article 暂无该类文章
