@@ -27,29 +27,30 @@
         width: 230px;
         max-height: ~'calc(100vh - 200px)';
         overflow: auto;
-        padding: 0 10px 0 20px;
         margin-top: 16px;
         background: #fff;
         .shadow;
-        &_item {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin: 20px 0;
-            cursor: pointer;
-            
-        }
         &_title {
             text-align: center;
             font-size: 18px;
             font-weight: 600;
             margin: 20px 0;
         }
+        &_list {
+            padding: 0 10px 0 20px;
+        }
+        &_item {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 20px 0;
+            cursor: pointer;
+        }
         .lev2 {
+            padding-left: 15px;
             &:before {
                 content: '• ';
             }
-            padding-left: 15px;
         }
         &_active {
             color: @red;
