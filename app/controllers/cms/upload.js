@@ -38,7 +38,7 @@ class uploadController {
                 const uniqueName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16);
                 const originalname = files.file.name;
                 const key =
-                    (req.query && req.query.gallery ? 'images/gallery/' : 'images/article/') +
+                    (req.query && req.query.dir ? `images/${req.query.dir}/` : 'images/other/') +
                     uniqueName +
                     '__' +
                     originalname;
