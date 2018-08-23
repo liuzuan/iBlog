@@ -22,13 +22,13 @@
     }
     .dir {
         position: fixed;
-        right: ~'calc(50vw - 550px)';
+        right: ~'calc(50vw - 500px)';
         top: 44px;
-        width: 260px;
+        width: 230px;
         max-height: ~'calc(100vh - 200px)';
         overflow: auto;
         padding: 0 10px 0 20px;
-        margin-top: 100px;
+        margin-top: 16px;
         background: #fff;
         .shadow;
         &_item {
@@ -36,9 +36,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             margin: 20px 0;
-            // &:before {
-            //     content: '• ';
-            // }
             cursor: pointer;
             
         }
@@ -60,20 +57,14 @@
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1023px) {
     #article {
         .article_detail {
             max-width: 100%;
-            // width: 100%;
+            width: 100%;
         }
         .dir {
             display: none;
         }
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .sidebar {
-        display: block;
     }
 }

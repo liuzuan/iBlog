@@ -35,22 +35,22 @@ a {
     .wh(100%, 44px);
     line-height: 44px;
     padding: 0px 80px;
-    background: @black_rgba;
-    box-sizing: border-box;
     user-select: none;
+    box-sizing: border-box;
+    background: #000;
     transition: background 0.3s ease-in-out;
     .container {
+        height: 100%;
+        margin: 0 auto;
         overflow: hidden;
         max-width: 1000px;
-        margin: 0 auto;
-        height: 100%;
         .menu_icon {
-            display: none;
             position: relative;
-            z-index: 9;
+            display: none;
             float: left;
             width: 44px;
             height: 100%;
+            z-index: 9;
             cursor: pointer;
             &:hover {
                 .line {
@@ -101,10 +101,10 @@ a {
             a {
                 display: inline-block;
                 width: 90px;
-                text-align: center;
+                color: #fff;
                 font-size: 18px;
                 font-weight: 300;
-                color: #fff;
+                text-align: center;
                 transition: color 0.3s;
             }
             .blog {
