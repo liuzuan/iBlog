@@ -55,7 +55,10 @@ class IndexController {
             }
         } else {
             try {
-                const articleList = await articleModel.find({ status: 1 }).populate('category').sort('-createTime');
+                const articleList = await articleModel
+                    .find({ status: 1 })
+                    .populate('category')
+                    .sort('-createTime');
                 res.render('pages/index', {
                     active_nav: 'blog',
                     css: 'index',
