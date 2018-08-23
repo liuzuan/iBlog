@@ -6,7 +6,6 @@ aside.sidebar
                     a(class=active_nav===index?'active':'' href=index==='blog'?'/':'/'+index)= val
         if active_nav === 'blog' || active_nav === 'error'
             .list
-                h3.menu_item 文章分类
                 ul.menu_wrap
                     li.menu_item.search
                         img(src="/images/search.svg" class='search_btn' alt="")

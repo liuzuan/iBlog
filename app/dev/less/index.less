@@ -1,17 +1,48 @@
 @import 'common.less';
 
-.sidebar {
-    display: block;
-}
-
 #blog {
-    max-width: 760px;
+    display: flex;
+    max-width: 1000px;
     margin: 0 auto;
+    .cate {
+        width: 250px;
+        height: 100%;
+        background: #fff;
+        user-select: none;
+        padding-left: 20px;
+        .shadow;
+        h3 {
+            .font(24px, 400);
+        }
+        &_item {
+            height: 55px;
+            line-height: 55px;
+            font-weight: 300;
+            a {
+                font-size: 18px;
+            }
+            .active {
+                color: @nav_color1;
+                .font(22px, 300);
+            }
+            &:hover {
+                color: @nav_color1;
+                a {
+                    color: @nav_color1;
+                }
+            }
+        }
+    }
     .article_list {
+        width: 740px;
+        background: #fff;
+        margin-left: 10px;
+        padding: 10px;
+        .shadow;
         .list_header {
             color: @red;
             padding: 0 0 15px;
-            font-family: 'Chancery', cursive, LiSu, sans-serif;
+            .font(30px, 300);
             border-bottom: 1px solid @border_color;
         }
         .list_cell {
@@ -19,28 +50,34 @@
             padding: 10px 0;
             border-bottom: 1px dotted @border_color;
             .title {
+                color: #000;
                 font-size: 22px;
+                a {
+                    transition: all 0.3s;
+                    &:hover {
+                        color: @hover_color;
+                    }
+                }
             }
             .time {
+                font-weight: 300;
                 color: @sub_color;
             }
         }
         .no_article {
             color: #aaa;
             font-size: 20px;
-            padding-top: 10px;
+            text-align: center;
+            font-weight: 300;
+            padding-top: 100px;
         }
-    }
-}
-
-@media screen and (max-width: 1240px) {
-    #blog {
-        margin-left: 230px;
     }
 }
 
 @media screen and (max-width: 767px) {
     #blog {
-        margin: auto;
+        .cate {
+            display: none;
+        }
     }
 }

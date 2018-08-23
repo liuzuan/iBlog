@@ -5,12 +5,12 @@
 @nav_color3: #c4c021;
 @nav_color4: #269a92;
 @nav_color5: #33ce6b;
+@hover_color: #0084ff;
 @code_bg: #fafafa;
 @black_rgba: rgba(0, 0, 0, 0.8);
 @red: #c05b4d;
 @border_color: #e6e6e6;
 @sub_color: #8a8a8a;
-@color: 'nav_color';
 @npm_path: '../../../node_modules';
 
 .transition {
@@ -42,4 +42,14 @@
 
 .border_bottom {
     border-bottom: 1px solid @border_botttom;
+}
+
+.font(@size, @weight:400){
+    font-size: @size;
+    font-weight: @weight;
+}
+
+.shadow {
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }
