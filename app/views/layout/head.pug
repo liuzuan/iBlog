@@ -1,11 +1,11 @@
 header.header
   .container
-    span(class='menu_icon')
-      span(class='menu_icon_top')
-        span(class='line')
-      span(class='menu_icon_bottom')
-        span(class='line')
-    a(class='left' href='/') L Z A
+    .menu_icon
+      .menu_icon_top
+        .line
+      .menu_icon_bottom
+        .line
+    a.left(href='/') L Z A
     ul.right
       each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
         li

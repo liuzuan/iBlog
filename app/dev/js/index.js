@@ -3,7 +3,7 @@ $(function() {
     var $search_input = $('.search_input');
     var $reset = $('.reset_search_btn');
     var $menu_icon = $('.menu_icon');
-    var $sidebar = $('.sidebar');
+    var $dropdown = $('.dropdown');
     var tap = 'click';
 
     browserType();
@@ -37,7 +37,7 @@ $(function() {
     }
 
     $menu_icon.on(tap, function() {
-        $sidebar.css('transition', 'background 0.35s linear, height 0.35s ease-in');
+        $dropdown.css('transition', 'background 0.35s linear, height 0.35s ease-in');
         $body.toggleClass('open');
         $search_input.blur();
     });
@@ -57,7 +57,7 @@ $(function() {
 
     $(window).resize(function() {
         if ($(window).innerWidth() > 767) {
-            $sidebar.css('transition', 'none');
+            $dropdown.css('transition', 'none');
             $body.removeClass('open');
         }
         // browserType();

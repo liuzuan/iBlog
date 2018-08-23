@@ -21,8 +21,17 @@ $(function() {
             _lastTime = _nowTime;
         }
     }
-    if ($(window).width() > 1100) {
-        autoDir();
-        $(window).scroll(autoDir);
+
+    scrollHandle();
+
+    function scrollHandle() {
+        if ($(window).width() > 1023) {
+            autoDir();
+            $(window).scroll(autoDir);
+        } else {
+            $(window).unbind('scroll', autoDir);
+        }
     }
+
+    $(window).resize(scrollHandle);
 });

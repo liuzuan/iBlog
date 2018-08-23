@@ -1,5 +1,5 @@
-aside.sidebar
-    .sidebar_inner
+div.dropdown
+    .dropdown_inner
         ul.main_menu
             each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
                 li
@@ -8,9 +8,9 @@ aside.sidebar
             .list
                 ul.menu_wrap
                     li.menu_item.search
-                        img(src="/images/search.svg" class='search_btn' alt="")
-                        input(type="text" class='search_input' placeholder='Search this website')
-                        img(src="/images/reset_search.svg" class='reset_search_btn' alt="" style='display:none;')
+                        img.search_btn(src="/images/search.svg" alt="")
+                        input.search_input(type="text" placeholder='Search this website')
+                        img.reset_search_btn(src="/images/reset_search.svg" alt="" style='display:none;')
                     each val, index in [{name:"TOP",link:"TOP"},...allCategories]
                         li.menu_item
                             a(class=active_cate===val.name?'active':'' href='/article?category='+val.link)= val.name
