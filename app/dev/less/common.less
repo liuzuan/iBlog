@@ -34,12 +34,14 @@ a {
     z-index: 99;
     .wh(100%, 44px);
     line-height: 44px;
-    padding: 0px 80px;
+    padding: 0px 20px;
     user-select: none;
     box-sizing: border-box;
     background: #000;
     transition: background 0.3s ease-in-out;
     .container {
+        display: flex;
+        justify-content: space-between;
         height: 100%;
         margin: 0 auto;
         overflow: hidden;
@@ -96,11 +98,13 @@ a {
             font-size: 24px;
         }
         .right {
-            float: right;
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
             li,
             a {
                 display: inline-block;
-                width: 90px;
+
                 color: #fff;
                 font-size: 18px;
                 font-weight: 300;
@@ -255,7 +259,7 @@ a {
 @media screen and (max-width: 767px) {
     body {
         padding-top: 40px;
-        font-family: none;
+        background: #fff;
     }
     .header {
         padding: 0;
@@ -271,7 +275,7 @@ a {
                 transform: translateX(-20px);
             }
             .right {
-                display: none;
+                width: 0;
             }
         }
     }
