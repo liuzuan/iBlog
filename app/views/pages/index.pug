@@ -18,7 +18,7 @@ block content
                     li.cate_item
                         a(class=active_cate===val.name?'active':'' href='/article?category='+val.link)= val.name
         ul.article_list
-            //- li
+            li
                 h1.list_header=active_cate  
             if articleList.length
                 each val,index in articleList
