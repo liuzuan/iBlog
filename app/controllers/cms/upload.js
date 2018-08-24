@@ -19,7 +19,7 @@ class uploadController {
                 const extra = new qiniu.io.PutExtra();
                 qiniu.io.putFile(uptoken, key, localFile, extra, async (err, ret) => {
                     const url = 'http://cdn.liuzuann.com/' + ret.key;
-                    if (req.query && req.query.gallery) {
+                    if (req.query && req.query.dir === 'gallery') {
                         const img = new galleryModel({
                             title: title.slice(0, title.indexOf('.')),
                             thumbnail: url + '-thumb',
