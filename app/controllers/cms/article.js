@@ -36,8 +36,7 @@ class ArticleController {
             res.send({ data: result, count });
         } catch (err) {
             res.send({
-                status: 0,
-                type: 'ERROR_DATA',
+                code: -100,
                 message: '获取文章内容失败!'
             });
             return console.log(err);
@@ -71,13 +70,13 @@ class ArticleController {
             await newArticle.save();
             await categoryModel.update({ _id: newArticle.category }, { $push: { articles: newArticle._id } });
             res.send({
+                code: 0,
                 desc: '添加文章成功！'
             });
             dir = [];
         } catch (err) {
             res.send({
-                status: 0,
-                type: 'ERROR_DATA',
+                code: -100,
                 desc: '添加文章失败！'
             });
             return console.log(err);
@@ -88,14 +87,17 @@ class ArticleController {
         try {
             let article = await articleModel.findById(_id);
             await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
-            await articleModel.findByIdAndUpdate(_id, { ...set, category, conHtml: marked(req.body.content), dir });
+            req.body.content && await articleModel.findByIdAndUpdate(_id, { ...set, category, conHtml: marked(req.body.content), dir });
+            !req.body.content && await articleModel.findByIdAndUpdate(_id, { ...set });
             await categoryModel.update({ _id: category }, { $push: { articles: _id } });
             res.send({
+                code: 0,
                 desc: '修改文章成功！'
             });
             dir = [];
         } catch (err) {
             res.send({
+                code: -100,
                 desc: '修改文章失败！'
             });
             return console.log(err);
@@ -107,13 +109,13 @@ class ArticleController {
         await articleModel.findByIdAndRemove(_id, (err, data) => {
             if (err) {
                 res.send({
-                    status: 0,
-                    type: 'ERROR_DATA',
+                    code: -100,
                     desc: '删除文章失败！'
                 });
                 return console.log(err);
             }
             res.send({
+                code: 0,
                 desc: '删除文章成功！'
             });
         });

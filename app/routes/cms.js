@@ -21,17 +21,20 @@ router.use(async (req, res, next) => {
                 return next();
             } else {
                 return res.send({
+                    code: -100,
                     desc: '权限不足，无法操作！'
                 });
             }
         } catch (error) {
             console.log(error)
             return res.send({
+                code: -100,
                 desc: 'error'
             });
         }
     } else {
         return res.send({
+            code: -100,
             desc: '权限不足，无法操作！'
         });
     }
