@@ -24,8 +24,9 @@ marked.setOptions({
 });
 class ArticleController {
     async getArticle(req, res, next) {
-        const { page, pageSize, ...params } = req.body;
+        const { page, pageSize, title = '', ...rest } = req.body;
         try {
+            const params = { title: { $regex: title.trim(), $options: 'i' }, ...rest };
             const count = await articleModel.countDocuments(params);
             const result = await articleModel
                 .find(params)
@@ -83,12 +84,18 @@ class ArticleController {
         }
     }
     async editArticle(req, res, next) {
-        const { _id, category, ...set } = req.body;
+        const { _id, category, ...rest } = req.body;
         try {
             let article = await articleModel.findById(_id);
             await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
-            req.body.content && await articleModel.findByIdAndUpdate(_id, { ...set, category, conHtml: marked(req.body.content), dir });
-            !req.body.content && await articleModel.findByIdAndUpdate(_id, { ...set });
+            req.body.content &&
+                (await articleModel.findByIdAndUpdate(_id, {
+                    ...rest,
+                    category,
+                    conHtml: marked(req.body.content),
+                    dir
+                }));
+            !req.body.content && (await articleModel.findByIdAndUpdate(_id, { ...rest }));
             await categoryModel.update({ _id: category }, { $push: { articles: _id } });
             res.send({
                 code: 0,
