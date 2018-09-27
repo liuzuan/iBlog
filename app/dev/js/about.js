@@ -1,4 +1,12 @@
 $(function() {
+    $("#about").pagepiling({
+        loopBottom: true,
+        loopTop: true,
+        navigation: {
+            position: "left",
+            tooltips: ['首页','技能','供职','联系我']
+        }
+    })
     let aboutMeContent = `
 # 关于本站
 
