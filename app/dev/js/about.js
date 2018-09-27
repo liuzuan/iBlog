@@ -1,12 +1,12 @@
 $(function() {
-    $("#about").pagepiling({
+    $('#about').pagepiling({
         loopBottom: true,
         loopTop: true,
         navigation: {
-            position: "left",
-            tooltips: ['首页','技能','供职','联系我']
+            position: 'left',
+            tooltips: ['首页', '技能', '供职', '联系我']
         }
-    })
+    });
     let aboutMeContent = `
 # 关于本站
 
@@ -32,9 +32,9 @@ $(function() {
 `;
     let current = '';
     let count = 0;
-    let showResumeContent = () => {
+    (function showResumeContent() {
         let len = aboutMeContent.length;
-        let showContent = () => {
+        (function showContent() {
             let currentLen = current.length;
             let timer;
             if (currentLen < len) {
@@ -45,8 +45,6 @@ $(function() {
             } else {
                 clearTimeout(timer);
             }
-        };
-        showContent();
-    };
-    showResumeContent();
+        })();
+    })();
 });
