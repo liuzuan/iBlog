@@ -25,7 +25,7 @@ $(function() {
 - Mongodb
 - Jade (Pug)
 
-### 后台管理 -> [请戳这里](http://blog.liuzuann.com/CMS)
+### 后台管理 → [请戳这里](http://blog.liuzuann.com/CMS)
 
 - Vue
 - iView
