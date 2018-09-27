@@ -9,33 +9,103 @@ html {
     background: @nav_color1;
 }
 
-.main {
+#about {
     padding: 0;
-}
+    font-family: cursive;
 
-.pp-section {
-    height: 100%;
-    position: absolute;
-    width: 100%;
-}
+    .pp-section {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
 
-.pp-easing {
-    -webkit-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
-    -moz-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
-    -o-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
-    transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
-    -webkit-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
-    -moz-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
-    -o-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
-    transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
+    .pp-easing {
+        -webkit-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+        -moz-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+        -o-transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+        transition: all 1s cubic-bezier(0.55, 0.085, 0, 0.99);
+        -webkit-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
+        -moz-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
+        -o-transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
+        transition-timing-function: cubic-bezier(0.55, 0.085, 0, 0.99);
+    }
+
+    .pp-section.pp-table {
+        display: table;
+    }
+
+    .pp-tableCell {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+    }
+
+    .part1 {
+        background: @nav_color1;
+        .mark_dowm {
+            margin: 0 auto;
+            max-width: 760px;
+            color: #fff;
+            line-height: 1.5;
+            padding: 30px;
+            h1 {
+                text-align: center;
+                letter-spacing: 0;
+                font-size: 30px;
+                margin-bottom: 20px;
+                text-shadow: 0px 1px 0px #999, 0px 2px 0px #888, 0px 3px 0px #777, 0px 4px 0px #666, 0px 5px 0px #555,
+                    0px 6px 0px #444, 0px 7px 0px #333, 0px 8px 7px #001135;
+            }
+            h3 {
+                font-size: 24px;
+                margin: 15px 0;
+                padding-left: 5px;
+                border-left: 5px solid @nav_color4;
+            }
+            p {
+                text-indent: 25px;
+            }
+            ul,
+            p {
+                font-size: 20px;
+            }
+            a {
+                color: @nav_color3;
+                font-weight: 300;
+                transition: color 0.3s;
+                &:before {
+                    content: '[';
+                }
+                &:after {
+                    content: ']';
+                }
+                &:hover {
+                    color: rgb(248, 220, 184);
+                }
+            }
+        }
+    }
+
+    .part2 {
+        background: @nav_color2;
+    }
+
+    .part3 {
+        background: @nav_color3;
+    }
+
+    .part4 {
+        background: @nav_color4;
+    }
 }
 
 #pp-nav {
     position: fixed;
-    z-index: 100;
-    margin-top: -32px;
     top: 50%;
-    left: 17px;
+    left: 0px;
+    z-index: 100;
+    margin-top: -22px !important;
     opacity: 1;
     ul {
         margin: 0;
@@ -73,17 +143,6 @@ html {
     }
 }
 
-.pp-section.pp-table {
-    display: table;
-}
-
-.pp-tableCell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-}
-
 .pp-tooltip {
     position: absolute;
     top: -2px;
@@ -94,64 +153,25 @@ html {
     max-width: 220px;
 }
 
-.pp-tooltip.right {
-    right: 20px;
-}
-
-.pp-scrollable {
-    overflow-y: scroll;
-    height: 100%;
-}
-
-.section:nth-of-type(1) {
-    background: @nav_color1;
-}
-
-.mark_dowm {
-    margin: 0 auto;
-    max-width: 500px;
-    color: #fff;
-}
-
-.section:nth-of-type(2) {
-    background: @nav_color2;
-}
-
-.section:nth-of-type(3) {
-    background: @nav_color3;
-}
-
-.section:nth-of-type(4) {
-    background: @nav_color4;
+.pp-tooltip.left {
+    left: 20px;
 }
 
 .footer {
     display: none;
 }
 
-@media screen and (max-width: 1400px) {
-}
-
 @media screen and (max-width: 900px) {
-    #about {
-        .main {
-            .about_me {
-                float: none;
-                margin: 40px auto;
-            }
-            .mark_dowm {
-                float: none;
-                margin: 0 auto 20px;
-            }
-        }
-    }
-}
-
-@media screen and (max-width: 415px) {
-    #pp-nav {
-        left: 0px;
-    }
-    .mark_dowm {
-        padding: 30px;
-    }
+    // #about {
+    //     .main {
+    //         .about_me {
+    //             float: none;
+    //             margin: 40px auto;
+    //         }
+    //         .mark_dowm {
+    //             float: none;
+    //             margin: 0 auto 20px;
+    //         }
+    //     }
+    // }
 }
