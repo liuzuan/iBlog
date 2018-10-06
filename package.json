@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "debug": "cross-env NODE_ENV=development nodemon --inspect=3000 ./start.js",
+    "debug": "cross-env NODE_ENV=development nodemon --ignore 'app/dev/*' --ignore 'public/*' ./start.js",
     "dev": "cross-env NODE_ENV=development pm2 start start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
     "start": "cross-env NODE_ENV=production pm2 start start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
     "stop": "pm2 stop start.js",
@@ -23,6 +23,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-preset-stage-3": "^6.22.0",
     "babel-register": "^6.24.0",
+    "browser-sync": "^2.24.7",
     "cookie-parser": "~1.4.3",
     "cors": "^2.8.4",
     "cross-env": "^5.2.0",
