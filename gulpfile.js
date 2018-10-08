@@ -4,6 +4,7 @@ var $ = require('gulp-load-plugins')({
 });
 var minifyCss = require('gulp-minify-css');
 var browserSync = require('browser-sync').create();
+
 function swallowError(error) {
     console.error(error.toString());
     this.emit('end');
