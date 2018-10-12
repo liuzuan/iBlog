@@ -56,6 +56,6 @@ router.post('/login', user.login);
 router.post('/register', user.register);
 router.post('/editUserInfo', user.editUserInfo);
 
-router.post('/upload', upload.uploadToCdn);
+router.post('/upload', upload);
 
 export default router;
