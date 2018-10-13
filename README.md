@@ -12,7 +12,7 @@
 
 # 技术栈
 
-Node.js + Express + Jade + MongoDB + es6/7 + Vue + Vue-Router + Vuex + iView
+Node.js + Express + Jade + MongoDB + es6/7 + gulp + Vue + Vue-Router + Vuex + iView
 
 # 项目运行
 
