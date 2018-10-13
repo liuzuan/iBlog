@@ -31,8 +31,9 @@ npm install
 
 npm run debug
 
+gulp
+
 ```
-访问: http://localhost:3000
 
 # 效果演示
 
