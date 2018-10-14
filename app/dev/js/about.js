@@ -24,11 +24,6 @@ $(function() {
 - Express
 - Mongodb
 - Jade (Pug)
-
-### 后台管理 → [请戳这里](http://blog.liuzuann.com/CMS)
-
-- Vue
-- iView
 `;
     let current = '';
     let count = 0;
