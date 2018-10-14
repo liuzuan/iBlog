@@ -7,7 +7,7 @@ html
         meta(name="description" content="刘祖安|前端工程师")
         link(rel="shortcut icon", href="http://cdn.liuzuann.com/favicon.ico-thin", type="image/x-icon")
         link(rel='stylesheet', href=`/css/${css}.css`)
-        title=`${article&&article.title||'刘祖安 | 博客'}`
+        title=`${article && article.title ? article.title + ' - ':''}刘祖安 | 博客`
     body
         include head.pug
         include sidebar.pug

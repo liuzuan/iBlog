@@ -33,7 +33,7 @@ export default async (req, res, next) => {
                     script: 'article',
                     active_cate: article.category.name,
                     allCategories,
-                    article: article
+                    article
                 });
             } else {
                 res.render('error', {
