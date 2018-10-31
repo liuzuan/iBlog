@@ -1,4 +1,4 @@
-extends ../layout/layout
+extends ../layout
 block content
     -const formatDate = function(str) {
         -if (!str) {
@@ -28,5 +28,5 @@ block content
                             a(href='/article?title='+alias)=title
                         p
                             span.time #{formatDate(createTime)} | #{category.name}
-            else 
+            else
                 p.no_article 暂无该类文章
