@@ -1,5 +1,5 @@
-import user from './user';
-import gallery from './gallery';
-import { category, article } from './blog';
+import userModel from './user';
+import galleryModel from './gallery';
+import { categoryModel, articleModel } from './blog';
 
-export { category, article, user, gallery };
+export { categoryModel, articleModel, userModel, galleryModel };

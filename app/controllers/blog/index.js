@@ -1,4 +1,4 @@
-import { article, category as categoryModel } from '../../models/';
+import { articleModel, categoryModel } from '../../models/';
 
 export default async (req, res, next) => {
     try {
@@ -13,7 +13,7 @@ export default async (req, res, next) => {
                 article
             });
         const renderTopPage = async () => {
-            const articleList = await article
+            const articleList = await articleModel
                 .find({ status: 1 })
                 .populate('category')
                 .sort('-createTime');
@@ -32,7 +32,7 @@ export default async (req, res, next) => {
                 const categoryObj = await categoryModel.findOne({ name: category });
                 if (categoryObj) {
                     const params = { category: categoryObj._id, status: 1 };
-                    const articleList = await article
+                    const articleList = await articleModel
                         .find(params)
                         .populate('category')
                         .sort('-createTime');
@@ -48,7 +48,7 @@ export default async (req, res, next) => {
                 }
             }
         } else if (title) {
-            const article = await article.findOne({ alias: title }).populate('category');
+            const article = await articleModel.findOne({ alias: title }).populate('category');
             if (article) {
                 article.content = article.conHtml;
                 res.render('pages/article', {
@@ -60,7 +60,7 @@ export default async (req, res, next) => {
                     article
                 });
             } else {
-                renderErrorPage(article);
+                renderErrorPage();
             }
         } else {
             renderTopPage();

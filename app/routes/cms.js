@@ -50,7 +50,7 @@ router.post('/editArticle', articleController.editArticle);
 router.post('/delArticle', articleController.delArticle);
 
 router.post('/getArticle', articleController.getArticle);
-router.post('/updateAllArticle', articleController.updateAllArticle);
+// router.post('/updateAllArticle', articleController.updateAllArticle);
 
 router.post('/login', userController.login);
 router.post('/register', userController.register);

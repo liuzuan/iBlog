@@ -28,7 +28,7 @@ const categorySchema = new mongoose.Schema(
         name: String,
         logo: String,
         link: String,
-        articles: [{ type: ObjectId, ref: 'article' }],
+        articles: [{ type: ObjectId, ref: 'articleModel' }],
         createTime: { type: Date, default: Date.now },
         updateTime: { type: Date, default: Date.now }
     },
@@ -39,7 +39,7 @@ const categorySchema = new mongoose.Schema(
 );
 
 
-const article = mongoose.model('articleModel', articleSchema);
-const category = mongoose.model('categoryModel', categorySchema);
+const articleModel = mongoose.model('articleModel', articleSchema);
+const categoryModel = mongoose.model('categoryModel', categorySchema);
 
-export { category, article};
+export { categoryModel, articleModel};
