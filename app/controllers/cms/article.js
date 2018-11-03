@@ -86,20 +86,20 @@ class ArticleController {
     async editArticle(req, res, next) {
         const { _id, category, ...rest } = req.body;
         try {
-            let article = await article.findById(_id);
+            let article = await articleModel.findById(_id);
             if (article.category !== category) {
-                await category.update({ _id: article.category }, { $pull: { articles: _id } });
-                await category.update({ _id: category }, { $push: { articles: _id } });
+                await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
+                await categoryModel.update({ _id: category }, { $push: { articles: _id } });
             }
             if (req.body.content) {
-                await article.findByIdAndUpdate(_id, {
+                await articleModel.findByIdAndUpdate(_id, {
                     ...rest,
                     category,
                     conHtml: marked(req.body.content),
                     dir
                 });
             } else {
-                await article.findByIdAndUpdate(_id, { ...rest });
+                await articleModel.findByIdAndUpdate(_id, { ...rest });
             }
             res.send({
                 code: 0,

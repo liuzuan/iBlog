@@ -1,4 +1,4 @@
-import { user } from '../../models/';
+import { userModel } from '../../models/';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
 import conf from '../../../config/';
@@ -18,11 +18,11 @@ class UserController {
         try {
             let { userName, password } = req.body;
             let newPassword = setNewPassword(password);
-            let user = await user
+            let user = await userModel
                 .findOneAndUpdate({ userName: userName, password: newPassword }, {})
                 .select({ password: 0 });
             let token = setToken(userName);
-            let user1 = await user.findOne({ userName: userName });
+            let user1 = await userModel.findOne({ userName: userName });
             if (user) {
                 user._doc.token = token;
                 res.send({
@@ -53,7 +53,7 @@ class UserController {
         try {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(password);
-            const user = await user.findOne({ userName: userName });
+            const user = await userModel.findOne({ userName: userName });
             const token = setToken(userName);
             if (user) {
                 res.send({
@@ -62,7 +62,7 @@ class UserController {
                 });
                 return;
             }
-            const newUser = new user({
+            const newUser = new userModel({
                 userName: userName,
                 password: newPassword
             });
@@ -89,7 +89,7 @@ class UserController {
         try {
             const { _id, ...rest } = req.body;
             let token = setToken(req.body.userName);
-            let user = await user.findOneAndUpdate({ _id: _id }, rest, { new: true }).select({ password: 0 });
+            let user = await userModel.findOneAndUpdate({ _id: _id }, rest, { new: true }).select({ password: 0 });
             if (!user) {
                 res.send({
                     desc: '用户不存在',

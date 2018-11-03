@@ -1,7 +1,7 @@
 import express from 'express';
 import { articleController, categoryController, userController, uploadController } from '../controllers/cms/';
 import conf from '../../config/';
-import { user } from '../models/';
+import { userModel } from '../models/';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.use(async (req, res, next) => {
     }
     if (token) {
         try {
-            let userData = await user.findOne({userName: jwt.verify(token, conf.jwtTokenSecret)});
+            let userData = await userModel.findOne({userName: jwt.verify(token, conf.jwtTokenSecret)});
             if (userData.is_manager) {
                 return next();
             } else {
