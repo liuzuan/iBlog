@@ -1,9 +1,9 @@
-import { article, category } from '../../models/';
+import { article, category as categoryModel } from '../../models/';
 
 export default async (req, res, next) => {
     try {
         const { category, title } = req.query;
-        const allCategories = await category.find({ status: 1 });
+        const allCategories = await categoryModel.find({ status: 1 });
         const renderErrorPage = (article = {}) =>
             res.render('pages/error', {
                 active_nav: 'blog',
@@ -29,7 +29,7 @@ export default async (req, res, next) => {
             if (category === 'TOP') {
                 renderTopPage();
             } else {
-                const categoryObj = await category.findOne({ name: category });
+                const categoryObj = await categoryModel.findOne({ name: category });
                 if (categoryObj) {
                     const params = { category: categoryObj._id, status: 1 };
                     const articleList = await article
