@@ -1,7 +1,7 @@
 import express from 'express';
-import { article, category, user, upload } from '../controllers/cms/';
+import { articleController, categoryController, userController, uploadController } from '../controllers/cms/';
 import conf from '../../config/';
-import { userModel } from '../models/';
+import { user } from '../models/';
 import jwt from 'jsonwebtoken';
 
 const router = express.Router();
@@ -16,8 +16,8 @@ router.use(async (req, res, next) => {
     }
     if (token) {
         try {
-            let user = await userModel.findOne({userName: jwt.verify(token, conf.jwtTokenSecret)});
-            if (user.is_manager) {
+            let userData = await user.findOne({userName: jwt.verify(token, conf.jwtTokenSecret)});
+            if (userData.is_manager) {
                 return next();
             } else {
                 return res.send({
@@ -40,22 +40,22 @@ router.use(async (req, res, next) => {
     }
 });
 
-router.post('/addCategory', category.addCategory);
-router.post('/editCategory', category.editCategory);
-router.post('/delCategory', category.delCategory);
-router.get('/getAllCategories', category.getAllCategories);
+router.post('/addCategory', categoryController.addCategory);
+router.post('/editCategory', categoryController.editCategory);
+router.post('/delCategory', categoryController.delCategory);
+router.get('/getAllCategories', categoryController.getAllCategories);
 
-router.post('/addArticle', article.addArticle);
-router.post('/editArticle', article.editArticle);
-router.post('/delArticle', article.delArticle);
+router.post('/addArticle', articleController.addArticle);
+router.post('/editArticle', articleController.editArticle);
+router.post('/delArticle', articleController.delArticle);
 
-router.post('/getArticle', article.getArticle);
-router.post('/updateAllArticle', article.updateAllArticle);
+router.post('/getArticle', articleController.getArticle);
+router.post('/updateAllArticle', articleController.updateAllArticle);
 
-router.post('/login', user.login);
-router.post('/register', user.register);
-router.post('/editUserInfo', user.editUserInfo);
+router.post('/login', userController.login);
+router.post('/register', userController.register);
+router.post('/editUserInfo', userController.editUserInfo);
 
-router.post('/upload', upload);
+router.post('/upload', uploadController);
 
 export default router;

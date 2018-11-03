@@ -1,10 +1,10 @@
-import { categoryModel } from '../../models/';
+import { category } from '../../models/';
 
 class CategoryController {
     constructor() {}
     async getAllCategories(req, res, next) {
         try {
-            const categories = await categoryModel.find({}).populate('articles');
+            const categories = await category.find({}).populate('articles');
             res.send(categories);
         } catch (error) {
             res.send({
@@ -18,7 +18,7 @@ class CategoryController {
 
     async addCategory(req, res, next) {
         try {
-            const newCategory = new categoryModel({
+            const newCategory = new category({
                 ...req.body,
                 link: req.body.link || req.body.name
             });
@@ -39,7 +39,7 @@ class CategoryController {
     async editCategory(req, res, next) {
         try {
             const { _id, ...set } = req.body;
-            await categoryModel.findOneAndUpdate({ _id }, set);
+            await category.findOneAndUpdate({ _id }, set);
             res.send({
                 desc: '修改成功！'
             });
@@ -56,7 +56,7 @@ class CategoryController {
     async delCategory(req, res, next) {
         try {
             const { _id } = req.body;
-            await categoryModel.findByIdAndRemove(_id);
+            await category.findByIdAndRemove(_id);
             res.send({
                 desc: '删除成功！'
             });

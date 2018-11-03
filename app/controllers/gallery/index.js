@@ -1,9 +1,9 @@
-import { galleryModel } from '../../models/';
+import { gallery } from '../../models/';
 
 class GalleryController {
     async page(req, res, next) {
         try {
-            let result = await galleryModel.find();
+            let result = await gallery.find();
             res.render('pages/gallery', {
                 active_nav: 'gallery',
                 css: 'gallery',

@@ -1,6 +1,6 @@
-import user from './user';
-import article from './article';
-import category from './category';
-import upload from './upload';
+import userController from './user';
+import articleController from './article';
+import categoryController from './category';
+import uploadController from './upload';
 
-export { user, article, category, upload };
+export { userController, articleController, categoryController, uploadController };

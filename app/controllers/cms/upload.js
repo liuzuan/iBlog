@@ -1,7 +1,7 @@
 import formidable from 'formidable';
 import fs from 'fs';
 import qiniu from 'qiniu';
-import { galleryModel } from '../../models/';
+import { gallery } from '../../models/';
 
 qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';
 qiniu.conf.SECRET_KEY = 'lveC7RDx27R7NzTMtBNM3BxYKbsPao-j8sPnF7KT';
@@ -33,7 +33,7 @@ export default async (req, res, next) => {
             qiniu.io.putFile(uptoken, key, localFile, extra, async (err, ret) => {
                 const url = 'http://cdn.liuzuann.com/' + ret.key;
                 if (req.query && req.query.dir === 'gallery') {
-                    const img = new galleryModel({
+                    const img = new gallery({
                         title: title.slice(0, title.indexOf('.')),
                         thumbnail: url + '-thumb',
                         full: url + '-thin'

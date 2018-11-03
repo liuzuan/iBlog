@@ -2,7 +2,7 @@ import marked from 'marked';
 // import hljs from 'highlight.js';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
-import { articleModel, categoryModel } from '../../models/';
+import { article, category } from '../../models/';
 
 let renderer = new marked.Renderer();
 
@@ -27,8 +27,8 @@ class ArticleController {
         const { page, pageSize, title = '', ...rest } = req.body;
         try {
             const params = { title: { $regex: title.trim(), $options: 'i' }, ...rest };
-            const count = await articleModel.countDocuments(params);
-            const result = await articleModel
+            const count = await article.countDocuments(params);
+            const result = await article
                 .find(params)
                 .populate('category')
                 .sort('-updateTime')
@@ -46,7 +46,7 @@ class ArticleController {
 
     async updateAllArticle(req, res, next) {
         try {
-            const a = await articleModel.update({}, { dir }, { multi: true });
+            const a = await article.update({}, { dir }, { multi: true });
             console.log(a);
             res.send({
                 success: true,
@@ -63,13 +63,13 @@ class ArticleController {
 
     async addArticle(req, res, next) {
         try {
-            let newArticle = new articleModel({
+            let newArticle = new article({
                 ...req.body,
                 conHtml: marked(req.body.content),
                 dir
             });
             await newArticle.save();
-            await categoryModel.update({ _id: newArticle.category }, { $push: { articles: newArticle._id } });
+            await category.update({ _id: newArticle.category }, { $push: { articles: newArticle._id } });
             res.send({
                 code: 0,
                 desc: '添加文章成功！'
@@ -86,17 +86,21 @@ class ArticleController {
     async editArticle(req, res, next) {
         const { _id, category, ...rest } = req.body;
         try {
-            let article = await articleModel.findById(_id);
-            await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
-            req.body.content &&
-                (await articleModel.findByIdAndUpdate(_id, {
+            let article = await article.findById(_id);
+            if (article.category !== category) {
+                await category.update({ _id: article.category }, { $pull: { articles: _id } });
+                await category.update({ _id: category }, { $push: { articles: _id } });
+            }
+            if (req.body.content) {
+                await article.findByIdAndUpdate(_id, {
                     ...rest,
                     category,
                     conHtml: marked(req.body.content),
                     dir
-                }));
-            !req.body.content && (await articleModel.findByIdAndUpdate(_id, { ...rest }));
-            await categoryModel.update({ _id: category }, { $push: { articles: _id } });
+                });
+            } else {
+                await article.findByIdAndUpdate(_id, { ...rest });
+            }
             res.send({
                 code: 0,
                 desc: '修改文章成功！'
@@ -113,7 +117,7 @@ class ArticleController {
 
     async delArticle(req, res, next) {
         const { _id } = req.body;
-        await articleModel.findByIdAndRemove(_id, (err, data) => {
+        await article.findByIdAndRemove(_id, (err, data) => {
             if (err) {
                 res.send({
                     code: -100,
