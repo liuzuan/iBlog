@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "jsx": "preserve",
-        "allowJs": false,
+        "allowJs": true,
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "removeComments": false,
@@ -18,5 +18,5 @@
         "module": "commonjs",
         "outDir": "dist/"
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules","dist"]
 }
