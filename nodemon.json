@@ -1,0 +1,9 @@
+{
+    "ignore": ["app/dev/*", "public/*"],
+    "execMap": {
+        "ts": "ts-node --project tsconfig.json"
+    },
+    "env": {
+        "NODE_ENV": "development"
+    }
+}
