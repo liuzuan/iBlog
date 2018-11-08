@@ -1,13 +1,15 @@
-import createError from 'http-errors';
-import express from 'express';
-import path from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import router from './app/routes/index';
+import * as createError from 'http-errors';
+import * as express from 'express';
+import * as path from 'path';
+import * as cookieParser from 'cookie-parser';
+import * as logger from 'morgan';
+import router from './app/routes/';
 import db from './app/mongodb/db';
-import cors from 'cors';
+import * as cors from 'cors';
 
 const app = express();
+
+db();
 
 app.use(
     cors({
@@ -36,12 +38,12 @@ app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
-    res.render('pages/error',{
+    res.render('pages/error', {
         active_nav: 'blog',
         css: 'error',
         active_cate: '',
-        allCategories:[],
-    })
+        allCategories: []
+    });
 });
 
 export default app;

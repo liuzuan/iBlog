@@ -1,5 +1,4 @@
-import marked from 'marked';
-// import hljs from 'highlight.js';
+import * as marked from 'marked';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
 import { articleModel, categoryModel } from '../../models';
@@ -40,14 +39,13 @@ class ArticleController {
                 code: -100,
                 message: '获取文章内容失败!'
             });
-            return console.log(err);
+            return;
         }
     }
 
     async updateAllArticle(req, res, next) {
         try {
             const a = await articleModel.update({}, { dir }, { multi: true });
-            console.log(a);
             res.send({
                 success: true,
                 desc: '全部文章已更新！'
@@ -57,7 +55,6 @@ class ArticleController {
                 success: false,
                 desc: '更新失败！'
             });
-            console.log(error);
         }
     }
 
@@ -80,7 +77,7 @@ class ArticleController {
                 code: -100,
                 desc: '添加文章失败！'
             });
-            return console.log(err);
+            return;
         }
     }
     async editArticle(req, res, next) {
@@ -111,7 +108,7 @@ class ArticleController {
                 code: -100,
                 desc: '修改文章失败！'
             });
-            return console.log(err);
+            return;
         }
     }
 
@@ -123,7 +120,7 @@ class ArticleController {
                     code: -100,
                     desc: '删除文章失败！'
                 });
-                return console.log(err);
+                return;
             }
             res.send({
                 code: 0,

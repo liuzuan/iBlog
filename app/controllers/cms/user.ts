@@ -7,7 +7,7 @@ const setToken = user => {
     return jwt.sign(user, conf.jwtTokenSecret);
 };
 
-const setNewPassword = (password) => {
+const setNewPassword = password => {
     const hmac = crypto.createHmac('sha1', conf.jwtTokenSecret);
     hmac.update(password);
     return hmac.digest('hex');
@@ -20,11 +20,12 @@ class UserController {
             let newPassword = setNewPassword(password);
             let user = await userModel
                 .findOneAndUpdate({ userName: userName, password: newPassword }, {})
-                .select({ password: 0 });
+                .select({ password: 0 })
+                .setOptions({ lean: true });
             let token = setToken(userName);
             let user1 = await userModel.findOne({ userName: userName });
             if (user) {
-                user._doc.token = token;
+                user.token = token;
                 res.send({
                     data: user,
                     desc: '登录成功！',
@@ -53,7 +54,10 @@ class UserController {
         try {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(password);
-            const user = await userModel.findOne({ userName: userName });
+            const user = await userModel
+                .findOne({ userName: userName })
+                .select({ password: 0 })
+                .setOptions({ lean: true });
             const token = setToken(userName);
             if (user) {
                 res.send({
@@ -66,15 +70,12 @@ class UserController {
                 userName: userName,
                 password: newPassword
             });
-            await newUser.save((err, data) => {
-                let user = newUser;
-                user.token = token;
-                delete user._doc.password;
-                res.send({
-                    data: user,
-                    desc: '注册成功！',
-                    success: true
-                });
+            const result = await newUser.save();
+            result.token = token;
+            res.send({
+                data: result,
+                desc: '注册成功！',
+                success: true
             });
         } catch (error) {
             res.send({
@@ -89,7 +90,10 @@ class UserController {
         try {
             const { _id, ...rest } = req.body;
             let token = setToken(req.body.userName);
-            let user = await userModel.findOneAndUpdate({ _id: _id }, rest, { new: true }).select({ password: 0 });
+            let user = await userModel
+                .findOneAndUpdate({ _id: _id }, rest, { new: true })
+                .select({ password: 0 })
+                .setOptions({ lean: true });
             if (!user) {
                 res.send({
                     desc: '用户不存在',
@@ -97,7 +101,7 @@ class UserController {
                 });
                 return;
             } else {
-                user._doc.token = token
+                user.token = token;
                 res.send({
                     desc: '用户信息修改成功！',
                     success: true,

@@ -1,7 +1,6 @@
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
-
 const userSchema = new mongoose.Schema(
     {
         is_manager: { type: Number, default: 0 },
@@ -17,6 +16,16 @@ const userSchema = new mongoose.Schema(
     }
 );
 
-const userModel = mongoose.model('userModel', userSchema);
+interface UserDocument extends mongoose.Document {
+    is_manager: number;
+    userName: string;
+    password: string;
+    createTime: Date;
+    lastLoginTime: Date;
+    avatar_url: string;
+    token?: string;
+}
+
+const userModel = mongoose.model<UserDocument>('userModel', userSchema);
 
 export default userModel;

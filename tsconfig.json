@@ -1,5 +1,4 @@
 {
-    "compileOnSave": false,
     "compilerOptions": {
         "jsx": "preserve",
         "allowJs": false,
@@ -15,8 +14,9 @@
         "experimentalDecorators": true,
         "typeRoots": ["./node_modules/@types"],
         "lib": ["es2015", "es2016"],
+        "target": "es6",
         "module": "commonjs",
-        "outFile": "./built/"
+        "outDir": "dist/"
     },
     "exclude": ["node_modules"]
 }

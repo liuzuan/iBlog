@@ -1,6 +1,6 @@
-import formidable from 'formidable';
+import * as formidable from 'formidable';
 import fs from 'fs';
-import qiniu from 'qiniu';
+import * as qiniu from 'qiniu';
 import { galleryModel } from '../../models';
 
 qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';

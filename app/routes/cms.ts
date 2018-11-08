@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import { articleController, categoryController, userController, uploadController } from '../controllers/cms';
 import conf from '../../config';
 import { userModel } from '../models';

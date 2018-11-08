@@ -1,10 +1,10 @@
-import mongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const articleSchema = new mongoose.Schema(
     {
-        title: { type: String },
+        title: String,
         alias: String,
         dir: Array,
         status: { type: Number, default: 1 },
@@ -20,6 +20,19 @@ const articleSchema = new mongoose.Schema(
         timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
     }
 );
+
+export interface ArticleDocument extends mongoose.Document {
+    title: string;
+    alias: string;
+    dir: any[];
+    status: number;
+    category: any;
+    isTop?: boolean;
+    content: string;
+    conHtml: string;
+    createTime: Date;
+    updateTime: Date;
+}
 
 const categorySchema = new mongoose.Schema(
     {
@@ -38,8 +51,18 @@ const categorySchema = new mongoose.Schema(
     }
 );
 
+export interface CategoryDocument extends mongoose.Document {
+    status: number;
+    index: number;
+    name: string;
+    logo: string;
+    link: string;
+    articles: any[];
+    createTime: Date;
+    updateTime: Date;
+}
 
-const articleModel = mongoose.model('articleModel', articleSchema);
-const categoryModel = mongoose.model('categoryModel', categorySchema);
+const articleModel = mongoose.model<ArticleDocument>('articleModel', articleSchema);
+const categoryModel = mongoose.model<CategoryDocument>('categoryModel', categorySchema);
 
-export { categoryModel, articleModel};
+export { categoryModel, articleModel };

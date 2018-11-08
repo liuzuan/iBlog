@@ -1,6 +1,6 @@
 import app  from'./app';
-import debug  from'debug';
-import http  from'http';
+import * as debug  from'debug';
+import * as http  from'http';
 import conf from './config/index';
 
 debug('iblog:server')

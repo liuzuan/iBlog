@@ -3,15 +3,16 @@ import { articleModel, categoryModel } from '../../models';
 export default async (req, res, next) => {
     try {
         const { category, title } = req.query;
+        
         const allCategories = await categoryModel.find({ status: 1 });
         const renderErrorPage = (article = {}) =>
-            res.render('pages/error', {
-                active_nav: 'blog',
-                css: 'error',
-                active_cate: '',
-                allCategories,
-                article
-            });
+        res.render('pages/error', {
+            active_nav: 'blog',
+            css: 'error',
+            active_cate: '',
+            allCategories,
+            article
+        });
         const renderTopPage = async () => {
             const articleList = await articleModel
                 .find({ status: 1 })
@@ -25,6 +26,7 @@ export default async (req, res, next) => {
                 articleList
             });
         };
+
         if (category) {
             if (category === 'TOP') {
                 renderTopPage();
