@@ -9,9 +9,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const formidable = require("formidable");
-const fs_1 = require("fs");
+const fs = require("fs");
 const qiniu = require("qiniu");
-const models_1 = require("../../models/");
+const models_1 = require("../../models");
 qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';
 qiniu.conf.SECRET_KEY = 'lveC7RDx27R7NzTMtBNM3BxYKbsPao-j8sPnF7KT';
 exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -48,16 +48,15 @@ exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* 
                 '__' +
                 originalname;
             const repath = 'public/upload/' + originalname;
-            fs_1.default.renameSync(files.file.path, repath);
+            fs.renameSync(files.file.path, repath);
             let putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
             const token = putPolicy.token();
             uploadFile(token.toString(), key, repath, originalname);
-            fs_1.default.unlinkSync(repath);
+            fs.unlinkSync(repath);
         }));
     }
     catch (err) {
         console.log('上传七牛失败-->', err);
-        // fs.unlinkSync(repath);
         res.send({
             success: false,
             desc: '上传失败'

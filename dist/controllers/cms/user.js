@@ -17,15 +17,15 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const models_1 = require("../../models/");
-const crypto_1 = require("crypto");
-const jsonwebtoken_1 = require("jsonwebtoken");
-const config_1 = require("../../config/");
+const models_1 = require("../../models");
+const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
+const config_1 = require("../../config");
 const setToken = user => {
-    return jsonwebtoken_1.default.sign(user, config_1.default.jwtTokenSecret);
+    return jwt.sign(user, config_1.default.jwtTokenSecret);
 };
 const setNewPassword = password => {
-    const hmac = crypto_1.default.createHmac('sha1', config_1.default.jwtTokenSecret);
+    const hmac = crypto.createHmac('sha1', config_1.default.jwtTokenSecret);
     hmac.update(password);
     return hmac.digest('hex');
 };
@@ -92,10 +92,13 @@ class UserController {
                     userName: userName,
                     password: newPassword
                 });
-                const result = yield newUser.save();
-                result.token = token;
+                const data = yield newUser.save();
+                // @ts-ignore
+                data._doc.token = token;
+                // @ts-ignore
+                delete data._doc.password;
                 res.send({
-                    data: result,
+                    data: data,
                     desc: '注册成功！',
                     success: true
                 });

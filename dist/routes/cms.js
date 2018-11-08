@@ -10,12 +10,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const cms_1 = require("../controllers/cms");
-const config_1 = require("../config/");
+const config_1 = require("../config");
 const models_1 = require("../models");
-const jsonwebtoken_1 = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 // 需要权限的接口
-const shouldMaster = ['/addCategory', '/editCategory', '/delCategory', '/addArticle', '/editArticle', '/delArticle', '/updateAllArticle'];
+const shouldMaster = [
+    '/addCategory',
+    '/editCategory',
+    '/delCategory',
+    '/addArticle',
+    '/editArticle',
+    '/delArticle',
+    '/updateAllArticle'
+];
 const shouldLogin = ['/upload'];
 router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
     let token = req.body.token || req.query.token || req.headers.authorization;
@@ -24,7 +32,7 @@ router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
     }
     if (token) {
         try {
-            let userData = yield models_1.userModel.findOne({ userName: jsonwebtoken_1.default.verify(token, config_1.default.jwtTokenSecret) });
+            let userData = yield models_1.userModel.findOne({ userName: jwt.verify(token, config_1.default.jwtTokenSecret) });
             if (userData.is_manager) {
                 return next();
             }

@@ -17,7 +17,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const models_1 = require("../../models/");
+const models_1 = require("../../models");
 class CategoryController {
     constructor() { }
     getAllCategories(req, res, next) {

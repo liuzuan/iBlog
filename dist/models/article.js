@@ -17,21 +17,6 @@ const articleSchema = new mongoose.Schema({
     versionKey: false,
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
 });
-const categorySchema = new mongoose.Schema({
-    status: { type: Number, default: 1 },
-    index: Number,
-    name: String,
-    logo: String,
-    link: String,
-    articles: [{ type: ObjectId, ref: 'articleModel' }],
-    createTime: { type: Date, default: Date.now },
-    updateTime: { type: Date, default: Date.now }
-}, {
-    versionKey: false,
-    timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
-});
 const articleModel = mongoose.model('articleModel', articleSchema);
-exports.articleModel = articleModel;
-const categoryModel = mongoose.model('categoryModel', categorySchema);
-exports.categoryModel = categoryModel;
-//# sourceMappingURL=blog.js.map
+exports.default = articleModel;
+//# sourceMappingURL=article.js.map

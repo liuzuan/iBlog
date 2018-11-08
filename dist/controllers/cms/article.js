@@ -18,9 +18,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const marked = require("marked");
-const prismjs_1 = require("prismjs");
-const components_1 = require("prismjs/components/");
-const models_1 = require("../../models/");
+const Prism = require("prismjs");
+const models_1 = require("../../models");
 let renderer = new marked.Renderer();
 let dir = [];
 renderer.heading = (text, level, raw) => {
@@ -31,8 +30,7 @@ renderer.heading = (text, level, raw) => {
 marked.setOptions({
     highlight: (code, lang) => {
         !lang && (lang = 'javascript');
-        components_1.default([lang]);
-        return prismjs_1.default.highlight(code, prismjs_1.default.languages[lang]);
+        return Prism.highlight(code, Prism.languages[lang]);
     },
     renderer
 });
@@ -124,6 +122,7 @@ class ArticleController {
                     code: -100,
                     desc: '修改文章失败！'
                 });
+                console.log(err);
                 return;
             }
         });
