@@ -1,7 +1,8 @@
 import redis from 'redis';
-import conf from '../../config/';
+import conf from '../../config';
+import chalk from 'chalk';
 
-const client = redis.createClient(conf.redis.port, config.redis.host, config.redis.opts);
+const client = redis.createClient(conf.redis.port, conf.redis.host, conf.redis.opts);
 
 client.on('connect', () => {
     console.log(chalk.green('connected to redis'));

@@ -1,7 +1,7 @@
-import { userModel } from '../../models/';
+import { userModel } from '../../models';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import conf from '../../../config/';
+import conf from '../../../config';
 
 const setToken = user => {
     return jwt.sign(user, conf.jwtTokenSecret);

@@ -1,5 +1,5 @@
 import express from 'express';
-import gallery from '../controllers/gallery/';
+import gallery from '../controllers/gallery';
 
 const router = express.Router();
 

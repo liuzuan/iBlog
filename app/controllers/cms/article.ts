@@ -2,7 +2,7 @@ import marked from 'marked';
 // import hljs from 'highlight.js';
 import Prism from 'prismjs';
 import loadLanguages from 'prismjs/components/';
-import { articleModel, categoryModel } from '../../models/';
+import { articleModel, categoryModel } from '../../models';
 
 let renderer = new marked.Renderer();
 

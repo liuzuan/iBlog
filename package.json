@@ -11,6 +11,9 @@
     "restart": "cross-env NODE_ENV=production pm2 restart start.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'"
   },
   "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.3.1",
+    "@types/node": "^10.12.2",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.24.0",
@@ -44,7 +47,9 @@
     "prismjs": "^1.15.0",
     "pug": "2.0.0-beta11",
     "qiniu": "^6.1.13",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "tslint": "^5.11.0",
+    "typescript": "^3.1.6"
   },
   "devDependencies": {
     "chalk": "^2.4.1",
@@ -58,5 +63,8 @@
     "gulp-minify-css": "^1.2.4",
     "gulp-uglify": "^3.0.0",
     "less-import-aliases": "^1.0.2"
+  },
+  "typescript": {
+    "main": "start.ts"
   }
 }

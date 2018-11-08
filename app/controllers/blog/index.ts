@@ -1,4 +1,4 @@
-import { articleModel, categoryModel } from '../../models/';
+import { articleModel, categoryModel } from '../../models';
 
 export default async (req, res, next) => {
     try {
