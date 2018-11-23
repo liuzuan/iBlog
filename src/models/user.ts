@@ -26,6 +26,17 @@ interface IUserDocument extends mongoose.Document {
     token?: string;
 }
 
+class UserClass extends mongoose.Model {
+    public static async updateUser(conditions, update) {
+        return await this.findOneAndUpdate(conditions, update)
+            .select({ password: 0 })
+            .setOptions({ lean: true });
+    }
+    
+}
+
+userSchema.loadClass(UserClass);
+
 const userModel = mongoose.model<IUserDocument>('userModel', userSchema);
 
 export default userModel;
