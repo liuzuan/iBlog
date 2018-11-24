@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
         password: { type: String, required: true },
         createTime: { type: Date, default: Date.now },
         lastLoginTime: { type: Date, default: Date.now },
-        avatar_url: { type: String, default: 'http://cdn.liuzuann.com/1651f482b48_IMG_3231.JPG' }
+        avatar_url: { type: String, default: '//cdn.liuzuann.com/1651f482b48_IMG_3231.JPG' }
     },
     {
         versionKey: false,
