@@ -13,6 +13,7 @@ const gallerySchema = new mongoose.Schema({
     versionKey: false,
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
 });
+gallerySchema.set('toObject', { getters: true });
 const galleryModel = mongoose.model('galleryModel', gallerySchema);
 exports.default = galleryModel;
 //# sourceMappingURL=gallery.js.map

@@ -1,8 +1,7 @@
 import { categoryModel } from '../../models';
 
 class CategoryController {
-    constructor() {}
-    async getAllCategories(req, res, next) {
+    public static async getAllCategories(req, res, next) {
         try {
             const categories = await categoryModel.find({}).populate('articles');
             res.send(categories);
@@ -16,7 +15,7 @@ class CategoryController {
         }
     }
 
-    async addCategory(req, res, next) {
+    public static async addCategory(req, res, next) {
         try {
             const newCategory = new categoryModel({
                 ...req.body,
@@ -36,7 +35,7 @@ class CategoryController {
         }
     }
 
-    async editCategory(req, res, next) {
+    public static async editCategory(req, res, next) {
         try {
             const { _id, ...set } = req.body;
             await categoryModel.findOneAndUpdate({ _id }, set);
@@ -53,7 +52,7 @@ class CategoryController {
         }
     }
 
-    async delCategory(req, res, next) {
+    public static async delCategory(req, res, next) {
         try {
             const { _id } = req.body;
             await categoryModel.findByIdAndRemove(_id);
@@ -71,4 +70,4 @@ class CategoryController {
     }
 }
 
-export default new CategoryController();
+export default CategoryController;

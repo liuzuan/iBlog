@@ -33,7 +33,7 @@ export interface IArticleDocument extends mongoose.Document {
     createTime: Date;
     updateTime: Date;
 }
-
+articleSchema.set('toObject', { getters: true });
 const articleModel = mongoose.model<IArticleDocument>('articleModel', articleSchema);
 
 export default articleModel;

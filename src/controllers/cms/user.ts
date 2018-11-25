@@ -14,7 +14,7 @@ const setNewPassword = password => {
 };
 
 class UserController {
-    async login(req, res, next) {
+    public static async login(req, res, next) {
         try {
             let { userName, password } = req.body;
             let newPassword = setNewPassword(password);
@@ -50,7 +50,7 @@ class UserController {
             console.log(error);
         }
     }
-    async register(req, res, next) {
+    public static async register(req, res, next) {
         try {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(password);
@@ -71,10 +71,9 @@ class UserController {
                 password: newPassword
             });
             const data = await newUser.save();
-            // @ts-ignore
-            data._doc.token = token;
-            // @ts-ignore
-            delete data._doc.password;
+            console.log(data)
+            data.token = token;
+            delete data.password;
             res.send({
                 data: data,
                 desc: '注册成功！',
@@ -89,7 +88,7 @@ class UserController {
             return console.log(error);
         }
     }
-    async editUserInfo(req, res, next) {
+    public static async editUserInfo(req, res, next) {
         try {
             const { _id, ...rest } = req.body;
             let token = setToken(req.body.userName);
@@ -122,4 +121,4 @@ class UserController {
     }
 }
 
-export default new UserController();
+export default UserController;

@@ -6,6 +6,7 @@ export default ()=>{
     (<any>mongoose).Promise = global.Promise;
     mongoose.connect(conf.dbURL,{ useNewUrlParser: true });
     
+    
     const db = mongoose.connection;
     
     db.once('open', () => {

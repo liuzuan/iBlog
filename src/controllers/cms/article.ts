@@ -20,7 +20,7 @@ marked.setOptions({
     renderer
 });
 class ArticleController {
-    async getArticle(req, res, next) {
+    public static async getArticle(req, res, next) {
         const { page, pageSize, title = '', ...rest } = req.body;
         try {
             const params = { title: { $regex: title.trim(), $options: 'i' }, ...rest };
@@ -41,7 +41,7 @@ class ArticleController {
         }
     }
 
-    async updateAllArticle(req, res, next) {
+    public static async updateAllArticle(req, res, next) {
         try {
             const a = await articleModel.update({}, { dir }, { multi: true });
             res.send({
@@ -56,7 +56,7 @@ class ArticleController {
         }
     }
 
-    async addArticle(req, res, next) {
+    public static async addArticle(req, res, next) {
         try {
             let newArticle = new articleModel({
                 ...req.body,
@@ -78,7 +78,7 @@ class ArticleController {
             return;
         }
     }
-    async editArticle(req, res, next) {
+    public static async editArticle(req, res, next) {
         const { _id, category, ...rest } = req.body;
         try {
             let article = await articleModel.findById(_id);
@@ -111,7 +111,7 @@ class ArticleController {
         }
     }
 
-    async delArticle(req, res, next) {
+    public static async delArticle(req, res, next) {
         const { _id } = req.body;
         await articleModel.findByIdAndRemove(_id, (err, data) => {
             if (err) {
@@ -128,4 +128,4 @@ class ArticleController {
         });
     }
 }
-export default new ArticleController();
+export default ArticleController;

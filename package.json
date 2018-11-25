@@ -5,10 +5,10 @@
   "scripts": {
     "debug": "cross-env nodemon src/app.ts",
     "build": "rm -rf dist/ && tsc --project tsconfig.json",
-    "dev": "cross-env NODE_ENV=development pm2 start dist/app.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
-    "start": "cross-env NODE_ENV=production pm2 start dist/app.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'",
-    "pull": "pm2 start auto_pull.js --name 'auto_pull' --watch",
-    "restart": "cross-env NODE_ENV=production pm2 restart dist/app.js --name 'iBlog' --watch --ignore-watch='public/upload' --node-args='--harmony'"
+    "dev": "cross-env NODE_ENV=development pm2 start dist/app.js --name 'iBlog' --watch='dist' --node-args='--harmony'",
+    "start": "cross-env NODE_ENV=production pm2 start dist/app.js --name 'iBlog' --watch='dist' --node-args='--harmony'",
+    "pull": "pm2 start auto_pull.js --name 'auto_pull'",
+    "restart": "cross-env NODE_ENV=production pm2 restart dist/app.js --name 'iBlog' --watch='dist' --node-args='--harmony'"
   },
   "dependencies": {
     "@types/express": "^4.16.0",

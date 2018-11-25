@@ -10,7 +10,7 @@
 
 # 技术栈
 
-Node.js + Express + Jade + MongoDB + es6/7 + gulp
+Node.js + Express + TypeScript + Pug + MongoDB + es6/7 + gulp
 
 # 项目运行
 
@@ -35,9 +35,9 @@ gulp
 
 # 效果演示
 
-[博客页面](http://blog.liuzuann.com)（响应式布局，兼容 pc、移动端）
+[博客页面](https://blog.liuzuann.com)（响应式布局，兼容 pc、移动端）
 
-[![二维码](http://cdn.liuzuann.com/qrcode-blog.png-thin)](http://blog.liuzuann.com)
+[![二维码](https://cdn.liuzuann.com/qrcode-blog.png-thin)](https://blog.liuzuann.com)
 
 ## 目标功能
 

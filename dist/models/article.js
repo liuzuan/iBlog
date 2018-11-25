@@ -17,6 +17,7 @@ const articleSchema = new mongoose.Schema({
     versionKey: false,
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
 });
+articleSchema.set('toObject', { getters: true });
 const articleModel = mongoose.model('articleModel', articleSchema);
 exports.default = articleModel;
 //# sourceMappingURL=article.js.map

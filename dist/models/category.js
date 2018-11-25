@@ -15,6 +15,7 @@ const categorySchema = new mongoose.Schema({
     versionKey: false,
     timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
 });
+categorySchema.set('toObject', { getters: true });
 const categoryModel = mongoose.model('categoryModel', categorySchema);
 exports.default = categoryModel;
 //# sourceMappingURL=category.js.map

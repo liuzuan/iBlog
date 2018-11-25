@@ -34,7 +34,7 @@ class UserClass extends mongoose.Model {
     }
     
 }
-
+userSchema.set('toObject', { getters: true });
 userSchema.loadClass(UserClass);
 
 const userModel = mongoose.model<IUserDocument>('userModel', userSchema);

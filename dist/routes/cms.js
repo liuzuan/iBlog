@@ -27,7 +27,7 @@ const shouldMaster = [
 const shouldLogin = ['/upload'];
 router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
     let token = req.body.token || req.query.token || req.headers.authorization;
-    if (shouldMaster.indexOf(req.url) == -1) {
+    if (!~shouldMaster.indexOf(req.url)) {
         return next();
     }
     if (token) {
@@ -39,7 +39,7 @@ router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
             else {
                 return res.send({
                     code: -100,
-                    desc: '权限不足，无法操作！'
+                    desc: 'Permission denied.Only administrators can operate.'
                 });
             }
         }
@@ -54,7 +54,7 @@ router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
     else {
         return res.send({
             code: -100,
-            desc: '权限不足，无法操作！'
+            desc: 'Permission denied.Only administrators can operate.'
         });
     }
 }));

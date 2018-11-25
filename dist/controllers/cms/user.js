@@ -30,7 +30,7 @@ const setNewPassword = password => {
     return hmac.digest('hex');
 };
 class UserController {
-    login(req, res, next) {
+    static login(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let { userName, password } = req.body;
@@ -71,7 +71,7 @@ class UserController {
             }
         });
     }
-    register(req, res, next) {
+    static register(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { userName, password } = req.body;
@@ -93,10 +93,9 @@ class UserController {
                     password: newPassword
                 });
                 const data = yield newUser.save();
-                // @ts-ignore
-                data._doc.token = token;
-                // @ts-ignore
-                delete data._doc.password;
+                console.log(data);
+                data.token = token;
+                delete data.password;
                 res.send({
                     data: data,
                     desc: '注册成功！',
@@ -113,7 +112,7 @@ class UserController {
             }
         });
     }
-    editUserInfo(req, res, next) {
+    static editUserInfo(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const _a = req.body, { _id } = _a, rest = __rest(_a, ["_id"]);
@@ -149,5 +148,5 @@ class UserController {
         });
     }
 }
-exports.default = new UserController();
+exports.default = UserController;
 //# sourceMappingURL=user.js.map

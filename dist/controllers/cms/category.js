@@ -19,8 +19,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../../models");
 class CategoryController {
-    constructor() { }
-    getAllCategories(req, res, next) {
+    static getAllCategories(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const categories = yield models_1.categoryModel.find({}).populate('articles');
@@ -36,7 +35,7 @@ class CategoryController {
             }
         });
     }
-    addCategory(req, res, next) {
+    static addCategory(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const newCategory = new models_1.categoryModel(Object.assign({}, req.body, { link: req.body.link || req.body.name }));
@@ -55,7 +54,7 @@ class CategoryController {
             }
         });
     }
-    editCategory(req, res, next) {
+    static editCategory(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const _a = req.body, { _id } = _a, set = __rest(_a, ["_id"]);
@@ -74,7 +73,7 @@ class CategoryController {
             }
         });
     }
-    delCategory(req, res, next) {
+    static delCategory(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { _id } = req.body;
@@ -94,5 +93,5 @@ class CategoryController {
         });
     }
 }
-exports.default = new CategoryController();
+exports.default = CategoryController;
 //# sourceMappingURL=category.js.map

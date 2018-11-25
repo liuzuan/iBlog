@@ -29,6 +29,7 @@ export interface ICategoryDocument extends mongoose.Document {
     createTime: Date;
     updateTime: Date;
 }
+categorySchema.set('toObject', { getters: true });
 
 const categoryModel = mongoose.model<ICategoryDocument>('categoryModel', categorySchema);
 

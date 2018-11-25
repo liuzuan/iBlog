@@ -16,6 +16,7 @@ const gallerySchema = new mongoose.Schema(
         timestamps: { createdAt: 'createTime', updatedAt: 'updateTime' }
     }
 );
+gallerySchema.set('toObject', { getters: true });
 
 const galleryModel = mongoose.model('galleryModel', gallerySchema);
 

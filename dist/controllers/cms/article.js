@@ -35,7 +35,7 @@ marked.setOptions({
     renderer
 });
 class ArticleController {
-    getArticle(req, res, next) {
+    static getArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const _a = req.body, { page, pageSize, title = '' } = _a, rest = __rest(_a, ["page", "pageSize", "title"]);
             try {
@@ -58,7 +58,7 @@ class ArticleController {
             }
         });
     }
-    updateAllArticle(req, res, next) {
+    static updateAllArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const a = yield models_1.articleModel.update({}, { dir }, { multi: true });
@@ -75,7 +75,7 @@ class ArticleController {
             }
         });
     }
-    addArticle(req, res, next) {
+    static addArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 let newArticle = new models_1.articleModel(Object.assign({}, req.body, { conHtml: marked(req.body.content), dir }));
@@ -96,7 +96,7 @@ class ArticleController {
             }
         });
     }
-    editArticle(req, res, next) {
+    static editArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const _a = req.body, { _id, category } = _a, rest = __rest(_a, ["_id", "category"]);
             try {
@@ -127,7 +127,7 @@ class ArticleController {
             }
         });
     }
-    delArticle(req, res, next) {
+    static delArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             const { _id } = req.body;
             yield models_1.articleModel.findByIdAndRemove(_id, (err, data) => {
@@ -146,5 +146,5 @@ class ArticleController {
         });
     }
 }
-exports.default = new ArticleController();
+exports.default = ArticleController;
 //# sourceMappingURL=article.js.map
