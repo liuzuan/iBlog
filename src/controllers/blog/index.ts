@@ -7,6 +7,7 @@ export default async (req, res, next) => {
         const allCategories = await categoryModel.find({ status: 1 });
         const renderErrorPage = (article = {}) =>
         res.render('pages/error', {
+            
             active_nav: 'blog',
             css: 'error',
             active_cate: '',
