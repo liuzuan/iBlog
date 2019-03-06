@@ -2,6 +2,10 @@ export default {
     jwtTokenSecret: 'liuzuanliuzuann',
     dbURL: 'mongodb://localhost:27017/iBlog',
     port: 3000,
+    qiniuConf: {
+        ACCESS_KEY: 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7',
+        SECRET_KEY: 'lveC7RDx27R7NzTMtBNM3BxYKbsPao-j8sPnF7KT'
+    },
     redis: {
         host: '127.0.0.1',
         port: '',
