@@ -7,7 +7,6 @@ header.header
         .line
     a.left(href='/') L Z A
     ul.right
-      each val, index in {blog:'博客',about:'关于'}
-        //- each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
+      each val, index in {blog:'博客',source:'开源',gallery:'图库',message:'留言',about:'关于'}
         li
           a(class=active_nav===index?active_nav:'' href=`/${index==='blog'?'':index}`)= val
