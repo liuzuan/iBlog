@@ -3,11 +3,9 @@ import { articleModel, categoryModel } from '../../models/';
 export default async (req, res, next) => {
     try {
         const { category, title } = req.query;
-        
         const allCategories = await categoryModel.find({ status: 1 });
         const renderErrorPage = (article = {}) =>
         res.render('pages/error', {
-            
             active_nav: 'blog',
             css: 'error',
             active_cate: '',

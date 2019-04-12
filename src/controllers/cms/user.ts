@@ -16,14 +16,14 @@ const setNewPassword = password => {
 class UserController {
     public static async login(req, res, next) {
         try {
-            let { userName, password } = req.body;
-            let newPassword = setNewPassword(password);
-            let user = await userModel
-                .findOneAndUpdate({ userName: userName, password: newPassword }, {})
+            const { userName, password } = req.body;
+            const newPassword = setNewPassword(password);
+            const user = await userModel
+                .findOneAndUpdate({ userName, password: newPassword }, {})
                 .select({ password: 0 })
                 .setOptions({ lean: true });
-            let token = setToken(userName);
-            let user1 = await userModel.findOne({ userName: userName });
+            const token = setToken(userName);
+            const user1 = await userModel.findOne({ userName });
             if (user) {
                 user.token = token;
                 res.send({
@@ -55,7 +55,7 @@ class UserController {
             const { userName, password } = req.body;
             const newPassword = setNewPassword(password);
             const user = await userModel
-                .findOne({ userName: userName })
+                .findOne({ userName })
                 .select({ password: 0 })
                 .setOptions({ lean: true });
             const token = setToken(userName);
@@ -67,7 +67,7 @@ class UserController {
                 return;
             }
             const newUser = new userModel({
-                userName: userName,
+                userName,
                 password: newPassword
             });
             const data = await newUser.save();
@@ -75,7 +75,7 @@ class UserController {
             data.token = token;
             delete data.password;
             res.send({
-                data: data,
+                data,
                 desc: '注册成功！',
                 success: true
             });

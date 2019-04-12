@@ -33,14 +33,14 @@ class UserController {
     static login(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let { userName, password } = req.body;
-                let newPassword = setNewPassword(password);
-                let user = yield models_1.userModel
-                    .findOneAndUpdate({ userName: userName, password: newPassword }, {})
+                const { userName, password } = req.body;
+                const newPassword = setNewPassword(password);
+                const user = yield models_1.userModel
+                    .findOneAndUpdate({ userName, password: newPassword }, {})
                     .select({ password: 0 })
                     .setOptions({ lean: true });
-                let token = setToken(userName);
-                let user1 = yield models_1.userModel.findOne({ userName: userName });
+                const token = setToken(userName);
+                const user1 = yield models_1.userModel.findOne({ userName });
                 if (user) {
                     user.token = token;
                     res.send({
@@ -77,7 +77,7 @@ class UserController {
                 const { userName, password } = req.body;
                 const newPassword = setNewPassword(password);
                 const user = yield models_1.userModel
-                    .findOne({ userName: userName })
+                    .findOne({ userName })
                     .select({ password: 0 })
                     .setOptions({ lean: true });
                 const token = setToken(userName);
@@ -89,7 +89,7 @@ class UserController {
                     return;
                 }
                 const newUser = new models_1.userModel({
-                    userName: userName,
+                    userName,
                     password: newPassword
                 });
                 const data = yield newUser.save();
@@ -97,7 +97,7 @@ class UserController {
                 data.token = token;
                 delete data.password;
                 res.send({
-                    data: data,
+                    data,
                     desc: '注册成功！',
                     success: true
                 });

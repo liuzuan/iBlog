@@ -11,12 +11,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const formidable = require("formidable");
 const fs = require("fs");
 const qiniu = require("qiniu");
+const config_1 = require("../../config");
 const models_1 = require("../../models");
-qiniu.conf.ACCESS_KEY = 'HWBhm1kwS_YY-bHTR9Cl2gWr20eSks14PhIaTqP7';
-qiniu.conf.SECRET_KEY = 'lveC7RDx27R7NzTMtBNM3BxYKbsPao-j8sPnF7KT';
+const { ACCESS_KEY, SECRET_KEY } = config_1.default.qiniuConf;
+qiniu.conf.ACCESS_KEY = ACCESS_KEY;
+qiniu.conf.SECRET_KEY = SECRET_KEY;
 exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
-        const form = formidable.IncomingForm();
+        const form = new formidable.IncomingForm();
         const bucket = 'liuzuanncdn';
         form.uploadDir = 'public/upload/';
         form.keepExtensions = true;
@@ -43,13 +45,10 @@ exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* 
         form.parse(req, (err, fields, files) => __awaiter(this, void 0, void 0, function* () {
             const uniqueName = (new Date().getTime() + Math.ceil(Math.random() * 10000)).toString(16);
             const originalname = files.file.name;
-            const key = (req.query && req.query.dir ? `images/${req.query.dir}/` : 'images/other/') +
-                uniqueName +
-                '__' +
-                originalname;
+            const key = (req.query && req.query.dir ? `images/${req.query.dir}/` : 'images/other/') + uniqueName + '__' + originalname;
             const repath = 'public/upload/' + originalname;
             fs.renameSync(files.file.path, repath);
-            let putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
+            const putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
             const token = putPolicy.token();
             uploadFile(token.toString(), key, repath, originalname);
             fs.unlinkSync(repath);

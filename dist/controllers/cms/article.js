@@ -20,10 +20,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const marked = require("marked");
 const Prism = require("prismjs");
 const models_1 = require("../../models");
-let renderer = new marked.Renderer();
+const renderer = new marked.Renderer();
 let dir = [];
 renderer.heading = (text, level, raw) => {
-    let index = dir.length;
+    const index = dir.length;
     dir.push({ level, text, id: `dir_${index}` });
     return `<h${level} class='h_title' id='dir_${index}'>${text}</h${level}>`;
 };
@@ -78,7 +78,7 @@ class ArticleController {
     static addArticle(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                let newArticle = new models_1.articleModel(Object.assign({}, req.body, { conHtml: marked(req.body.content), dir }));
+                const newArticle = new models_1.articleModel(Object.assign({}, req.body, { conHtml: marked(req.body.content), dir }));
                 yield newArticle.save();
                 yield models_1.categoryModel.update({ _id: newArticle.category }, { $push: { articles: newArticle._id } });
                 res.send({
@@ -100,7 +100,7 @@ class ArticleController {
         return __awaiter(this, void 0, void 0, function* () {
             const _a = req.body, { _id, category } = _a, rest = __rest(_a, ["_id", "category"]);
             try {
-                let article = yield models_1.articleModel.findById(_id);
+                const article = yield models_1.articleModel.findById(_id);
                 if (article.category !== category) {
                     yield models_1.categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
                     yield models_1.categoryModel.update({ _id: category }, { $push: { articles: _id } });

@@ -2,12 +2,12 @@ import * as marked from 'marked';
 import * as Prism from 'prismjs';
 import { articleModel, categoryModel } from '../../models';
 
-let renderer = new marked.Renderer();
+const renderer = new marked.Renderer();
 
 let dir = [];
 
 renderer.heading = (text, level, raw) => {
-    let index = dir.length;
+    const index = dir.length;
     dir.push({ level, text, id: `dir_${index}` });
     return `<h${level} class='h_title' id='dir_${index}'>${text}</h${level}>`;
 };
@@ -58,7 +58,7 @@ class ArticleController {
 
     public static async addArticle(req, res, next) {
         try {
-            let newArticle = new articleModel({
+            const newArticle = new articleModel({
                 ...req.body,
                 conHtml: marked(req.body.content),
                 dir
@@ -81,7 +81,7 @@ class ArticleController {
     public static async editArticle(req, res, next) {
         const { _id, category, ...rest } = req.body;
         try {
-            let article = await articleModel.findById(_id);
+            const article = await articleModel.findById(_id);
             if (article.category !== category) {
                 await categoryModel.update({ _id: article.category }, { $pull: { articles: _id } });
                 await categoryModel.update({ _id: category }, { $push: { articles: _id } });

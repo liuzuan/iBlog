@@ -7,8 +7,10 @@
       "arrow-parens": [true, "ban-single-arg-parens"],
       "object-literal-sort-keys": false,
       "no-unused-variable": false,
-      "no-duplicate-imports": true
-    },
-    "rulesDirectory": ["node_modules/tslint-eslint-rules/dist/rules"]
+      "no-duplicate-imports": true,
+      "trailing-comma": true,
+      "no-console": false,
+      "no-unused-expression": false
+    }
   }
   
