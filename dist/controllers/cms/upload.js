@@ -11,21 +11,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const formidable = require("formidable");
 const fs = require("fs");
 const qiniu = require("qiniu");
-const config_1 = require("../../config");
 const models_1 = require("../../models");
-const { ACCESS_KEY, SECRET_KEY } = config_1.default.qiniuConf;
-qiniu.conf.ACCESS_KEY = ACCESS_KEY;
-qiniu.conf.SECRET_KEY = SECRET_KEY;
+const config = require('config-lite')(__dirname);
+const { ACCESS_KEY, SECRET_KEY } = config.qiniuConf;
+const bucket = 'liuzuanncdn';
+const mac = new qiniu.auth.digest.Mac(ACCESS_KEY, SECRET_KEY);
+var formUploader = new qiniu.form_up.FormUploader({
+    useHttpsDomain: true,
+    useCdnDomain: true
+});
 exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
     try {
         const form = new formidable.IncomingForm();
-        const bucket = 'liuzuanncdn';
         form.uploadDir = 'public/upload/';
         form.keepExtensions = true;
         form.maxFieldsSize = 5 * 1024 * 1024;
         const uploadFile = (uptoken, key, localFile, title) => {
-            const extra = new qiniu.io.PutExtra();
-            qiniu.io.putFile(uptoken, key, localFile, extra, (err, ret) => __awaiter(this, void 0, void 0, function* () {
+            const extra = new qiniu.form_up.PutExtra();
+            formUploader.putFile(uptoken, key, localFile, extra, (err, ret) => __awaiter(this, void 0, void 0, function* () {
                 const url = 'http://cdn.liuzuann.com/' + ret.key;
                 if (req.query && req.query.dir === 'gallery') {
                     const img = new models_1.galleryModel({
@@ -48,9 +51,12 @@ exports.default = (req, res, next) => __awaiter(this, void 0, void 0, function* 
             const key = (req.query && req.query.dir ? `images/${req.query.dir}/` : 'images/other/') + uniqueName + '__' + originalname;
             const repath = 'public/upload/' + originalname;
             fs.renameSync(files.file.path, repath);
-            const putPolicy = new qiniu.rs.PutPolicy(bucket + ':' + key);
-            const token = putPolicy.token();
-            uploadFile(token.toString(), key, repath, originalname);
+            var options = {
+                scope: bucket + ':' + key
+            };
+            const putPolicy = new qiniu.rs.PutPolicy(options);
+            const token = putPolicy.uploadToken(mac);
+            uploadFile(token, key, repath, originalname);
             fs.unlinkSync(repath);
         }));
     }

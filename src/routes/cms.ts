@@ -1,8 +1,9 @@
 import * as express from 'express';
 import { articleController, categoryController, userController, uploadController } from '../controllers/cms';
-import conf from '../config';
 import { userModel } from '../models';
 import * as jwt from 'jsonwebtoken';
+
+const conf = require('config-lite')(__dirname);
 
 const router = express.Router();
 

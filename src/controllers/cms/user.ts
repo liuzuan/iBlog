@@ -1,7 +1,8 @@
 import { userModel } from '../../models';
 import * as crypto from 'crypto';
 import * as jwt from 'jsonwebtoken';
-import conf from '../../config';
+
+const conf = require('config-lite')(__dirname);
 
 const setToken = user => {
     return jwt.sign(user, conf.jwtTokenSecret);

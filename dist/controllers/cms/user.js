@@ -20,12 +20,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../../models");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const config_1 = require("../../config");
+const conf = require('config-lite')(__dirname);
 const setToken = user => {
-    return jwt.sign(user, config_1.default.jwtTokenSecret);
+    return jwt.sign(user, conf.jwtTokenSecret);
 };
 const setNewPassword = password => {
-    const hmac = crypto.createHmac('sha1', config_1.default.jwtTokenSecret);
+    const hmac = crypto.createHmac('sha1', conf.jwtTokenSecret);
     hmac.update(password);
     return hmac.digest('hex');
 };

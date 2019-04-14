@@ -30,7 +30,7 @@ renderer.heading = (text, level, raw) => {
 marked.setOptions({
     highlight: (code, lang) => {
         !lang && (lang = 'javascript');
-        return Prism.highlight(code, Prism.languages[lang]);
+        return Prism.highlight(code, Prism.languages[lang], null);
     },
     renderer
 });

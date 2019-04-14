@@ -8,9 +8,9 @@ const debug = require("debug");
 const path = require("path");
 const cors = require("cors");
 const http = require("http");
-const config_1 = require("./config/");
 const db_1 = require("./mongodb/db");
 const routes_1 = require("./routes/");
+const conf = require('config-lite')(__dirname);
 const app = express();
 db_1.default();
 app.use(cors({
@@ -42,7 +42,7 @@ app.use(function (err, req, res, next) {
     });
 });
 debug('iblog:server');
-const port = normalizePort(process.env.PORT || config_1.default.port);
+const port = normalizePort(process.env.PORT || conf.port);
 app.set('port', port);
 const server = http.createServer(app);
 server.listen(port);

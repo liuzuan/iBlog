@@ -1,6 +1,6 @@
 import redis from 'redis';
-import conf from '../config';
 import chalk from 'chalk';
+const conf = require('config-lite')(__dirname);
 
 const client = redis.createClient(conf.redis.port, conf.redis.host, conf.redis.opts);
 

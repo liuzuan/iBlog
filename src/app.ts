@@ -6,9 +6,10 @@ import * as debug from 'debug';
 import * as path from 'path';
 import * as cors from 'cors';
 import * as http from 'http';
-import conf from './config/';
 import db from './mongodb/db';
 import router from './routes/';
+const conf = require('config-lite')(__dirname);
+
 
 const app = express();
 

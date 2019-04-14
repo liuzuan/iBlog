@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const cms_1 = require("../controllers/cms");
-const config_1 = require("../config");
 const models_1 = require("../models");
 const jwt = require("jsonwebtoken");
+const conf = require('config-lite')(__dirname);
 const router = express.Router();
 // 需要权限的接口
 const shouldMaster = [
@@ -32,7 +32,7 @@ router.use((req, res, next) => __awaiter(this, void 0, void 0, function* () {
     }
     if (token) {
         try {
-            let userData = yield models_1.userModel.findOne({ userName: jwt.verify(token, config_1.default.jwtTokenSecret) });
+            let userData = yield models_1.userModel.findOne({ userName: jwt.verify(token, conf.jwtTokenSecret) });
             if (userData.is_manager) {
                 return next();
             }
