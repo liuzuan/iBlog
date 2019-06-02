@@ -3,6 +3,9 @@ WEB_USER='root'
 WEB_USERGROUP='root'
  
 cd $WEB_PATH
-echo "auto pull from git"
+#echo "auto pull from git"
 git pull
-echo "Finished."
+
+cnpm i
+
+#echo "Finished."
